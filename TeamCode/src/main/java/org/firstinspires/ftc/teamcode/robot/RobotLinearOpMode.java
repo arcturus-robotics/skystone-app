@@ -63,14 +63,13 @@ public class RobotLinearOpMode extends LinearOpMode {
     /**
      * Turn left.
      *
-     * @param degrees The angle to turn left for.
      * @see #drive
 
      */
-    public void turnLeft(double degrees, long duration) {
+    public void turnLeft(double power, long duration) {
         drive(
-                -drivePower, drivePower,
-                -drivePower, drivePower,
+                -power, power,
+                -power, power,
                 duration
         );
     }
@@ -78,13 +77,12 @@ public class RobotLinearOpMode extends LinearOpMode {
     /**
      * Turn right.
      *
-     * @param degrees The angle to turn right for.
      * @see #drive
      */
-    public void turnRight(double degrees, double duration) {
+    public void turnRight(double power, double duration) {
         drive(
-                -drivePower, drivePower,
-                -drivePower, drivePower,
+                -power, power,
+                -power, power,
                 duration
         );
     }

@@ -6,11 +6,11 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import org.firstinspires.ftc.teamcode.robot.RobotOpMode;
 
 /**
- * A basic teleop that only implements wheel control.
+ * A teleop for testing purposes.
  */
-@TeleOp(name = "Basic Teleop", group = "Robot Teleop")
+@TeleOp(name = "Test Teleop", group = "Robot Teleop")
 //@Disabled
-public class BasicTeleop extends RobotOpMode {
+public class TestTeleop extends RobotOpMode {
     @Override
     public void loop() {
         // Calculate motor power based on input from the gamepad.
@@ -24,6 +24,5 @@ public class BasicTeleop extends RobotOpMode {
         robot.frontRightDrive.setPower(frontRight);
         robot.backLeftDrive.setPower(backLeft);
         robot.backRightDrive.setPower(backRight);
-
     }
 }
