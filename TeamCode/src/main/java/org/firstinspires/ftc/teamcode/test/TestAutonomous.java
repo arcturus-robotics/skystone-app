@@ -1,4 +1,4 @@
-package org.firstinspires.ftc.teamcode.robot.autonomous;
+package org.firstinspires.ftc.teamcode.test;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
@@ -10,7 +10,7 @@ import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
  */
 @Autonomous(name = "Test Autonomous", group = "Robot Autonomous")
 //@Disabled
-public class BasicAutonomous extends RobotLinearOpMode {
+public class TestAutonomous extends RobotLinearOpMode {
     @Override
     public void runOpMode() {
         super.runOpMode();

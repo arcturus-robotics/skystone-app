@@ -79,7 +79,7 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @see #drive
      */
-    public void turnRight(double power, double duration) {
+    public void turnRight(double power, long duration) {
         drive(
                 -power, power,
                 -power, power,

@@ -61,8 +61,6 @@ public class RobotHardware {
         backRightDrive.setPower(0);
         frontRightDrive.setPower(0);
         backLeftDrive.setPower(0);
-        latch.setPower(0);
-        arm.setPower(0);
 
         // Set all motors to run without encoders.
         // NOTE: We may want to use RUN_USING_ENCODERS if we ever install encoders.
