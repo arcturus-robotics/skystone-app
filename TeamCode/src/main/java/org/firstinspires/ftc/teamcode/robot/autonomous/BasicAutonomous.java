@@ -8,7 +8,7 @@ import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 /**
  * A basic autonomous.
  */
-@Autonomous(name = "Basic Autonomous", group = "Robot Autonomous")
+@Autonomous(name = "Basic", group = "Robot Autonomous")
 //@Disabled
 public class BasicAutonomous extends RobotLinearOpMode {
     @Override

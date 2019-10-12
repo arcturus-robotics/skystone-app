@@ -9,7 +9,7 @@ import org.firstinspires.ftc.teamcode.robot.RobotOpMode;
 /**
  * A basic teleop that only implements wheel control.
  */
-@TeleOp(name = "Basic Teleop", group = "Robot Teleop")
+@TeleOp(name = "Basic", group = "Robot Teleop")
 //@Disabled
 public class BasicTeleop extends RobotOpMode {
     @Override

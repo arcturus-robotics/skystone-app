@@ -1,16 +1,15 @@
-package org.firstinspires.ftc.teamcode.robot.autonomous;
+package org.firstinspires.ftc.teamcode.robot.autonomous.red;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
 /**
- * An autonomous that starts on the quarry side near the wall.
+ * An autonomous that starts on the loading side near the wall.
  */
-@Autonomous(name = "Loading Autonomous (Wall)", group = "Robot Autonomous")
+@Autonomous(name = "Red: Loading Side (Wall)", group = "Robot Autonomous")
 //@Disabled
-public class LoadingWallAutonomous extends RobotLinearOpMode {
+public class Red_LoadingSide_Wall_Autonomous extends RobotLinearOpMode {
     @Override
     public void runOpMode() {
         super.runOpMode();

@@ -1,16 +1,15 @@
-package org.firstinspires.ftc.teamcode.robot.autonomous;
+package org.firstinspires.ftc.teamcode.robot.autonomous.blue;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
 /**
- * An autonomous that starts on the quarry side near the bridge.
+ * An autonomous that starts on the loading side near the bridge.
  */
-@Autonomous(name = "Loading Autonomous (Bridge)", group = "Robot Autonomous")
+@Autonomous(name = "Blue: Loading Side (Bridge)", group = "Robot Autonomous")
 //@Disabled
-public class LoadingBridgeAutonomous extends RobotLinearOpMode {
+public class Blue_LoadingSide_Bridge_Autonomous extends RobotLinearOpMode {
     @Override
     public void runOpMode() {
         super.runOpMode();
