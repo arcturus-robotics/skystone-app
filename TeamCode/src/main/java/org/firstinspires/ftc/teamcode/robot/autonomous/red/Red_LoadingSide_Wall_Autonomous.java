@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 /**
  * An autonomous that starts on the loading side near the wall.
  */
-@Autonomous(name = "Red: Loading Side (Wall)", group = "Robot Autonomous")
+@Autonomous(name = "Red: Loading Side (Wall) Autonomous", group = "Robot Autonomous")
 //@Disabled
 public class Red_LoadingSide_Wall_Autonomous extends RobotLinearOpMode {
     @Override

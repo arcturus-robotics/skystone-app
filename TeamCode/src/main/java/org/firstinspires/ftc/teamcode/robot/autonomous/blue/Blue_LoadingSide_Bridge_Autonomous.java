@@ -7,7 +7,7 @@ import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 /**
  * An autonomous that starts on the loading side near the bridge.
  */
-@Autonomous(name = "Blue: Loading Side (Bridge)", group = "Robot Autonomous")
+@Autonomous(name = "Blue: Loading Side (Bridge) Autonomous", group = "Robot Autonomous")
 //@Disabled
 public class Blue_LoadingSide_Bridge_Autonomous extends RobotLinearOpMode {
     @Override
