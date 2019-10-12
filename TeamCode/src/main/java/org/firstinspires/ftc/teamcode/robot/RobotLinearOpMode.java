@@ -76,6 +76,9 @@ public class RobotLinearOpMode extends LinearOpMode {
 
     /**
      * Drive left.
+     *
+     * @param power    The drive power.
+     * @param duration The duration to drive for.
      */
     public void driveLeft(double power, long duration) {
         drive(
