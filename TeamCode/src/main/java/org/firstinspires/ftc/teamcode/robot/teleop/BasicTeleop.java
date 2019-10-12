@@ -31,7 +31,8 @@ public class BasicTeleop extends RobotOpMode {
         robot.backLeftDrive.setPower(backLeft);
         robot.backRightDrive.setPower(backRight);
 
-        if (gamepad2.y || gamepad2.b) {
+        // Rotate intake servo.
+        if (gamepad1.y || gamepad1.b) {
             if (gamepad2.y) {
                 robot.intake.setDirection(Servo.Direction.REVERSE);
             } else {
