@@ -16,7 +16,7 @@ public class Blue_LoadingSide_Bridge_Autonomous extends RobotLinearOpMode {
 
         if (opModeIsActive()) {
             driveForward(1.0, 100);
-            driveRight(1.0, 400);
+            driveLeft(1.0, 200);
         }
     }
 }

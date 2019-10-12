@@ -15,8 +15,8 @@ public class Blue_LoadingSide_Wall_Autonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveRight(1.0, 500);
-            driveForward(1.0, 1500);
+            driveForward(1.0, 100);
+            driveLeft(1.0, 400);
         }
     }
 }
