@@ -3,6 +3,11 @@ package org.firstinspires.ftc.teamcode.robot.teleop;
 import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.robot.RobotOpMode;
 
@@ -25,5 +30,17 @@ public class BasicTeleop extends RobotOpMode {
         robot.frontRightDrive.setPower(frontRight);
         robot.backLeftDrive.setPower(backLeft);
         robot.backRightDrive.setPower(backRight);
+
+        if (gamepad2.y || gamepad2.b) {
+            if (gamepad2.y) {
+                robot.intake.setDirection(Servo.Direction.REVERSE);
+            } else {
+                robot.intake.setDirection(Servo.Direction.FORWARD);
+            }
+
+            robot.intake.setPosition(1);
+        } else {
+            robot.intake.setPosition(0);
+        }
     }
 }
