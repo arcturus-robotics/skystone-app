@@ -62,6 +62,8 @@ public class RobotLinearOpMode extends LinearOpMode {
 
     /**
      * Drive forward.
+     * @param power The drive power.
+     * @param duration The duration to drive for.
      */
     public void driveForward(double power, long duration) {
         drive(
@@ -84,6 +86,8 @@ public class RobotLinearOpMode extends LinearOpMode {
 
     /**
      * Drive backward.
+     * @param power The drive power.
+     * @param duration The duration to drive for.
      */
     public void driveBackward(double power, long duration) {
         drive(
@@ -95,6 +99,8 @@ public class RobotLinearOpMode extends LinearOpMode {
 
     /**
      * Drive right.
+     * @param power The drive power.
+     * @param duration The duration to drive for.
      */
     public void driveRight(double power, long duration) {
         drive(
@@ -106,6 +112,8 @@ public class RobotLinearOpMode extends LinearOpMode {
 
     /**
      * Turn left.
+     * @param power The drive power.
+     * @param duration The duration to drive for.
      */
     public void turnLeft(double power, long duration) {
         drive(
@@ -117,6 +125,8 @@ public class RobotLinearOpMode extends LinearOpMode {
 
     /**
      * Turn right.
+     * @param power The drive power.
+     * @param duration The duration to drive for.
      */
     public void turnRight(double power, long duration) {
         drive(

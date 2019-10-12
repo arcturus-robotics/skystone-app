@@ -25,6 +25,5 @@ public class BasicTeleop extends RobotOpMode {
         robot.frontRightDrive.setPower(frontRight);
         robot.backLeftDrive.setPower(backLeft);
         robot.backRightDrive.setPower(backRight);
-
     }
 }

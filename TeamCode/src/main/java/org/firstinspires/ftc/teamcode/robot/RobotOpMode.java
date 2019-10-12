@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.util.Range;
 
 /**
- * An opmode that implements methods, members, and constants for teleop programs.
+ * Implements methods for teleop for convenience.
  */
 public class RobotOpMode extends OpMode {
     public static final double BUTTON_THRESHOLD = 0.5;
