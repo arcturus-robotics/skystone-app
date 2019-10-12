@@ -16,8 +16,8 @@ public class BuildingBridgeAutonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveLeft(1.0, 500);
-            driveForward(1.0, 1500);
+            driveForward(1.0, 100);
+            driveLeft(1.0, 400);
         }
     }
 }
