@@ -6,17 +6,18 @@ import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
 /**
- * An autonomous that starts on the quarry side near the bridge.
+ * An autonomous that starts on the quarry side near the wall.
  */
-@Autonomous(name = "Quarry Autonomous (Bridge)", group = "Robot Autonomous")
+@Autonomous(name = "Loading Autonomous (Wall)", group = "Robot Autonomous")
 //@Disabled
-public class QuarryBridgeAutonomous extends RobotLinearOpMode {
+public class LoadingWallAutonomous extends RobotLinearOpMode {
     @Override
     public void runOpMode() {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveForward(1.0, 500);
+            driveRight(1.0, 500);
+            driveForward(1.0, 1500);
         }
     }
 }
