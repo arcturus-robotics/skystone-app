@@ -18,5 +18,5 @@ public class Constants {
     /**
      * Padding between each movement of the motors, servos, etc. (in milliseconds).
      */
-    public static final long PADDING_DURATION = 30;
+    public static final long PADDING_DURATION = 100;
 }

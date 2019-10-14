@@ -15,8 +15,8 @@ public class Blue_BuildingSide_Bridge_Autonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveForward(1.0, 100);
-            driveRight(1.0, 200);
+            driveForward(0.5, 400);
+            driveRight(0.7, 2250);
         }
     }
 }

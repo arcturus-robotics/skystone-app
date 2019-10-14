@@ -51,7 +51,7 @@ public class RobotHardware {
         frontRightDrive = hwMap.get(DcMotor.class, FRONT_RIGHT_DRIVE);
         backLeftDrive = hwMap.get(DcMotor.class, BACK_LEFT_DRIVE);
         backRightDrive = hwMap.get(DcMotor.class, BACK_RIGHT_DRIVE);
-        intake = hwMap.get(Servo.class, INTAKE);
+        //intake = hwMap.get(Servo.class, INTAKE);
 
         // Set motor directions.
         // NOTE: Set to the opposite direction if we are using AndyMark motors.
@@ -74,9 +74,9 @@ public class RobotHardware {
         backLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Reset servo directions.
-        intake.setDirection(Servo.Direction.FORWARD);
+        //intake.setDirection(Servo.Direction.FORWARD);
 
         // Reset servo positions.
-        intake.setPosition(0.0);
+        //intake.setPosition(0.0);
     }
 }
