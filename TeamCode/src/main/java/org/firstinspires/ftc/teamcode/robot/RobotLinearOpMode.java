@@ -42,7 +42,7 @@ public class RobotLinearOpMode extends LinearOpMode {
      * @see RobotHardware#frontRightDrive
      * @see RobotHardware#backLeftDrive
      * @see RobotHardware#backRightDrive
-     * @see Constants#PADDING_DURATION
+     * @see Constants#MOVEMENT_PADDING_DURATION
      */
     public void drive(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower, long duration) {
         robot.frontLeftDrive.setPower(frontLeftPower);
@@ -57,7 +57,7 @@ public class RobotLinearOpMode extends LinearOpMode {
         robot.backLeftDrive.setPower(0);
         robot.backRightDrive.setPower(0);
 
-        sleep(Constants.PADDING_DURATION);
+        sleep(Constants.MOVEMENT_PADDING_DURATION);
     }
 
     /**

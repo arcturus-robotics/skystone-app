@@ -18,5 +18,10 @@ public class Constants {
     /**
      * Padding between each movement of the motors, servos, etc. (in milliseconds).
      */
-    public static final long PADDING_DURATION = 100;
+    public static final long MOVEMENT_PADDING_DURATION = 30;
+
+    /**
+     * The duration to move away from the wall during autonomous.
+     */
+    public static final long MOVEMENT_FROM_WALL_DURATION = 200;
 }
