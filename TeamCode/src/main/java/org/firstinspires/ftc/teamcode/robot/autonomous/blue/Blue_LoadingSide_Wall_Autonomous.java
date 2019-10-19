@@ -5,7 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
 /**
- * An autonomous that starts on the loading side near the wall.
+ * An autonomous that starts on the blue loading side near the wall.
  */
 @Autonomous(name = "Blue: Loading Side (Wall) Autonomous", group = "Robot Autonomous")
 //@Disabled
