@@ -1,18 +1,38 @@
 package org.firstinspires.ftc.teamcode.robot;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-
-import org.firstinspires.ftc.teamcode.Constants;
-
-import java.util.List;
 
 /**
  * An opmode with many utility methods for autonomous programs.
  */
 public class RobotLinearOpMode extends LinearOpMode {
+    /**
+     * The duration of autonomous (in milliseconds).
+     */
+    public static final long AUTONOMOUS_DURATION = 30000;
+
+    /**
+     * The duration of the initial delay. This delay can prevent our autonomous from clashing with our ally's autonomous.
+     */
+    public static final long INITIAL_DELAY_DURATION = 0;
+
+    /**
+     * Padding between each movement of the motors, servos, etc. (in milliseconds).
+     */
+    public static final long MOVEMENT_PADDING_DURATION = 30;
+
+    /**
+     * The duration to move away from the wall.
+     */
+    public static final long MOVEMENT_FROM_WALL_DURATION = 200;
+
+    /**
+     * The duration to move toward the skybridge.
+     */
+    public static final long MOVEMENT_TO_SKYBRIDGE_DURATION = 1000;
+
+    public double drivePower = 0.5;
     protected RobotHardware robot = new RobotHardware();
     protected ElapsedTime period = new ElapsedTime();
 
@@ -27,7 +47,7 @@ public class RobotLinearOpMode extends LinearOpMode {
         // Reset the elapsed time so we can accurately measure it.
         period.reset();
 
-        sleep(Constants.INITIAL_DELAY_DURATION);
+        sleep(INITIAL_DELAY_DURATION);
     }
 
     /**
@@ -42,9 +62,9 @@ public class RobotLinearOpMode extends LinearOpMode {
      * @see RobotHardware#frontRightDrive
      * @see RobotHardware#backLeftDrive
      * @see RobotHardware#backRightDrive
-     * @see Constants#MOVEMENT_PADDING_DURATION
+     * @see #MOVEMENT_PADDING_DURATION
      */
-    public void drive(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower, long duration) {
+    protected void driveRaw(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower, long duration) {
         robot.frontLeftDrive.setPower(frontLeftPower);
         robot.frontRightDrive.setPower(frontRightPower);
         robot.backLeftDrive.setPower(backLeftPower);
@@ -57,19 +77,36 @@ public class RobotLinearOpMode extends LinearOpMode {
         robot.backLeftDrive.setPower(0);
         robot.backRightDrive.setPower(0);
 
-        sleep(Constants.MOVEMENT_PADDING_DURATION);
+        sleep(MOVEMENT_PADDING_DURATION);
+    }
+
+    /**
+     * Utility function for driving.
+     *
+     * @param frontLeftPower  The power to drive the front left drive motor with.
+     * @param frontRightPower The power to drive the front right  drive motor with.
+     * @param backLeftPower   The power to drive the back left drive motor with.
+     * @param backRightPower  The power to drive the back right drive motor with.
+     * @param duration        The duration to drive for (in milliseconds).
+     * @see RobotHardware#frontLeftDrive
+     * @see RobotHardware#frontRightDrive
+     * @see RobotHardware#backLeftDrive
+     * @see RobotHardware#backRightDrive
+     * @see #driveRaw
+     */
+    protected void drive(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower, long duration) {
+        driveRaw(drivePower * frontLeftPower, drivePower * frontRightPower, drivePower * backLeftPower, drivePower * backRightPower, duration);
     }
 
     /**
      * Drive forward.
      *
-     * @param power    The drive power.
      * @param duration The duration to drive for.
      */
-    public void driveForward(double power, long duration) {
+    protected void driveForward(long duration) {
         drive(
-                power, power,
-                power, power,
+                1.0, 1.0,
+                1.0, 1.0,
                 duration
         );
     }
@@ -77,13 +114,12 @@ public class RobotLinearOpMode extends LinearOpMode {
     /**
      * Drive left.
      *
-     * @param power    The drive power.
      * @param duration The duration to drive for.
      */
-    public void driveLeft(double power, long duration) {
+    protected void driveLeft(long duration) {
         drive(
-                power, -power,
-                -power, power,
+                1.0, -1.0,
+                -1.0, 1.0,
                 duration
         );
     }
@@ -91,13 +127,12 @@ public class RobotLinearOpMode extends LinearOpMode {
     /**
      * Drive backward.
      *
-     * @param power    The drive power.
      * @param duration The duration to drive for.
      */
-    public void driveBackward(double power, long duration) {
+    protected void driveBackward(long duration) {
         drive(
-                -power, -power,
-                -power, -power,
+                -1.0, -1.0,
+                -1.0, -1.0,
                 duration
         );
     }
@@ -105,13 +140,12 @@ public class RobotLinearOpMode extends LinearOpMode {
     /**
      * Drive right.
      *
-     * @param power    The drive power.
      * @param duration The duration to drive for.
      */
-    public void driveRight(double power, long duration) {
+    protected void driveRight(long duration) {
         drive(
-                -power, power,
-                power, -power,
+                -1.0, 1.0,
+                1.0, -1.0,
                 duration
         );
     }
@@ -119,13 +153,12 @@ public class RobotLinearOpMode extends LinearOpMode {
     /**
      * Turn left.
      *
-     * @param power    The drive power.
      * @param duration The duration to drive for.
      */
-    public void turnLeft(double power, long duration) {
+    protected void turnLeft(long duration) {
         drive(
-                -power, power,
-                -power, power,
+                -1.0, 1.0,
+                -1.0, 1.0,
                 duration
         );
     }
@@ -133,13 +166,12 @@ public class RobotLinearOpMode extends LinearOpMode {
     /**
      * Turn right.
      *
-     * @param power    The drive power.
      * @param duration The duration to drive for.
      */
-    public void turnRight(double power, long duration) {
+    protected void turnRight(long duration) {
         drive(
-                power, -power,
-                power, -power,
+                1.0, -1.0,
+                1.0, -1.0,
                 duration
         );
     }

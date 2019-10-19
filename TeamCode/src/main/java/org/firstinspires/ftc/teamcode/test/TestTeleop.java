@@ -1,11 +1,9 @@
 package org.firstinspires.ftc.teamcode.test;
 
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.robot.RobotOpMode;
-
-import com.qualcomm.robotcore.util.Range;
 
 /**
  * A teleop for testing purposes.

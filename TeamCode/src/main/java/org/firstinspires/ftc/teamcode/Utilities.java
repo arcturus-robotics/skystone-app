@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
 
+import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
+
 /**
  * A collection of various utility methods for our robot.
  */
@@ -13,10 +15,10 @@ public class Utilities {
      * @return The remaining time of autonomous.
      * If the result of the calculation is less than 0,
      * then this will return 0.
-     * @see Constants#AUTONOMOUS_DURATION
+     * @see RobotLinearOpMode#AUTONOMOUS_DURATION
      */
     public static long autonomousTimeRemaining(ElapsedTime period) {
-        long remaining = Constants.AUTONOMOUS_DURATION - (long) period.milliseconds();
+        long remaining = RobotLinearOpMode.AUTONOMOUS_DURATION - (long) period.milliseconds();
         if (remaining < 0) {
             remaining = 0;
         }

@@ -2,7 +2,6 @@ package org.firstinspires.ftc.teamcode.robot.autonomous.blue;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
-import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
 /**
@@ -16,8 +15,8 @@ public class Blue_BuildingSide_Bridge_Autonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveForward(0.5, Constants.MOVEMENT_FROM_WALL_DURATION);
-            driveRight(0.7, 2250);
+            driveForward(MOVEMENT_FROM_WALL_DURATION);
+            driveRight(2250);
         }
     }
 }
