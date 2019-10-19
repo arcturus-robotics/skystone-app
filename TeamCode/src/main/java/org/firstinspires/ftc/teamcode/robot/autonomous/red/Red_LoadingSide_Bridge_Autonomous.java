@@ -15,8 +15,8 @@ public class Red_LoadingSide_Bridge_Autonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveForward(1.0, 100);
-            driveRight(1.0, 200);
+            driveForward(MOVEMENT_FROM_WALL_DURATION);
+            driveRight(MOVEMENT_TO_SKYBRIDGE_DURATION / 2);
         }
     }
 }

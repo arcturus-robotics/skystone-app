@@ -10,12 +10,5 @@ import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 @Autonomous(name = "Basic Autonomous", group = "Robot Autonomous")
 //@Disabled
 public class BasicAutonomous extends RobotLinearOpMode {
-    @Override
-    public void runOpMode() {
-        super.runOpMode();
 
-        if (opModeIsActive()) {
-
-        }
-    }
 }

@@ -16,7 +16,7 @@ public class Blue_BuildingSide_Bridge_Autonomous extends RobotLinearOpMode {
 
         if (opModeIsActive()) {
             driveForward(MOVEMENT_FROM_WALL_DURATION);
-            driveRight(2250);
+            driveRight(MOVEMENT_TO_SKYBRIDGE_DURATION / 2);
         }
     }
 }
