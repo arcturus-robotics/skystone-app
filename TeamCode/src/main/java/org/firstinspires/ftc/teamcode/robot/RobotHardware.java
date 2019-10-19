@@ -40,42 +40,64 @@ public class RobotHardware {
      *
      * @param hwMap A reference to a hardware map.
      * @see RobotHardware#hardwareMap
+     * @see #initDevice(DcMotor, String, DcMotor.Direction)
+     * @see #initDevice(Servo, String)
      */
     public void init(HardwareMap hwMap) {
         // Save a reference to the hardware map.
         hardwareMap = hwMap;
 
-        // Define and initialize motors.
-        frontLeftDrive = hwMap.get(DcMotor.class, FRONT_LEFT_DRIVE);
-        frontRightDrive = hwMap.get(DcMotor.class, FRONT_RIGHT_DRIVE);
-        backLeftDrive = hwMap.get(DcMotor.class, BACK_LEFT_DRIVE);
-        backRightDrive = hwMap.get(DcMotor.class, BACK_RIGHT_DRIVE);
-        //intake = hwMap.get(Servo.class, INTAKE);
+        // Initialize motors.
+        initDevice(frontLeftDrive, FRONT_LEFT_DRIVE, DcMotor.Direction.FORWARD);
+        initDevice(frontLeftDrive, FRONT_RIGHT_DRIVE, DcMotor.Direction.REVERSE);
+        initDevice(frontLeftDrive, BACK_LEFT_DRIVE, DcMotor.Direction.FORWARD);
+        initDevice(frontLeftDrive, BACK_RIGHT_DRIVE, DcMotor.Direction.REVERSE);
 
-        // Set motor directions.
-        // NOTE: Set to the opposite direction if we are using AndyMark motors.
-        frontLeftDrive.setDirection(DcMotor.Direction.FORWARD);
-        frontRightDrive.setDirection(DcMotor.Direction.REVERSE);
-        backLeftDrive.setDirection(DcMotor.Direction.FORWARD);
-        backRightDrive.setDirection(DcMotor.Direction.REVERSE);
+        // Initialize servos.
+        //initDevice(intake, INTAKE, Servo.Direction.FORWARD, false);
+    }
 
-        // Reset motor power.
-        frontLeftDrive.setPower(0);
-        backRightDrive.setPower(0);
-        frontRightDrive.setPower(0);
-        backLeftDrive.setPower(0);
+    /**
+     * Initialize a motor.
+     * NOTE: Use the opposite direction if you are using AndyMark motors.
+     *
+     * @param motor     The motor.
+     * @param name      The motor's name.
+     * @param direction The motor's direction.
+     */
+    private void initDevice(DcMotor motor, String name, DcMotor.Direction direction) {
+        // Initialize the motor.
+        motor = hardwareMap.get(DcMotor.class, name);
 
-        // Set all motors to run without encoders.
-        // NOTE: We may want to use RUN_USING_ENCODERS if we ever install encoders.
-        frontLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        backRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        frontRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        backLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+        // Set the motor's direction.
+        motor.setDirection(direction);
 
-        // Reset servo directions.
-        //intake.setDirection(Servo.Direction.FORWARD);
+        // Reset the motor's power.
+        motor.setPower(0.0);
 
-        // Reset servo positions.
-        //intake.setPosition(0.0);
+        // Set the motor to run without an encoder.
+        // NOTE: We may want to use RUN_USING_ENCODER if we ever install encoders.
+        motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+    }
+
+    /**
+     * Initialize a servo.
+     *
+     * @param servo      The servo.
+     * @param name       The servo's name.
+     * @param direction  The servo's direction.
+     * @param continuous Whether the servo is a continuous rotation servo or not.
+     */
+    private void initDevice(Servo servo, String name, Servo.Direction direction, boolean continuous) {
+        // Initialize the servo.
+        servo = hardwareMap.get(Servo.class, name);
+
+        // Set the servo's direction.
+        servo.setDirection(direction);
+
+        // Reset the servo's position.
+        if (continuous) {
+            servo.setPosition(0.0);
+        }
     }
 }

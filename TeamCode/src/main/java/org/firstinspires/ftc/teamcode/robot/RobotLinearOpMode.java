@@ -72,10 +72,10 @@ public class RobotLinearOpMode extends LinearOpMode {
 
         sleep(duration);
 
-        robot.frontLeftDrive.setPower(0);
-        robot.frontRightDrive.setPower(0);
-        robot.backLeftDrive.setPower(0);
-        robot.backRightDrive.setPower(0);
+        robot.frontLeftDrive.setPower(0.0);
+        robot.frontRightDrive.setPower(0.0);
+        robot.backLeftDrive.setPower(0.0);
+        robot.backRightDrive.setPower(0.0);
 
         sleep(MOVEMENT_PADDING_DURATION);
     }
