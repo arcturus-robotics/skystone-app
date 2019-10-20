@@ -52,6 +52,8 @@ public class RobotLinearOpMode extends LinearOpMode {
 
     /**
      * Utility function for driving.
+     * Takes power for each drive motor
+     * and the duration to drive for.
      *
      * @param frontLeftPower  The power to drive the front left drive motor with.
      * @param frontRightPower The power to drive the front right  drive motor with.
@@ -82,20 +84,23 @@ public class RobotLinearOpMode extends LinearOpMode {
 
     /**
      * Utility function for driving.
+     * Takes power for each drive motor
+     * (but multiplies it by <code>drivePower</code>)
+     * and the duration to drive for.
      *
      * @param frontLeftPower  The power to drive the front left drive motor with.
      * @param frontRightPower The power to drive the front right  drive motor with.
      * @param backLeftPower   The power to drive the back left drive motor with.
      * @param backRightPower  The power to drive the back right drive motor with.
      * @param duration        The duration to drive for (in milliseconds).
-     * @see RobotHardware#frontLeftDrive
-     * @see RobotHardware#frontRightDrive
-     * @see RobotHardware#backLeftDrive
-     * @see RobotHardware#backRightDrive
      * @see #driveRaw
      */
     protected void drive(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower, long duration) {
-        driveRaw(drivePower * frontLeftPower, drivePower * frontRightPower, drivePower * backLeftPower, drivePower * backRightPower, duration);
+        driveRaw(
+                drivePower * frontLeftPower, drivePower * frontRightPower,
+                drivePower * backLeftPower, drivePower * backRightPower,
+                duration
+        );
     }
 
     /**
