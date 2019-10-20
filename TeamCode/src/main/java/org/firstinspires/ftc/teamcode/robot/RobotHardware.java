@@ -41,7 +41,7 @@ public class RobotHardware {
      * @param hwMap A reference to a hardware map.
      * @see RobotHardware#hardwareMap
      * @see #initDevice(DcMotor, String, DcMotor.Direction)
-     * @see #initDevice(Servo, String)
+     * @see #initDevice(Servo, String, Servo.Direction, boolean)
      */
     public void init(HardwareMap hwMap) {
         // Save a reference to the hardware map.
