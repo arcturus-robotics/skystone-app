@@ -159,46 +159,32 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text=""
-            android:visibility="invisible" />
+            android:visibility="invisible"
+            android:textColor="?attr/textMediumDark" />
 
-        <TextView
-            android:id="@+id/textGamepad1"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_above="@+id/textGamepad2"
-            android:text=""
-            android:visibility="invisible" />
+    </FrameLayout>
 
-        <TextView
-            android:id="@+id/textGamepad2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:text=""
-            android:visibility="invisible" />
+    <TextView
+      android:id="@+id/textGamepad1"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_above="@+id/textGamepad2"
+      android:visibility="invisible"
+      android:text="" />
 
-        <!-- invisible except when programming mode is activated from the DS -->
-        <TextView
-            android:id="@+id/textRemoteProgrammingMode"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="?attr/backgroundLight"
-            android:gravity="center"
-            android:text=""
-            android:textColor="?attr/textWhite"
-            android:textSize="40sp"
-            android:textStyle="bold"
-            android:visibility="invisible" />
+    <TextView
+      android:id="@+id/textGamepad2"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_alignParentBottom="true"
+      android:visibility="invisible"
+      android:text="" />
 
-    </RelativeLayout>
+  </RelativeLayout>
 
-    <WebView
-        android:id="@+id/webViewBlocksRuntime"
-        android:layout_width="1dp"
-        android:layout_height="1dp" />
-
-    <include
-        android:id="@+id/included_header"
-        layout="@layout/header" />
+  <WebView
+    android:id="@+id/webViewBlocksRuntime"
+    android:layout_width="1dp"
+    android:layout_height="1dp" />
 
 </LinearLayout>
