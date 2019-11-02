@@ -108,10 +108,10 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param duration The duration to drive for.
      */
-    protected void driveForward(long duration) {
+    protected void driveForward(double power, long duration) {
         drive(
-                1.0, 1.0,
-                1.0, 1.0,
+                power, power,
+                power, power,
                 duration
         );
     }
@@ -121,10 +121,10 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param duration The duration to drive for.
      */
-    protected void driveLeft(long duration) {
+    protected void driveLeft(double power, long duration) {
         drive(
-                1.0, -1.0,
-                -1.0, 1.0,
+                power, -power,
+                -power, power,
                 duration
         );
     }
@@ -134,10 +134,10 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param duration The duration to drive for.
      */
-    protected void driveBackward(long duration) {
+    protected void driveBackward(double power, long duration) {
         drive(
-                -1.0, -1.0,
-                -1.0, -1.0,
+                -power, -power,
+                -power, -power,
                 duration
         );
     }
@@ -147,10 +147,10 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param duration The duration to drive for.
      */
-    protected void driveRight(long duration) {
+    protected void driveRight(double power, long duration) {
         drive(
-                -1.0, 1.0,
-                1.0, -1.0,
+                -power, power,
+                power, -power,
                 duration
         );
     }
@@ -160,10 +160,10 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param duration The duration to drive for.
      */
-    protected void turnLeft(long duration) {
+    protected void turnLeft(double power, long duration) {
         drive(
-                -1.0, 1.0,
-                -1.0, 1.0,
+                -power, power,
+                -power, power,
                 duration
         );
     }
@@ -173,11 +173,65 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param duration The duration to drive for.
      */
-    protected void turnRight(long duration) {
+    protected void turnRight(double power, long duration) {
         drive(
-                1.0, -1.0,
-                1.0, -1.0,
+                power, -power,
+                power, -power,
                 duration
         );
+    }
+
+    /**
+     * Drive forward.
+     *
+     * @param duration The duration to drive for.
+     */
+    protected void driveForward(long duration) {
+        driveForward(1.0, duration);
+    }
+
+    /**
+     * Drive left.
+     *
+     * @param duration The duration to drive for.
+     */
+    protected void driveLeft(long duration) {
+        driveLeft(1.0, duration);
+    }
+
+    /**
+     * Drive backward.
+     *
+     * @param duration The duration to drive for.
+     */
+    protected void driveBackward(long duration) {
+        driveBackward(1.0, duration);
+    }
+
+    /**
+     * Drive right.
+     *
+     * @param duration The duration to drive for.
+     */
+    protected void driveRight(long duration) {
+        driveRight(1.0, duration);
+    }
+
+    /**
+     * Turn left.
+     *
+     * @param duration The duration to drive for.
+     */
+    protected void turnLeft(long duration) {
+        turnLeft(1.0, duration);
+    }
+
+    /**
+     * Turn right.
+     *
+     * @param duration The duration to drive for.
+     */
+    protected void turnRight(long duration) {
+        turnRight(1.0, duration);
     }
 }

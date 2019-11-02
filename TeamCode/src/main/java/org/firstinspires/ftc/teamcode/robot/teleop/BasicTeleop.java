@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.robot.teleop;
 
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
+import com.qualcomm.robotcore.hardware.Servo;
 
 import org.firstinspires.ftc.teamcode.robot.RobotOpMode;
 
@@ -25,10 +26,9 @@ public class BasicTeleop extends RobotOpMode {
         robot.backLeftDrive.setPower(backLeft);
         robot.backRightDrive.setPower(backRight);
 
-        /*
         // Rotate intake servo.
         if (gamepad1.y || gamepad1.b) {
-            if (gamepad2.y) {
+            if (gamepad1.y) {
                 robot.intake.setDirection(Servo.Direction.REVERSE);
             } else {
                 robot.intake.setDirection(Servo.Direction.FORWARD);
@@ -38,6 +38,5 @@ public class BasicTeleop extends RobotOpMode {
         } else {
             robot.intake.setPosition(0);
         }
-        */
     }
 }

@@ -54,7 +54,7 @@ public class RobotHardware {
         backRightDrive = initDevice(BACK_RIGHT_DRIVE, DcMotor.Direction.REVERSE);
 
         // Initialize servos.
-        //initDevice(intake, INTAKE, Servo.Direction.FORWARD, false);
+        intake = initDevice(INTAKE, Servo.Direction.FORWARD, 0.5);
     }
 
     /**
@@ -83,6 +83,27 @@ public class RobotHardware {
     }
 
     /**
+     * Initialize a servo with a specific position.
+     *
+     * @return The initialized servo.
+     * @param name       The servo's name.
+     * @param direction  The servo's direction.
+     * @param position   The servo's position.
+     */
+    private Servo initDevice(String name, Servo.Direction direction, double position) {
+        // Initialize the servo.
+        Servo servo = hardwareMap.get(Servo.class, name);
+
+        // Set the servo's direction.
+        servo.setDirection(direction);
+
+        // Set the servo's position.
+        servo.setPosition(0.0);
+
+        return servo;
+    }
+
+    /**
      * Initialize a servo.
      *
      * @return The initialized servo.
@@ -97,7 +118,7 @@ public class RobotHardware {
         // Set the servo's direction.
         servo.setDirection(direction);
 
-        // Reset the servo's position.
+        // Reset the servo's position if it is not a continuous rotation servo.
         if (!continuous) {
             servo.setPosition(0.0);
         }

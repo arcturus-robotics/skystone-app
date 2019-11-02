@@ -15,8 +15,8 @@ public class RedLoadingSideAutonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveForward(MOVEMENT_FROM_WALL_DURATION);
-            driveRight(MOVEMENT_TO_SKYBRIDGE_DURATION);
+            driveForward(0.5, MOVEMENT_FROM_WALL_DURATION);
+            driveRight(0.5, MOVEMENT_TO_SKYBRIDGE_DURATION);
         }
     }
 }
