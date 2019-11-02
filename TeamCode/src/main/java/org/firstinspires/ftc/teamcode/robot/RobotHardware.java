@@ -40,18 +40,18 @@ public class RobotHardware {
      *
      * @param hwMap A reference to a hardware map.
      * @see RobotHardware#hardwareMap
-     * @see #initDevice(DcMotor, String, DcMotor.Direction)
-     * @see #initDevice(Servo, String, Servo.Direction, boolean)
+     * @see #initDevice(String, DcMotor.Direction)
+     * @see #initDevice(String, Servo.Direction, boolean)
      */
     public void init(HardwareMap hwMap) {
         // Save a reference to the hardware map.
         hardwareMap = hwMap;
 
         // Initialize motors.
-        initDevice(frontLeftDrive, FRONT_LEFT_DRIVE, DcMotor.Direction.FORWARD);
-        initDevice(frontLeftDrive, FRONT_RIGHT_DRIVE, DcMotor.Direction.REVERSE);
-        initDevice(frontLeftDrive, BACK_LEFT_DRIVE, DcMotor.Direction.FORWARD);
-        initDevice(frontLeftDrive, BACK_RIGHT_DRIVE, DcMotor.Direction.REVERSE);
+        frontLeftDrive = initDevice(FRONT_LEFT_DRIVE, DcMotor.Direction.FORWARD);
+        frontRightDrive = initDevice(FRONT_RIGHT_DRIVE, DcMotor.Direction.REVERSE);
+        backLeftDrive = initDevice(BACK_LEFT_DRIVE, DcMotor.Direction.FORWARD);
+        backRightDrive = initDevice(BACK_RIGHT_DRIVE, DcMotor.Direction.REVERSE);
 
         // Initialize servos.
         //initDevice(intake, INTAKE, Servo.Direction.FORWARD, false);
@@ -61,13 +61,13 @@ public class RobotHardware {
      * Initialize a motor.
      * NOTE: Use the opposite direction if you are using AndyMark motors.
      *
-     * @param motor     The motor.
+     * @return The initialized motor.
      * @param name      The motor's name.
      * @param direction The motor's direction.
      */
-    private void initDevice(DcMotor motor, String name, DcMotor.Direction direction) {
+    private DcMotor initDevice(String name, DcMotor.Direction direction) {
         // Initialize the motor.
-        motor = hardwareMap.get(DcMotor.class, name);
+        DcMotor motor = hardwareMap.get(DcMotor.class, name);
 
         // Set the motor's direction.
         motor.setDirection(direction);
@@ -78,26 +78,30 @@ public class RobotHardware {
         // Set the motor to run without an encoder.
         // NOTE: We may want to use RUN_USING_ENCODER if we ever install encoders.
         motor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+
+        return motor;
     }
 
     /**
      * Initialize a servo.
      *
-     * @param servo      The servo.
+     * @return The initialized servo.
      * @param name       The servo's name.
      * @param direction  The servo's direction.
      * @param continuous Whether the servo is a continuous rotation servo or not.
      */
-    private void initDevice(Servo servo, String name, Servo.Direction direction, boolean continuous) {
+    private Servo initDevice(String name, Servo.Direction direction, boolean continuous) {
         // Initialize the servo.
-        servo = hardwareMap.get(Servo.class, name);
+        Servo servo = hardwareMap.get(Servo.class, name);
 
         // Set the servo's direction.
         servo.setDirection(direction);
 
         // Reset the servo's position.
-        if (continuous) {
+        if (!continuous) {
             servo.setPosition(0.0);
         }
+
+        return servo;
     }
 }
