@@ -42,6 +42,7 @@ public class RobotHardware {
      * @see RobotHardware#hardwareMap
      * @see #initDevice(String, DcMotor.Direction)
      * @see #initDevice(String, Servo.Direction, boolean)
+     * @see #initDevice(String, Servo.Direction, double)
      */
     public void init(HardwareMap hwMap) {
         // Save a reference to the hardware map.
@@ -54,7 +55,7 @@ public class RobotHardware {
         backRightDrive = initDevice(BACK_RIGHT_DRIVE, DcMotor.Direction.REVERSE);
 
         // Initialize servos.
-        intake = initDevice(INTAKE, Servo.Direction.FORWARD, 0.5);
+        intake = initDevice(INTAKE, Servo.Direction.FORWARD, 1.0);
     }
 
     /**
@@ -98,7 +99,7 @@ public class RobotHardware {
         servo.setDirection(direction);
 
         // Set the servo's position.
-        servo.setPosition(0.0);
+        servo.setPosition(position);
 
         return servo;
     }
