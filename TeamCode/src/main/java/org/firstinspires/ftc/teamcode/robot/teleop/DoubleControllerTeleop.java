@@ -7,11 +7,13 @@ import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.teamcode.robot.RobotOpMode;
 
 /**
- * A basic teleop that only implements wheel control.
+ * A teleop for use with two controllers.
+ *
+ * One controller drives and another controls intake.
  */
-@TeleOp(name = "Basic Teleop", group = "Robot Teleop")
+@TeleOp(name = "Double Controller Teleop", group = "Robot Teleop")
 //@Disabled
-public class BasicTeleop extends RobotOpMode {
+public class DoubleControllerTeleop extends RobotOpMode {
     @Override
     public void loop() {
         // Calculate motor power based on input from the gamepad.
@@ -27,8 +29,8 @@ public class BasicTeleop extends RobotOpMode {
         robot.backRightDrive.setPower(backRight);
 
         // Rotate intake servo.
-        if (gamepad1.y || gamepad1.b) {
-            if (gamepad1.y) {
+        if (gamepad2.y || gamepad2.b) {
+            if (gamepad2.y) {
                 robot.intake.setDirection(Servo.Direction.REVERSE);
             } else {
                 robot.intake.setDirection(Servo.Direction.FORWARD);
