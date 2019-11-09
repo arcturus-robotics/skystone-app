@@ -15,7 +15,10 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * frontRightDrive: {@value #FRONT_RIGHT_DRIVE}
  * backLeftDrive:   {@value #BACK_LEFT_DRIVE}
  * backRightDrive:  {@value #BACK_RIGHT_DRIVE}
- * intake:          {@value #INTAKE}
+ *
+ * <p>
+ * Servos:
+ * intake: {@value #INTAKE}
  */
 public class RobotHardware {
     public static final String FRONT_LEFT_DRIVE = "front_left_drive";
