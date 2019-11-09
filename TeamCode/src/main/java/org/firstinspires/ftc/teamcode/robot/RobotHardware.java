@@ -6,7 +6,8 @@ import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
- * A container for our robot's hardware.
+ * A container for easy access to our robot's hardware.
+ * Provides an easy way to initialize and reset devices.
  *
  * <p>
  * Motors:
