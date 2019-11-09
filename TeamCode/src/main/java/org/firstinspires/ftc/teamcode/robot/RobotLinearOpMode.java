@@ -4,7 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
- * An opmode with many utility methods for autonomous programs.
+ * An opmode with many utility methods and constants for autonomous programs.
  */
 public class RobotLinearOpMode extends LinearOpMode {
     /**
