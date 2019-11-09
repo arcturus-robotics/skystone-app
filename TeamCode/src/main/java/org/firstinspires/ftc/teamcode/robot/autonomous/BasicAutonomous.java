@@ -6,6 +6,7 @@ import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
 /**
  * A basic autonomous.
+ * It doesn't do anything.
  */
 @Autonomous(name = "Basic Autonomous", group = "Robot Autonomous")
 //@Disabled

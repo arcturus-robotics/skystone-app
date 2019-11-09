@@ -10,8 +10,8 @@ public class RobotOpMode extends OpMode {
     protected RobotHardware robot = new RobotHardware();
     protected ElapsedTime period = new ElapsedTime();
 
-    /*
-     * Code to run ONCE when the driver hits INIT.
+    /**
+     * Runs once upon initialization.
      */
     @Override
     public void init() {
@@ -21,31 +21,31 @@ public class RobotOpMode extends OpMode {
         telemetry.addData("Status", "Waiting...");
     }
 
-    /*
-     * Code to run REPEATEDLY after the driver hits INIT, but before they hit PLAY.
+    /**
+     * Runs repeatedly after initialization but before playing.
      */
     @Override
     public void init_loop() {
 
     }
 
-    /*
-     * Code to run ONCE when the driver hits PLAY.
+    /**
+     * Runs once upon playing.
      */
     @Override
     public void start() {
         telemetry.addData("Status", "Started");
     }
 
-    /*
-     * Code to run REPEATEDLY after the driver hits PLAY but before they hit STOP.
+    /**
+     * Runs repeatedly after playing but before stopping.
      */
     @Override
     public void loop() {
 
     }
 
-    /*
+    /**
      * Code to run ONCE after the driver hits STOP.
      */
     @Override

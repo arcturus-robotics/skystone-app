@@ -14,7 +14,7 @@ public class Utilities {
      * @param period The elapsed time.
      * @return The remaining time of autonomous.
      * If the result of the calculation is less than 0,
-     * then this will return 0.
+     * 0 will be returned.
      * @see RobotLinearOpMode#AUTONOMOUS_DURATION
      */
     public static long autonomousTimeRemaining(ElapsedTime period) {

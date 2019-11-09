@@ -36,6 +36,9 @@ public class RobotLinearOpMode extends LinearOpMode {
     protected RobotHardware robot = new RobotHardware();
     protected ElapsedTime period = new ElapsedTime();
 
+    /**
+     * Run the opmode.
+     */
     @Override
     public void runOpMode() {
         // Initialize the robot using the hardware map.
@@ -52,8 +55,7 @@ public class RobotLinearOpMode extends LinearOpMode {
 
     /**
      * Utility function for driving.
-     * Takes power for each drive motor
-     * and the duration to drive for.
+     * Takes power for each drive motor and the duration to drive for.
      *
      * @param frontLeftPower  The power to drive the front left drive motor with.
      * @param frontRightPower The power to drive the front right  drive motor with.
