@@ -45,7 +45,7 @@ public class RobotHardware {
      * @see #initDevice(String, Servo.Direction, double)
      */
     public void init(HardwareMap hwMap) {
-        // Save a reference to the hardware map.
+        // Initialize the hardware map.
         hardwareMap = hwMap;
 
         // Initialize motors.
