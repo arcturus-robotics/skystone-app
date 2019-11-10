@@ -188,10 +188,8 @@ public class VisionAutonomous extends LinearOpMode {
         // Create list of trackables.
         List<VuforiaTrackable> allTrackables = new ArrayList<VuforiaTrackable>(skystoneTargets);
 
-        // Set the position of the Stone Target. Since it's not fixed in position,
-        // assume it's at
-        // the field origin. Rotated it to to face forward, and raised it to sit on the
-        // ground
+        // Set the position of the Stone Target. Since it's not fixed in position, assume it's at
+        // the field origin. Rotated it to to face forward, and raised it to sit on the ground
         // correctly. This can be used for generic target-centric approach algorithms.
         stoneTarget.setLocation(OpenGLMatrix.translation(0, 0, stoneZ)
                 .multiplied(Orientation.getRotationMatrix(EXTRINSIC, XYZ, DEGREES, 90, 0, -90)));
