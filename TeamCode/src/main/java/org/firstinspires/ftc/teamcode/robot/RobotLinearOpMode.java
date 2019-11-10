@@ -240,9 +240,9 @@ public class RobotLinearOpMode extends LinearOpMode {
     }
 
     /**
-     * Rotate the intake servo.
+     * Rotate the intake servo to a specific position.
      *
-     * @param degrees The angle to turn the right intake for.
+     * @param degrees The angle to turn the intake to.
      */
     public void rotateIntake(double degrees) {
         if (degrees > 0) {
@@ -252,6 +252,31 @@ public class RobotLinearOpMode extends LinearOpMode {
         }
 
         robot.intake.setPosition(Utilities.degreesToServoPosition(Math.abs(degrees)));
+
+        sleep(MOVEMENT_PADDING_DURATION);
+    }
+
+    /**
+     * Turn the intake servo.
+     *
+     * @param degrees The angle to turn the intake for.
+     */
+    public void turnIntake(double degrees) {
+        double position = Utilities.degreesToServoPosition(degrees);
+        double lastPosition = robot.intake.getPosition();
+        if (robot.intake.getDirection() == Servo.Direction.REVERSE) {
+            lastPosition = -lastPosition;
+        }
+
+        double delta = lastPosition + position;
+
+        if (delta > 0.0) {
+            robot.intake.setDirection(Servo.Direction.FORWARD);
+        } else {
+            robot.intake.setDirection(Servo.Direction.REVERSE);
+        }
+
+        robot.intake.setPosition(Utilities.degreesToServoPosition(Math.abs(delta)));
 
         sleep(MOVEMENT_PADDING_DURATION);
     }

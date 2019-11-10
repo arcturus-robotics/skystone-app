@@ -12,6 +12,7 @@ import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
+import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,7 @@ import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocaliz
  */
 @Autonomous(name = "Vision Autonomous", group = "Robot Autonomous")
 // @Disabled
-public class VisionAutonomous extends LinearOpMode {
+public class VisionAutonomous extends RobotLinearOpMode {
     /**
      * The camera direction
      */
@@ -336,6 +337,8 @@ public class VisionAutonomous extends LinearOpMode {
                 // Roll, pitch, and yaw.
                 telemetry.addData("Rot (deg)", "(%.0f, %.0f, %.0f)", rotation.firstAngle, rotation.secondAngle,
                         rotation.thirdAngle);
+
+                turnIntake(1.0);
             } else {
                 telemetry.addData("Visible Target", "none");
             }
