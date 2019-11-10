@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.robot;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.Servo;
+import org.firstinspires.ftc.teamcode.Utilities;
 
 /**
  * An opmode with many utility methods and constants for autonomous programs.
@@ -235,5 +237,22 @@ public class RobotLinearOpMode extends LinearOpMode {
      */
     protected void turnRight(long duration) {
         turnRight(1.0, duration);
+    }
+
+    /**
+     * Rotate the intake servo.
+     *
+     * @param degrees The angle to turn the right intake for.
+     */
+    public void rotateIntake(double degrees) {
+        if (degrees > 0) {
+            robot.intake.setDirection(Servo.Direction.FORWARD);
+        } else {
+            robot.intake.setDirection(Servo.Direction.REVERSE);
+        }
+
+        robot.intake.setPosition(Utilities.degreesToServoPosition(Math.abs(degrees)));
+
+        sleep(MOVEMENT_PADDING_DURATION);
     }
 }

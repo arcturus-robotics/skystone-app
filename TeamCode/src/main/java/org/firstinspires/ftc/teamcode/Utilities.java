@@ -24,4 +24,14 @@ public class Utilities {
         }
         return remaining;
     }
+
+    /**
+     * Convert degrees into a servo position.
+     *
+     * @param degrees The angle to be converted.
+     * @return <code>degrees</code> converted into a servo position.
+     */
+    public static double degreesToServoPosition(double degrees) {
+        return Math.abs(degrees) / 180;
+    }
 }
