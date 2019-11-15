@@ -324,26 +324,36 @@ public class VisionAutonomous extends RobotLinearOpMode {
                 }
             }
 
-            // Provide feedback as to where the robot is located if we know.
-            if (targetVisible) {
-                // Express translation of the robot in inches.
-                VectorF translation = lastLocation.getTranslation();
-                // X, Y, and Z.
-                telemetry.addData("Pos (in)", "(%.1f, %.1f, %.1f)", translation.get(0) / mmPerInch,
-                        translation.get(1) / mmPerInch, translation.get(2) / mmPerInch);
 
-                // Express the rotation of the robot in degrees.
-                Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
-                // Roll, pitch, and yaw.
-                telemetry.addData("Rot (deg)", "(%.0f, %.0f, %.0f)", rotation.firstAngle, rotation.secondAngle,
-                        rotation.thirdAngle);
+            driveForward(500);
+            while (true) {
+                // Provide feedback as to where the robot is located if we know.
+                if (targetVisible) {
+                    // Express translation of the robot in inches.
+                    VectorF translation = lastLocation.getTranslation();
+                    // X, Y, and Z.
+                    telemetry.addData("Pos (in)", "(%.1f, %.1f, %.1f)", translation.get(0) / mmPerInch,
+                            translation.get(1) / mmPerInch, translation.get(2) / mmPerInch);
 
-                turnIntake(1.0);
-            } else {
-                telemetry.addData("Visible Target", "none");
+                    // Express the rotation of the robot in degrees.
+                    Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
+                    // Roll, pitch, and yaw.
+                    telemetry.addData("Rot (deg)", "(%.0f, %.0f, %.0f)", rotation.firstAngle, rotation.secondAngle,
+                            rotation.thirdAngle);
+
+                    turnIntake(1.0);
+
+                    break;
+                } else {
+                    telemetry.addData("Visible Target", "none");
+                }
+
+                // Drive forward and backward until the robot can see the skystone.
+                driveBackward(1000);
+                driveForward(1000);
+
+                telemetry.update();
             }
-
-            telemetry.update();
         }
 
         // Disable tracking when we are done.

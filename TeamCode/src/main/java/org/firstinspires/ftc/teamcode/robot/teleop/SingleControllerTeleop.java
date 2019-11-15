@@ -15,10 +15,10 @@ public class SingleControllerTeleop extends RobotOpMode {
     @Override
     public void loop() {
         // Calculate motor power based on input from the gamepad.
-        float frontLeft = -Range.clip(gamepad1.left_stick_y + gamepad1.left_stick_x, -1.0f, 1.0f);
-        float frontRight = -Range.clip(gamepad1.right_stick_y - gamepad1.right_stick_x, -1.0f, 1.0f);
-        float backLeft = -Range.clip(gamepad1.left_stick_y - gamepad1.right_stick_x, -1.0f, 1.0f);
-        float backRight = -Range.clip(gamepad1.right_stick_y + gamepad1.left_stick_x, -1.0f, 1.0f);
+        float frontLeft = -Range.clip(gamepad1.left_stick_y - gamepad1.left_stick_x, -1.0f, 1.0f);
+        float frontRight = -Range.clip(gamepad1.right_stick_y + gamepad1.right_stick_x, -1.0f, 1.0f);
+        float backLeft = -Range.clip(gamepad1.left_stick_y + gamepad1.right_stick_x, -1.0f, 1.0f);
+        float backRight = -Range.clip(gamepad1.right_stick_y - gamepad1.left_stick_x, -1.0f, 1.0f);
 
         // Drive the motors.
         robot.frontLeftDrive.setPower(frontLeft);
