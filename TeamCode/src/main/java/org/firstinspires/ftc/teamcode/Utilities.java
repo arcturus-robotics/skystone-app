@@ -14,7 +14,7 @@ public class Utilities {
      * @param period The elapsed time.
      * @return The remaining time of autonomous.
      * If the result of the calculation is less than 0,
-     * then this will return 0.
+     * 0 will be returned.
      * @see RobotLinearOpMode#AUTONOMOUS_DURATION
      */
     public static long autonomousTimeRemaining(ElapsedTime period) {
@@ -23,5 +23,15 @@ public class Utilities {
             remaining = 0;
         }
         return remaining;
+    }
+
+    /**
+     * Convert degrees into a servo position.
+     *
+     * @param degrees The angle to be converted.
+     * @return <code>degrees</code> converted into a servo position.
+     */
+    public static double degreesToServoPosition(double degrees) {
+        return Math.abs(degrees) / 180;
     }
 }

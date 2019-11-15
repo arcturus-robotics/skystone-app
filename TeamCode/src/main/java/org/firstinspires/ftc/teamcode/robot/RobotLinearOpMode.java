@@ -2,9 +2,11 @@ package org.firstinspires.ftc.teamcode.robot;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.hardware.Servo;
+import org.firstinspires.ftc.teamcode.Utilities;
 
 /**
- * An opmode with many utility methods for autonomous programs.
+ * An opmode with many utility methods and constants for autonomous programs.
  */
 public class RobotLinearOpMode extends LinearOpMode {
     /**
@@ -36,6 +38,9 @@ public class RobotLinearOpMode extends LinearOpMode {
     protected RobotHardware robot = new RobotHardware();
     protected ElapsedTime period = new ElapsedTime();
 
+    /**
+     * Run the opmode.
+     */
     @Override
     public void runOpMode() {
         // Initialize the robot using the hardware map.
@@ -52,8 +57,7 @@ public class RobotLinearOpMode extends LinearOpMode {
 
     /**
      * Utility function for driving.
-     * Takes power for each drive motor
-     * and the duration to drive for.
+     * Takes power for each drive motor and the duration to drive for.
      *
      * @param frontLeftPower  The power to drive the front left drive motor with.
      * @param frontRightPower The power to drive the front right  drive motor with.
@@ -108,10 +112,10 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param duration The duration to drive for.
      */
-    protected void driveForward(long duration) {
+    protected void driveForward(double power, long duration) {
         drive(
-                1.0, 1.0,
-                1.0, 1.0,
+                power, power,
+                power, power,
                 duration
         );
     }
@@ -121,10 +125,10 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param duration The duration to drive for.
      */
-    protected void driveLeft(long duration) {
+    protected void driveLeft(double power, long duration) {
         drive(
-                1.0, -1.0,
-                -1.0, 1.0,
+                power, -power,
+                -power, power,
                 duration
         );
     }
@@ -134,10 +138,10 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param duration The duration to drive for.
      */
-    protected void driveBackward(long duration) {
+    protected void driveBackward(double power, long duration) {
         drive(
-                -1.0, -1.0,
-                -1.0, -1.0,
+                -power, -power,
+                -power, -power,
                 duration
         );
     }
@@ -147,10 +151,10 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param duration The duration to drive for.
      */
-    protected void driveRight(long duration) {
+    protected void driveRight(double power, long duration) {
         drive(
-                -1.0, 1.0,
-                1.0, -1.0,
+                -power, power,
+                power, -power,
                 duration
         );
     }
@@ -160,10 +164,10 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param duration The duration to drive for.
      */
-    protected void turnLeft(long duration) {
+    protected void turnLeft(double power, long duration) {
         drive(
-                -1.0, 1.0,
-                -1.0, 1.0,
+                -power, power,
+                -power, power,
                 duration
         );
     }
@@ -173,11 +177,107 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param duration The duration to drive for.
      */
-    protected void turnRight(long duration) {
+    protected void turnRight(double power, long duration) {
         drive(
-                1.0, -1.0,
-                1.0, -1.0,
+                power, -power,
+                power, -power,
                 duration
         );
+    }
+
+    /**
+     * Drive forward.
+     *
+     * @param duration The duration to drive for.
+     */
+    protected void driveForward(long duration) {
+        driveForward(1.0, duration);
+    }
+
+    /**
+     * Drive left.
+     *
+     * @param duration The duration to drive for.
+     */
+    protected void driveLeft(long duration) {
+        driveLeft(1.0, duration);
+    }
+
+    /**
+     * Drive backward.
+     *
+     * @param duration The duration to drive for.
+     */
+    protected void driveBackward(long duration) {
+        driveBackward(1.0, duration);
+    }
+
+    /**
+     * Drive right.
+     *
+     * @param duration The duration to drive for.
+     */
+    protected void driveRight(long duration) {
+        driveRight(1.0, duration);
+    }
+
+    /**
+     * Turn left.
+     *
+     * @param duration The duration to drive for.
+     */
+    protected void turnLeft(long duration) {
+        turnLeft(1.0, duration);
+    }
+
+    /**
+     * Turn right.
+     *
+     * @param duration The duration to drive for.
+     */
+    protected void turnRight(long duration) {
+        turnRight(1.0, duration);
+    }
+
+    /**
+     * Rotate the intake servo to a specific position.
+     *
+     * @param degrees The angle to turn the intake to.
+     */
+    public void rotateIntake(double degrees) {
+        if (degrees > 0) {
+            robot.intake.setDirection(Servo.Direction.FORWARD);
+        } else {
+            robot.intake.setDirection(Servo.Direction.REVERSE);
+        }
+
+        robot.intake.setPosition(Utilities.degreesToServoPosition(Math.abs(degrees)));
+
+        sleep(MOVEMENT_PADDING_DURATION);
+    }
+
+    /**
+     * Turn the intake servo.
+     *
+     * @param degrees The angle to turn the intake for.
+     */
+    public void turnIntake(double degrees) {
+        double position = Utilities.degreesToServoPosition(degrees);
+        double lastPosition = robot.intake.getPosition();
+        if (robot.intake.getDirection() == Servo.Direction.REVERSE) {
+            lastPosition = -lastPosition;
+        }
+
+        double delta = lastPosition + position;
+
+        if (delta > 0.0) {
+            robot.intake.setDirection(Servo.Direction.FORWARD);
+        } else {
+            robot.intake.setDirection(Servo.Direction.REVERSE);
+        }
+
+        robot.intake.setPosition(Utilities.degreesToServoPosition(Math.abs(delta)));
+
+        sleep(MOVEMENT_PADDING_DURATION);
     }
 }
