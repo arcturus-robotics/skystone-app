@@ -26,12 +26,14 @@ public class RobotHardware {
     public static final String BACK_LEFT_DRIVE = "back_left_drive";
     public static final String BACK_RIGHT_DRIVE = "back_right_drive";
     public static final String INTAKE = "intake";
+    public static final String ATTACHMENT_SKYSTONE = "attachment_skystone";
 
     public DcMotor frontLeftDrive;
     public DcMotor frontRightDrive;
     public DcMotor backLeftDrive;
     public DcMotor backRightDrive;
     public Servo intake;
+    public Servo attachmentSkystone;
 
     private HardwareMap hardwareMap;
     private ElapsedTime period = new ElapsedTime();
@@ -60,6 +62,7 @@ public class RobotHardware {
 
         // Initialize servos.
         intake = initDevice(INTAKE, Servo.Direction.FORWARD, 1.0);
+        attachmentSkystone = initDevice(ATTACHMENT_SKYSTONE, Servo.Direction.FORWARD, 0.0);
     }
 
     /**
