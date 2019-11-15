@@ -257,7 +257,7 @@ public class RobotLinearOpMode extends LinearOpMode {
     }
 
     /**
-     * Turn the intake servo.
+     * Turn the intake servo relative to its current position.
      *
      * @param degrees The angle to turn the intake for.
      */
