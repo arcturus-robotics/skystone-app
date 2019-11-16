@@ -32,7 +32,7 @@ public class RobotLinearOpMode extends LinearOpMode {
     /**
      * The duration to move toward the skybridge.
      */
-    public static final long MOVEMENT_TO_SKYBRIDGE_DURATION = 2500;
+    public static final long MOVEMENT_TO_SKYBRIDGE_DURATION = 1250;
 
     public double drivePower = 0.5;
     protected RobotHardware robot = new RobotHardware();
@@ -127,8 +127,8 @@ public class RobotLinearOpMode extends LinearOpMode {
      */
     protected void driveLeft(double power, long duration) {
         drive(
-                power, -power,
                 -power, power,
+                power, -power,
                 duration
         );
     }
@@ -153,8 +153,8 @@ public class RobotLinearOpMode extends LinearOpMode {
      */
     protected void driveRight(double power, long duration) {
         drive(
-                -power, power,
                 power, -power,
+                -power, power,
                 duration
         );
     }
