@@ -34,6 +34,11 @@ public class RobotLinearOpMode extends LinearOpMode {
      */
     public static final long MOVEMENT_TO_SKYBRIDGE_DURATION = 1250;
 
+    /**
+     * The duration to move toward the skybridge, but for taking the scenic route.
+     */
+    public static final long SCENIC_MOVEMENT_TO_SKYBRIDGE_DURATION = 2500;
+
     public double drivePower = 0.5;
     protected RobotHardware robot = new RobotHardware();
     protected ElapsedTime period = new ElapsedTime();
