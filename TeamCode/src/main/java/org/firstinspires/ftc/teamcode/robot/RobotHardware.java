@@ -133,9 +133,10 @@ public class RobotHardware {
         servo.setDirection(direction);
 
         // Reset the servo's position if it is not a continuous rotation servo.
-        if (!continuous) {
+        // EDIT: Commented out upon Arsh's request.
+        /*if (!continuous) {
             servo.setPosition(0.0);
-        }
+        }*/
 
         return servo;
     }
