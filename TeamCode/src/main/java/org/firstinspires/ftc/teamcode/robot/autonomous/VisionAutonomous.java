@@ -300,6 +300,7 @@ public class VisionAutonomous extends RobotLinearOpMode {
 
         skystoneTargets.activate();
         while (!isStopRequested()) {
+
             // Check all of the trackable targets to see which one, if any, is visible.
             targetVisible = false;
             for (VuforiaTrackable trackable : allTrackables) {
