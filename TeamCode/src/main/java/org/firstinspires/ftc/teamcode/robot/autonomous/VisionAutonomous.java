@@ -94,11 +94,6 @@ public class VisionAutonomous extends RobotLinearOpMode {
     private static final float quadField = 36.0f * mmPerInch;
 
     /**
-     * Name of the webcam.
-     */
-    WebcamName webcamName = null;
-
-    /**
      * Last location matrix.
      */
     private OpenGLMatrix lastLocation = null;
@@ -126,8 +121,8 @@ public class VisionAutonomous extends RobotLinearOpMode {
 
     @Override
     public void runOpMode() {
-        // Initialize the webcam.
-        webcamName = hardwareMap.get(WebcamName.class, "Webcam 1");
+        // Initialize the robot using the hardware map.
+        robot.init(hardwareMap);
 
         // Create the Vuforia parameters using the camera ID.
         int cameraMonitorViewId = hardwareMap.appContext.getResources().getIdentifier("cameraMonitorViewId", "id",
@@ -138,7 +133,7 @@ public class VisionAutonomous extends RobotLinearOpMode {
         parameters.vuforiaLicenseKey = VUFORIA_KEY;
 
         // Set which camera we want to use.
-        parameters.cameraName = webcamName;
+        parameters.cameraName = robot.webcam;
 
         // Initialize the Vuforia object.
         vuforia = ClassFactory.getInstance().createVuforia(parameters);
@@ -325,7 +320,7 @@ public class VisionAutonomous extends RobotLinearOpMode {
             }
 
 
-            driveForward(500);
+            driveForward(0.5, 250);
             while (true) {
                 // Provide feedback as to where the robot is located if we know.
                 if (targetVisible) {
@@ -349,8 +344,8 @@ public class VisionAutonomous extends RobotLinearOpMode {
                 }
 
                 // Drive forward and backward until the robot can see the skystone.
-                driveBackward(1000);
-                driveForward(1000);
+                driveBackward(0.5, 500);
+                driveForward(0.5, 500);
 
                 telemetry.update();
             }

@@ -7,16 +7,16 @@ import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 /**
  * An autonomous that starts on the blue building side near the wall.
  */
-@Autonomous(name = "Blue Building Side Autonomous", group = "Robot Autonomous")
+@Autonomous(name = "(Scenic) Left to Skybridge Autonomous", group = "Robot Autonomous")
 //@Disabled
-public class BlueBuildingSideAutonomous extends RobotLinearOpMode {
+public class ScenicLeftToSkybridgeAutonomous extends RobotLinearOpMode {
     @Override
     public void runOpMode() {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveForward(0.5, MOVEMENT_FROM_WALL_DURATION);
-            driveRight(0.5, MOVEMENT_TO_SKYBRIDGE_DURATION);
+            driveForward(0.5, SCENIC_MOVEMENT_TO_SKYBRIDGE_DURATION);
+            driveLeft(0.5, SCENIC_MOVEMENT_TO_SKYBRIDGE_DURATION * 2);
         }
     }
 }

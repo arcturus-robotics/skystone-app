@@ -5,11 +5,11 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
 /**
- * An autonomous that starts on the blue loading side near the wall.
+ * An autonomous that starts on the blue building side near the wall.
  */
-@Autonomous(name = "Red Loading Side Autonomous", group = "Robot Autonomous")
+@Autonomous(name = "Right to Skybridge Autonomous", group = "Robot Autonomous")
 //@Disabled
-public class RedLoadingSideAutonomous extends RobotLinearOpMode {
+public class RightToSkybridgeAutonomous extends RobotLinearOpMode {
     @Override
     public void runOpMode() {
         super.runOpMode();
