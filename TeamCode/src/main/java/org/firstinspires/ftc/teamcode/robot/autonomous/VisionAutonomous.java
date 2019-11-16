@@ -306,10 +306,11 @@ public class VisionAutonomous extends RobotLinearOpMode {
                 if (((VuforiaTrackableDefaultListener) trackable.getListener()).isVisible()) {
                     telemetry.addData("Visible Target", trackable.getName());
                     targetVisible = true;
-
+                    telemetry.addData("Visible Target", "Skystone");
                     // getUpdatedRobotLocation() will return null if no new information is available
                     // since the last time that call was made, or if the trackable is not currently
                     // visible.
+
                     OpenGLMatrix robotLocationTransform = ((VuforiaTrackableDefaultListener) trackable.getListener())
                             .getUpdatedRobotLocation();
                     if (robotLocationTransform != null) {
@@ -319,39 +320,45 @@ public class VisionAutonomous extends RobotLinearOpMode {
                 }
             }
 
+            //driveForward(0.5, 250);
 
-            driveForward(0.5, 250);
-            while (true) {
                 // Provide feedback as to where the robot is located if we know.
-                if (targetVisible) {
-                    // Express translation of the robot in inches.
-                    VectorF translation = lastLocation.getTranslation();
-                    // X, Y, and Z.
-                    telemetry.addData("Pos (in)", "(%.1f, %.1f, %.1f)", translation.get(0) / mmPerInch,
-                            translation.get(1) / mmPerInch, translation.get(2) / mmPerInch);
+            if (targetVisible) {
+                telemetry.addData("Visible Target", "Correct");
+                // Express translation of the robot in inches.
+                VectorF translation = lastLocation.getTranslation();
+                // X, Y, and Z.
+                telemetry.addData("Pos (in)", "(%.1f, %.1f, %.1f)", translation.get(0) / mmPerInch,
+                        translation.get(1) / mmPerInch, translation.get(2) / mmPerInch);
 
-                    // Express the rotation of the robot in degrees.
-                    Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
-                    // Roll, pitch, and yaw.
-                    telemetry.addData("Rot (deg)", "(%.0f, %.0f, %.0f)", rotation.firstAngle, rotation.secondAngle,
-                            rotation.thirdAngle);
+                // Express the rotation of the robot in degrees.
+                Orientation rotation = Orientation.getOrientation(lastLocation, EXTRINSIC, XYZ, DEGREES);
+                // Roll, pitch, and yaw.
+                telemetry.addData("Rot (deg)", "(%.0f, %.0f, %.0f)", rotation.firstAngle, rotation.secondAngle,
+                        rotation.thirdAngle);
 
-                    turnIntake(1.0);
+                turnIntake(1.0);
 
-                    break;
-                } else {
-                    telemetry.addData("Visible Target", "none");
+                break;
                 }
+                else {
+                telemetry.addData("Visible Target", "none");
+                telemetry.addData("Scanning", "In Process");
+            }
 
-                // Drive forward and backward until the robot can see the skystone.
+            // Drive forward and backward until the robot can see the skystone.
+
+                /*
                 driveBackward(0.5, 500);
                 driveForward(0.5, 500);
+                */
+            telemetry.addData("Loop","Finished")  ;
+            telemetry.update();
+        }
 
-                telemetry.update();
-            }
         }
 
         // Disable tracking when we are done.
-        skystoneTargets.deactivate();
+
     }
-}
+
