@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.robot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -27,6 +28,7 @@ public class RobotHardware {
     public static final String BACK_RIGHT_DRIVE = "back_right_drive";
     public static final String INTAKE = "intake";
     public static final String ATTACHMENT_SKYSTONE = "attachment_skystone";
+    public static final String WEBCAM = "webcam";
 
     public DcMotor frontLeftDrive;
     public DcMotor frontRightDrive;
@@ -34,6 +36,7 @@ public class RobotHardware {
     public DcMotor backRightDrive;
     public Servo intake;
     public Servo attachmentSkystone;
+    public WebcamName webcam;
 
     private HardwareMap hardwareMap;
     private ElapsedTime period = new ElapsedTime();
@@ -53,6 +56,9 @@ public class RobotHardware {
     public void init(HardwareMap hwMap) {
         // Initialize the hardware map.
         hardwareMap = hwMap;
+
+        // Initialize webcam.
+        webcam = hardwareMap.get(WebcamName.class, WEBCAM);
 
         // Initialize motors.
         frontLeftDrive = initDevice(FRONT_LEFT_DRIVE, DcMotor.Direction.FORWARD);
