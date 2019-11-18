@@ -9,16 +9,16 @@ import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
  */
 @Autonomous(name = "Basic Foundation Autonomous", group = "Robot Autonomous")
 //@Disabled
-public class BasicFoundationAutonomous extends RobotLinearOpMode {
+public class FoundationAutonomous extends RobotLinearOpMode {
     @Override
     public void runOpMode() {
         super.runOpMode();
 
         if (opModeIsActive()) {
             driveLeft(0.5, MOVEMENT_FROM_WALL_DURATION);
-            robot.intake.setPosition(1.0);
+            rotateIntake(360.0);
             driveRight(0.5,MOVEMENT_FROM_WALL_DURATION);
-            robot.intake.setPosition(0.0);
+            rotateIntake(0.0);
             driveForward(0.5, MOVEMENT_TO_SKYBRIDGE_DURATION);
         }
     }
