@@ -50,7 +50,6 @@ public class RobotHardware {
      * @param hwMap A reference to a hardware map.
      * @see RobotHardware#hardwareMap
      * @see #initDevice(String, DcMotor.Direction)
-     * @see #initDevice(String, Servo.Direction, boolean)
      * @see #initDevice(String, Servo.Direction, double)
      */
     public void init(HardwareMap hwMap) {
@@ -97,7 +96,24 @@ public class RobotHardware {
     }
 
     /**
-     * Initialize a servo with a specific position.
+     * Initialize a servo with a specific direction.
+     *
+     * @return The initialized servo.
+     * @param name       The servo's name.
+     * @param direction  The servo's direction.
+     */
+    private Servo initDevice(String name, Servo.Direction direction) {
+        // Initialize the servo.
+        Servo servo = hardwareMap.get(Servo.class, name);
+
+        // Set the servo's direction.
+        servo.setDirection(direction);
+
+        return servo;
+    }
+
+    /**
+     * Initialize a servo with a specific direction and position.
      *
      * @return The initialized servo.
      * @param name       The servo's name.
@@ -106,37 +122,10 @@ public class RobotHardware {
      */
     private Servo initDevice(String name, Servo.Direction direction, double position) {
         // Initialize the servo.
-        Servo servo = hardwareMap.get(Servo.class, name);
-
-        // Set the servo's direction.
-        servo.setDirection(direction);
+        Servo servo = initDevice(name, direction);
 
         // Set the servo's position.
         servo.setPosition(position);
-
-        return servo;
-    }
-
-    /**
-     * Initialize a servo.
-     *
-     * @return The initialized servo.
-     * @param name       The servo's name.
-     * @param direction  The servo's direction.
-     * @param continuous Whether the servo is a continuous rotation servo or not.
-     */
-    private Servo initDevice(String name, Servo.Direction direction, boolean continuous) {
-        // Initialize the servo.
-        Servo servo = hardwareMap.get(Servo.class, name);
-
-        // Set the servo's direction.
-        servo.setDirection(direction);
-
-        // Reset the servo's position if it is not a continuous rotation servo.
-        // EDIT: Commented out upon Arsh's request.
-        /*if (!continuous) {
-            servo.setPosition(0.0);
-        }*/
 
         return servo;
     }
