@@ -3,11 +3,10 @@ package org.firstinspires.ftc.teamcode.robot;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import com.qualcomm.robotcore.hardware.NormalizedColorSensor;
+import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-
-import com.qualcomm.robotcore.hardware.SwitchableLight;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 /**
@@ -25,7 +24,7 @@ public class RobotHardware {
     public static final String INTAKE = "intake";
     public static final String ATTACHMENT_SKYSTONE = "attachment_skystone";
     public static final String WEBCAM = "webcam";
-    public static final String COLOR = "color";
+    public static final String COLOR_DISTANCE_SENSOR = "color_distance_sensor";
 
     public DcMotor frontLeftDrive;
     public DcMotor frontRightDrive;
@@ -37,7 +36,10 @@ public class RobotHardware {
     public Servo intake;
     public Servo attachmentSkystone;
     public WebcamName webcam;
-    public NormalizedColorSensor color;
+    public ColorSensor colorSensor;
+    public DistanceSensor distanceSensor;
+
+    public final double COLOR_SCALE_FACTOR = 255.0;
 
     private HardwareMap hardwareMap;
     private ElapsedTime period = new ElapsedTime();
@@ -115,11 +117,12 @@ public class RobotHardware {
         webcam = hardwareMap.get(WebcamName.class, WEBCAM);
 
         // Initialize the color sensor.
-        color = hardwareMap.get(NormalizedColorSensor.class, COLOR);
+        colorSensor = hardwareMap.get(ColorSensor.class, COLOR_DISTANCE_SENSOR);
 
         // Turn on the light of the color sensor.
-        if (color instanceof SwitchableLight) {
-            ((SwitchableLight) color).enableLight(true);
-        }
+        colorSensor.enableLed(true);
+
+        // Initialize the distance sensor;
+        distanceSensor = hardwareMap.get(DistanceSensor.class, COLOR_DISTANCE_SENSOR);
     }
 }

@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.robot;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.robotcore.hardware.Servo;
+import android.graphics.Color;
 import org.firstinspires.ftc.teamcode.Utilities;
 
 /**
@@ -249,7 +250,7 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param degrees The angle to turn the intake to.
      */
-    public void rotateIntake(double degrees) {
+    protected void rotateIntake(double degrees) {
         if (degrees > 0) {
             robot.intake.setDirection(Servo.Direction.FORWARD);
         } else {
@@ -266,7 +267,7 @@ public class RobotLinearOpMode extends LinearOpMode {
      *
      * @param degrees The angle to turn the intake for.
      */
-    public void turnIntake(double degrees) {
+    protected void turnIntake(double degrees) {
         double position = Utilities.degreesToServoPosition(degrees);
         double lastPosition = robot.intake.getPosition();
         if (robot.intake.getDirection() == Servo.Direction.REVERSE) {
@@ -284,5 +285,18 @@ public class RobotLinearOpMode extends LinearOpMode {
         robot.intake.setPosition(Utilities.degreesToServoPosition(Math.abs(delta)));
 
         sleep(MOVEMENT_PADDING_DURATION);
+    }
+
+    /**
+     * Get the color, but it's fixed in a *special* way.
+     *
+     * @return The fixed color.
+     */
+    protected int fixedColor() {
+        if ((robot.colorSensor.red() * robot.colorSensor.green()) / Math.pow(robot.colorSensor.blue(), 2) < 2) {
+            return Color.BLACK;
+        } else {
+            return robot.colorSensor.argb();
+        }
     }
 }
