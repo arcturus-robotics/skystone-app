@@ -34,9 +34,25 @@ public class SingleControllerTeleop extends RobotOpMode {
                 robot.intake.setDirection(Servo.Direction.FORWARD);
             }
 
-            robot.intake.setPosition(1);
+            robot.intake.setPosition(1.0);
         } else {
-            robot.intake.setPosition(0);
+            robot.intake.setPosition(0.0);
+        }
+
+        if (gamepad1.x || gamepad1.a) {
+            if (gamepad1.x) {
+                robot.leftIntake.setDirection(Servo.Direction.REVERSE);
+                robot.rightIntake.setDirection(Servo.Direction.REVERSE);
+            } else {
+                robot.leftIntake.setDirection(Servo.Direction.FORWARD);
+                robot.rightIntake.setDirection(Servo.Direction.FORWARD);
+            }
+
+            robot.leftIntake.setPosition(1.0);
+            robot.rightIntake.setPosition(1.0);
+        } else {
+            robot.leftIntake.setPosition(0.0);
+            robot.rightIntake.setPosition(0.0);
         }
     }
 }

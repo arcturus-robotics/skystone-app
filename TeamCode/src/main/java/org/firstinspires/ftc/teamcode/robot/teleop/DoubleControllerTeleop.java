@@ -40,5 +40,21 @@ public class DoubleControllerTeleop extends RobotOpMode {
         } else {
             robot.intake.setPosition(0);
         }
+
+        if (gamepad2.x || gamepad2.a) {
+            if (gamepad2.x) {
+                robot.leftIntake.setDirection(Servo.Direction.REVERSE);
+                robot.rightIntake.setDirection(Servo.Direction.REVERSE);
+            } else {
+                robot.leftIntake.setDirection(Servo.Direction.FORWARD);
+                robot.rightIntake.setDirection(Servo.Direction.FORWARD);
+            }
+
+            robot.leftIntake.setPosition(1.0);
+            robot.rightIntake.setPosition(1.0);
+        } else {
+            robot.leftIntake.setPosition(0.0);
+            robot.rightIntake.setPosition(0.0);
+        }
     }
 }

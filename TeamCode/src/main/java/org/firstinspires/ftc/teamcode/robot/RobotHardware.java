@@ -22,7 +22,8 @@ public class RobotHardware {
     public static final String ODOMETRY_VERTICAL_RIGHT = "odometry_vertical_right";
     public static final String ODOMETRY_HORIZONTAL = "odometry_horizontal";
     public static final String INTAKE = "intake";
-    public static final String ATTACHMENT_SKYSTONE = "attachment_skystone";
+    public static final String LEFT_INTAKE = "left_intake";
+    public static final String RIGHT_INTAKE = "right_intake";
     public static final String WEBCAM = "webcam";
     public static final String COLOR_DISTANCE_SENSOR = "color_distance_sensor";
 
@@ -34,7 +35,8 @@ public class RobotHardware {
     public DcMotor odometryVerticalRight;
     public DcMotor odometryHorizontal;
     public Servo intake;
-    public Servo attachmentSkystone;
+    public Servo leftIntake;
+    public Servo rightIntake;
     public WebcamName webcam;
     public ColorSensor colorSensor;
     public DistanceSensor distanceSensor;
@@ -105,15 +107,18 @@ public class RobotHardware {
 
         // Initialize servos.
         intake = hardwareMap.get(Servo.class, INTAKE);
-        attachmentSkystone = hardwareMap.get(Servo.class, ATTACHMENT_SKYSTONE);
+        leftIntake = hardwareMap.get(Servo.class, LEFT_INTAKE);
+        rightIntake = hardwareMap.get(Servo.class, RIGHT_INTAKE);
 
         // Set them to the proper directions.
         intake.setDirection(Servo.Direction.FORWARD);
-        attachmentSkystone.setDirection(Servo.Direction.FORWARD);
+        leftIntake.setDirection(Servo.Direction.FORWARD);
+        rightIntake.setDirection(Servo.Direction.FORWARD);
 
         // Reset their positions.
         intake.setPosition(1.0);
-        attachmentSkystone.setPosition(0.0);
+        leftIntake.setPosition(0.0);
+        rightIntake.setPosition(0.0);
 
         // Initialize the webcam.
         webcam = hardwareMap.get(WebcamName.class, WEBCAM);
