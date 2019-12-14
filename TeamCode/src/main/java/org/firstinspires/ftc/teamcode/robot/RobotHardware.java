@@ -81,6 +81,7 @@ public class RobotHardware {
         backLeftDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         backRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
+        /*
         // Initialize the odometry motors.
         odometryVerticalLeft = hardwareMap.get(DcMotor.class, ODOMETRY_VERTICAL_LEFT);
         odometryVerticalRight = hardwareMap.get(DcMotor.class, ODOMETRY_VERTICAL_RIGHT);
@@ -100,6 +101,7 @@ public class RobotHardware {
         odometryVerticalRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         odometryVerticalLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
         odometryHorizontal.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         */
 
         // Initialize servos.
         intake = hardwareMap.get(Servo.class, INTAKE);

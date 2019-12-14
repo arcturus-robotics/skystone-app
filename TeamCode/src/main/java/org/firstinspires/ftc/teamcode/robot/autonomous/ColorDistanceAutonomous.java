@@ -19,6 +19,8 @@ public class ColorDistanceAutonomous extends RobotLinearOpMode {
 
             if (color == Color.BLACK) {
                 telemetry.addData("Found", "black");
+            } else {
+                telemetry.addData("Found", "no black");
             }
 
             telemetry.update();
