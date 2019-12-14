@@ -265,8 +265,7 @@ public class VisionAutonomous extends RobotLinearOpMode {
 
         // Next, translate the camera lens to where it is on the robot.
         // In this example, it is centered (left to right), but forward of the middle of
-        // the robot,
-        // and above ground level.
+        // the robot, and above ground level.
 
         // e.g. camera is 4 inches in front of the robot's center.
         final float CAMERA_X_DISPLACEMENT = 4.0f * mmPerInch;
@@ -308,10 +307,10 @@ public class VisionAutonomous extends RobotLinearOpMode {
                     telemetry.addData("Visible Target", trackable.getName());
                     targetVisible = true;
                     telemetry.addData("Visible Target", "Skystone");
+
                     // getUpdatedRobotLocation() will return null if no new information is available
                     // since the last time that call was made, or if the trackable is not currently
                     // visible.
-
                     OpenGLMatrix robotLocationTransform = ((VuforiaTrackableDefaultListener) trackable.getListener())
                             .getUpdatedRobotLocation();
                     if (robotLocationTransform != null) {
@@ -347,12 +346,11 @@ public class VisionAutonomous extends RobotLinearOpMode {
                 telemetry.addData("Scanning", "In Process");
             }
 
+            /*
             // Drive forward and backward until the robot can see the skystone.
-
-                /*
-                driveBackward(0.5, 500);
-                driveForward(0.5, 500);
-                */
+            driveBackward(0.5, 500);
+            driveForward(0.5, 500);
+            */
             telemetry.addData("Loop","Finished")  ;
             telemetry.update();
         }
