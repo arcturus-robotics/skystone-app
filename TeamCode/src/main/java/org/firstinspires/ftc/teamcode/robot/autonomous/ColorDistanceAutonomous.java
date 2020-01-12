@@ -15,7 +15,7 @@ public class ColorDistanceAutonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveRight(0.5, 2900);
+            driveRight(0.5, 3000);
         }
 
         int i = 0;
