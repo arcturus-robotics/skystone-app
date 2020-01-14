@@ -22,12 +22,13 @@ import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.XYZ;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.YZX;
 import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.EXTRINSIC;
 import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection.BACK;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
  * An autonomous which uses vision detection
  */
 @Autonomous(name = "Vision Autonomous", group = "Robot Autonomous")
-// @Disabled
+@Disabled
 public class VisionAutonomous extends RobotLinearOpMode {
     /**
      * The camera direction

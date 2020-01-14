@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.robot;
 
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
@@ -8,6 +9,7 @@ import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.Servo;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.hardware.bosch.BNO055IMU;
 
 /**
  * A container for easy access to our robot's hardware.
@@ -24,8 +26,9 @@ public class RobotHardware {
     public static final String INTAKE = "intake";
     public static final String LEFT_INTAKE = "left_intake";
     public static final String RIGHT_INTAKE = "right_intake";
-    public static final String WEBCAM = "webcam";
     public static final String COLOR_DISTANCE_SENSOR = "color_distance_sensor";
+    public static final String WEBCAM = "webcam";
+    public static final String IMU = "imu";
 
     public DcMotor frontLeftDrive;
     public DcMotor frontRightDrive;
@@ -37,9 +40,10 @@ public class RobotHardware {
     public Servo intake;
     public Servo leftIntake;
     public Servo rightIntake;
-    public WebcamName webcam;
     public ColorSensor colorSensor;
     public DistanceSensor distanceSensor;
+    public WebcamName webcam;
+    public BNO055IMU imu;
 
     public final double COLOR_SCALE_FACTOR = 255.0;
 
@@ -120,9 +124,6 @@ public class RobotHardware {
         leftIntake.setPosition(0.0);
         rightIntake.setPosition(0.0);
 
-        // Initialize the webcam.
-        webcam = hardwareMap.get(WebcamName.class, WEBCAM);
-
         // Initialize the color sensor.
         colorSensor = hardwareMap.get(ColorSensor.class, COLOR_DISTANCE_SENSOR);
 
@@ -131,5 +132,21 @@ public class RobotHardware {
 
         // Initialize the distance sensor;
         distanceSensor = hardwareMap.get(DistanceSensor.class, COLOR_DISTANCE_SENSOR);
+
+        // Initialize the webcam.
+        webcam = hardwareMap.get(WebcamName.class, WEBCAM);
+
+        // Initialize the IMU.
+        imu = hardwareMap.get(BNO055IMU.class, IMU);
+
+        // Initialize its parameters.
+        BNO055IMU.Parameters imuParameters = new BNO055IMU.Parameters();
+        imuParameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        imuParameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        imuParameters.calibrationDataFile = "BN055IMUCalibration.json";
+        imuParameters.loggingEnabled = true;
+        imuParameters.loggingTag = "IMU";
+        imuParameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+        imu.initialize(imuParameters);
     }
 }
