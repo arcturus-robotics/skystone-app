@@ -148,7 +148,7 @@ public class RobotHardware {
         imuParameters.loggingEnabled = true;
         imuParameters.loggingTag = "IMU";
         imuParameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
-        
+
         imu.initialize(imuParameters);
     }
 }
