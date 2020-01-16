@@ -141,7 +141,6 @@ public class RobotHardware {
         // Initialize the IMU.
         imu = hardwareMap.get(BNO055IMU.class, IMU);
 
-        // Initialize its parameters.
         BNO055IMU.Parameters imuParameters = new BNO055IMU.Parameters();
         imuParameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
         imuParameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
@@ -149,6 +148,7 @@ public class RobotHardware {
         imuParameters.loggingEnabled = true;
         imuParameters.loggingTag = "IMU";
         imuParameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+        
         imu.initialize(imuParameters);
     }
 }
