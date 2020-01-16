@@ -1,19 +1,20 @@
 package org.firstinspires.ftc.teamcode.robot;
 
-import com.qualcomm.hardware.bosch.BNO055IMU;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
-
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import com.qualcomm.hardware.bosch.BNO055IMU;
 
 /**
- * A container for easy access to our robot's hardware.
- * Provides an easy way to initialize and reset devices.
+ * A container for easy access to our robot's hardware. Provides an easy way to
+ * initialize and reset devices.
  */
 public class RobotHardware {
     public static final String FRONT_LEFT_DRIVE = "front_left_drive";
@@ -26,8 +27,9 @@ public class RobotHardware {
     public static final String INTAKE = "intake";
     public static final String LEFT_INTAKE = "left_intake";
     public static final String RIGHT_INTAKE = "right_intake";
-    public static final String WEBCAM = "webcam";
     public static final String COLOR_DISTANCE_SENSOR = "color_distance_sensor";
+    public static final String WEBCAM = "webcam";
+    public static final String IMU = "imu";
 
     public final double COLOR_SCALE_FACTOR = 255.0;
 
@@ -41,9 +43,9 @@ public class RobotHardware {
     public Servo intake;
     public Servo leftIntake;
     public Servo rightIntake;
-    public WebcamName webcam;
     public ColorSensor colorSensor;
     public DistanceSensor distanceSensor;
+    public WebcamName webcam;
     public BNO055IMU imu;
 
     private HardwareMap hardwareMap;
@@ -87,25 +89,25 @@ public class RobotHardware {
         backRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         /*
-        // Initialize the odometry motors.
-        odometryVerticalLeft = hardwareMap.get(DcMotor.class, ODOMETRY_VERTICAL_LEFT);
-        odometryVerticalRight = hardwareMap.get(DcMotor.class, ODOMETRY_VERTICAL_RIGHT);
-        odometryHorizontal = hardwareMap.get(DcMotor.class, ODOMETRY_HORIZONTAL);
-
-        // Stop and reset their encoders.
-        odometryVerticalRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        odometryVerticalLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-        odometryHorizontal.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-
-        // Set them to the proper directions.
-        odometryVerticalLeft.setDirection(DcMotorSimple.Direction.REVERSE);
-        odometryVerticalRight.setDirection(DcMotorSimple.Direction.REVERSE);
-        odometryHorizontal.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        // Set them to run without an encoder.
-        odometryVerticalRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        odometryVerticalLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
-        odometryHorizontal.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         * // Initialize the odometry motors. odometryVerticalLeft =
+         * hardwareMap.get(DcMotor.class, ODOMETRY_VERTICAL_LEFT); odometryVerticalRight
+         * = hardwareMap.get(DcMotor.class, ODOMETRY_VERTICAL_RIGHT); odometryHorizontal
+         * = hardwareMap.get(DcMotor.class, ODOMETRY_HORIZONTAL);
+         * 
+         * // Stop and reset their encoders.
+         * odometryVerticalRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+         * odometryVerticalLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+         * odometryHorizontal.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
+         * 
+         * // Set them to the proper directions.
+         * odometryVerticalLeft.setDirection(DcMotorSimple.Direction.REVERSE);
+         * odometryVerticalRight.setDirection(DcMotorSimple.Direction.REVERSE);
+         * odometryHorizontal.setDirection(DcMotorSimple.Direction.REVERSE);
+         * 
+         * // Set them to run without an encoder.
+         * odometryVerticalRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         * odometryVerticalLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
+         * odometryHorizontal.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
          */
 
         // Initialize servos.
@@ -123,9 +125,6 @@ public class RobotHardware {
         leftIntake.setPosition(0.0);
         rightIntake.setPosition(0.0);
 
-        // Initialize the webcam.
-        webcam = hardwareMap.get(WebcamName.class, WEBCAM);
-
         // Initialize the color sensor.
         colorSensor = hardwareMap.get(ColorSensor.class, COLOR_DISTANCE_SENSOR);
 
@@ -135,17 +134,20 @@ public class RobotHardware {
         // Initialize the distance sensor;
         distanceSensor = hardwareMap.get(DistanceSensor.class, COLOR_DISTANCE_SENSOR);
 
+        // Initialize the webcam.
+        webcam = hardwareMap.get(WebcamName.class, WEBCAM);
+
         // Initialize the IMU.
-        imu = hardwareMap.get(BNO055IMU.class, "imu");
+        imu = hardwareMap.get(BNO055IMU.class, IMU);
 
-        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
-        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
-        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
-        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
-        parameters.loggingEnabled      = true;
-        parameters.loggingTag          = "IMU";
-        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
-
-        imu.initialize(parameters);
+        // Initialize its parameters.
+        BNO055IMU.Parameters imuParameters = new BNO055IMU.Parameters();
+        imuParameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;
+        imuParameters.accelUnit = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        imuParameters.calibrationDataFile = "BN055IMUCalibration.json";
+        imuParameters.loggingEnabled = true;
+        imuParameters.loggingTag = "IMU";
+        imuParameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+        imu.initialize(imuParameters);
     }
 }

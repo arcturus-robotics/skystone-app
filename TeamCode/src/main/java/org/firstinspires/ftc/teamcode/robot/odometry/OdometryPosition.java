@@ -21,7 +21,6 @@ public class OdometryPosition implements Runnable {
      * The orientation (in radians).
      */
     private double orientation;
-    private double orientationUpdate;
 
     private double previousVerticalLeftEncoderWheelPosition;
     private double previousVerticalRightEncoderWheelPosition;
@@ -86,7 +85,7 @@ public class OdometryPosition implements Runnable {
         double leftChange = verticalLeftEncoderWheelPosition - previousVerticalLeftEncoderWheelPosition;
         double rightChange = verticalRightEncoderWheelPosition - previousVerticalRightEncoderWheelPosition;
 
-        orientationUpdate = (leftChange - rightChange) / encoderWheelDistance;
+        double orientationUpdate = (leftChange - rightChange) / encoderWheelDistance;
         orientation += orientationUpdate;
 
         horizontalEncoderWheelPosition = horizontalEncoderWheel.getCurrentPosition() * horizontalEncoderWheelPositionMultiplier;
@@ -94,10 +93,17 @@ public class OdometryPosition implements Runnable {
         double rawHorizontalUpdate = horizontalEncoderWheelPosition - previousHorizontalEncoderWheelPosition;
         double horizontalUpdate = rawHorizontalUpdate - (orientationUpdate * horizontalEncoderTickPerDegreeOffset);
 
+<<<<<<< HEAD
         double p = (leftChange + rightChange) / 2.0;
 
         x += (p * Math.sin(orientation)) + (horizontalUpdate * Math.cos(orientation));
         y += (p * Math.cos(orientation)) - (horizontalUpdate * Math.sin(orientation));
+=======
+        double p = (leftChange + rightChange) / 2;
+
+        xPosition += (p * Math.sin(orientation)) + (horizontalChange * Math.cos(orientation));
+        yPosition += (p * Math.cos(orientation)) - (horizontalChange * Math.sin(orientation));
+>>>>>>> 9a12f95ce9680e6cd6813a4ad2c5a24f84514bbf
 
         previousVerticalLeftEncoderWheelPosition = verticalLeftEncoderWheelPosition;
         previousVerticalRightEncoderWheelPosition = verticalRightEncoderWheelPosition;
