@@ -93,17 +93,10 @@ public class OdometryPosition implements Runnable {
         double rawHorizontalUpdate = horizontalEncoderWheelPosition - previousHorizontalEncoderWheelPosition;
         double horizontalUpdate = rawHorizontalUpdate - (orientationUpdate * horizontalEncoderTickPerDegreeOffset);
 
-<<<<<<< HEAD
         double p = (leftChange + rightChange) / 2.0;
 
         x += (p * Math.sin(orientation)) + (horizontalUpdate * Math.cos(orientation));
         y += (p * Math.cos(orientation)) - (horizontalUpdate * Math.sin(orientation));
-=======
-        double p = (leftChange + rightChange) / 2;
-
-        xPosition += (p * Math.sin(orientation)) + (horizontalChange * Math.cos(orientation));
-        yPosition += (p * Math.cos(orientation)) - (horizontalChange * Math.sin(orientation));
->>>>>>> 9a12f95ce9680e6cd6813a4ad2c5a24f84514bbf
 
         previousVerticalLeftEncoderWheelPosition = verticalLeftEncoderWheelPosition;
         previousVerticalRightEncoderWheelPosition = verticalRightEncoderWheelPosition;
