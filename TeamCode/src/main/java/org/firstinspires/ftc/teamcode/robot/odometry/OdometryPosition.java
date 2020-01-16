@@ -1,9 +1,6 @@
 package org.firstinspires.ftc.teamcode.robot.odometry;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.util.ReadWriteFile;
-import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
-import java.io.File;
 
 public class OdometryPosition implements Runnable {
     /**
@@ -18,48 +15,68 @@ public class OdometryPosition implements Runnable {
     private DcMotor horizontalEncoderWheel;
     private double horizontalEncoderWheelPosition;
 
-    private double xPosition;
-    public double xPosition() { return xPosition; }
-    private double yPosition;
-    public double yPosition() { return yPosition; }
-
+    private double x;
+    private double y;
     /**
      * The orientation (in radians).
      */
     private double orientation;
     private double orientationUpdate;
 
-    public double orientationRadians() {
-        return orientation;
-    }
-    public double orientationDegrees() {
-        return Math.toDegrees(orientation) % 360;
-    }
-
     private double previousVerticalLeftEncoderWheelPosition;
     private double previousVerticalRightEncoderWheelPosition;
     private double previousHorizontalEncoderWheelPosition;
 
-    private double encoderWheelDistance;
+
     private double horizontalEncoderTickPerDegreeOffset;
 
     /**
      * Sleep interval (in milliseconds) for the position update thread.
      */
     private int sleepInterval;
+    private double ticksPerInch;
+    private double wheelBaseSeparation;
+    private double encoderWheelDistance;
 
     private int verticalLeftEncoderWheelPositionMultiplier = 1;
     private int verticalRightEncoderWheelPositionMultiplier = 1;
     private int horizontalEncoderWheelPositionMultiplier = 1;
 
-    public OdometryPosition(DcMotor verticalLeftEncoderWheel, DcMotor verticalRightEncoderWheel, DcMotor horizontalEncoderWheel, int sleepInterval, double wheelBaseSeparation, double ticksPerInch, double horizontalTickOffset) {
+    public OdometryPosition(
+            DcMotor verticalLeftEncoderWheel,
+            DcMotor verticalRightEncoderWheel,
+            DcMotor horizontalEncoderWheel,
+            int sleepInterval,
+            double ticksPerInch,
+            double horizontalEncoderTickPerDegreeOffset,
+            double wheelBaseSeparation
+    ) {
         this.verticalLeftEncoderWheel = verticalLeftEncoderWheel;
         this.verticalRightEncoderWheel = verticalRightEncoderWheel;
         this.horizontalEncoderWheel = horizontalEncoderWheel;
+
         this.sleepInterval = sleepInterval;
+        this.ticksPerInch = ticksPerInch;
+        this.horizontalEncoderTickPerDegreeOffset = horizontalEncoderTickPerDegreeOffset;
+        this.wheelBaseSeparation = wheelBaseSeparation;
 
         this.encoderWheelDistance = wheelBaseSeparation * ticksPerInch;
-        this.horizontalEncoderTickPerDegreeOffset = horizontalTickOffset;
+    }
+
+    public double x() {
+        return x;
+    }
+
+    public double y() {
+        return y;
+    }
+
+    public double orientationRadians() {
+        return orientation;
+    }
+
+    public double orientationDegrees() {
+        return Math.toDegrees(orientation) % 360;
     }
 
     private void update() {
@@ -74,14 +91,13 @@ public class OdometryPosition implements Runnable {
 
         horizontalEncoderWheelPosition = horizontalEncoderWheel.getCurrentPosition() * horizontalEncoderWheelPositionMultiplier;
 
-        double rawHorizontalChange = horizontalEncoderWheelPosition - previousHorizontalEncoderWheelPosition;
-        double horizontalChange = rawHorizontalChange - (orientationUpdate * horizontalEncoderTickPerDegreeOffset);
+        double rawHorizontalUpdate = horizontalEncoderWheelPosition - previousHorizontalEncoderWheelPosition;
+        double horizontalUpdate = rawHorizontalUpdate - (orientationUpdate * horizontalEncoderTickPerDegreeOffset);
 
-        double p = (leftChange + rightChange) / 2;
-        double n = horizontalChange;
+        double p = (leftChange + rightChange) / 2.0;
 
-        xPosition += (p * Math.sin(orientation)) + (n * Math.cos(orientation));
-        yPosition += (p * Math.cos(orientation)) - (n * Math.sin(orientation));
+        x += (p * Math.sin(orientation)) + (horizontalUpdate * Math.cos(orientation));
+        y += (p * Math.cos(orientation)) - (horizontalUpdate * Math.sin(orientation));
 
         previousVerticalLeftEncoderWheelPosition = verticalLeftEncoderWheelPosition;
         previousVerticalRightEncoderWheelPosition = verticalRightEncoderWheelPosition;

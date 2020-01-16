@@ -1,13 +1,15 @@
 package org.firstinspires.ftc.teamcode.robot;
 
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.robotcore.hardware.ColorSensor;
+import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.Servo;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
+
+import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 
 /**
  * A container for easy access to our robot's hardware.
@@ -27,6 +29,8 @@ public class RobotHardware {
     public static final String WEBCAM = "webcam";
     public static final String COLOR_DISTANCE_SENSOR = "color_distance_sensor";
 
+    public final double COLOR_SCALE_FACTOR = 255.0;
+
     public DcMotor frontLeftDrive;
     public DcMotor frontRightDrive;
     public DcMotor backLeftDrive;
@@ -40,11 +44,10 @@ public class RobotHardware {
     public WebcamName webcam;
     public ColorSensor colorSensor;
     public DistanceSensor distanceSensor;
-
-    public final double COLOR_SCALE_FACTOR = 255.0;
+    public BNO055IMU imu;
 
     private HardwareMap hardwareMap;
-    private ElapsedTime period = new ElapsedTime();
+    public ElapsedTime period = new ElapsedTime();
 
     public RobotHardware() {
     }
@@ -131,5 +134,18 @@ public class RobotHardware {
 
         // Initialize the distance sensor;
         distanceSensor = hardwareMap.get(DistanceSensor.class, COLOR_DISTANCE_SENSOR);
+
+        // Initialize the IMU.
+        imu = hardwareMap.get(BNO055IMU.class, "imu");
+
+        BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
+        parameters.angleUnit           = BNO055IMU.AngleUnit.DEGREES;
+        parameters.accelUnit           = BNO055IMU.AccelUnit.METERS_PERSEC_PERSEC;
+        parameters.calibrationDataFile = "BNO055IMUCalibration.json";
+        parameters.loggingEnabled      = true;
+        parameters.loggingTag          = "IMU";
+        parameters.accelerationIntegrationAlgorithm = new JustLoggingAccelerationIntegrator();
+
+        imu.initialize(parameters);
     }
 }

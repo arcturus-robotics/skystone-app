@@ -1,10 +1,8 @@
 package org.firstinspires.ftc.teamcode.robot.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.robotcore.external.ClassFactory;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
 import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
 import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
@@ -322,7 +320,7 @@ public class VisionAutonomous extends RobotLinearOpMode {
 
             //driveForward(0.5, 250);
 
-                // Provide feedback as to where the robot is located if we know.
+            // Provide feedback as to where the robot is located if we know.
             if (targetVisible) {
                 telemetry.addData("Visible Target", "Correct");
                 // Express translation of the robot in inches.
@@ -340,8 +338,7 @@ public class VisionAutonomous extends RobotLinearOpMode {
                 turnIntake(1.0);
 
                 break;
-                }
-                else {
+            } else {
                 telemetry.addData("Visible Target", "none");
                 telemetry.addData("Scanning", "In Process");
             }
@@ -351,13 +348,13 @@ public class VisionAutonomous extends RobotLinearOpMode {
             driveBackward(0.5, 500);
             driveForward(0.5, 500);
             */
-            telemetry.addData("Loop","Finished")  ;
+            telemetry.addData("Loop", "Finished");
             telemetry.update();
         }
 
-        }
-
-        // Disable tracking when we are done.
-
     }
+
+    // Disable tracking when we are done.
+
+}
 

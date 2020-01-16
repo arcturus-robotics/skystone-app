@@ -1,15 +1,21 @@
 package org.firstinspires.ftc.teamcode.robot;
 
-import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.robotcore.hardware.Servo;
 import android.graphics.Color;
+
+import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
+import com.qualcomm.robotcore.hardware.Servo;
+import com.qualcomm.robotcore.util.ElapsedTime;
+
 import org.firstinspires.ftc.teamcode.Utilities;
 
 /**
  * An opmode with many utility methods and constants for autonomous programs.
  */
 public class RobotLinearOpMode extends LinearOpMode {
+    /**
+     * The amount of encoder ticks per inch the robot moves.
+     */
+    public static final double TICKS_PER_INCH = 0.0;
     /**
      * The duration of autonomous (in milliseconds).
      */
@@ -67,6 +73,31 @@ public class RobotLinearOpMode extends LinearOpMode {
     }
 
     /**
+     * Power the wheel motors with specific powers.
+     *
+     * @param frontLeftPower  The power to drive the front left drive motor with.
+     * @param frontRightPower The power to drive the front right  drive motor with.
+     * @param backLeftPower   The power to drive the back left drive motor with.
+     * @param backRightPower  The power to drive the back right drive motor with.
+     */
+    protected void enable(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower) {
+        robot.frontLeftDrive.setPower(frontLeftPower);
+        robot.frontRightDrive.setPower(frontRightPower);
+        robot.backLeftDrive.setPower(backLeftPower);
+        robot.backRightDrive.setPower(backRightPower);
+    }
+
+    /**
+     * Stop all wheel motors.
+     */
+    protected void disable() {
+        robot.frontLeftDrive.setPower(0.0);
+        robot.frontRightDrive.setPower(0.0);
+        robot.backLeftDrive.setPower(0.0);
+        robot.backRightDrive.setPower(0.0);
+    }
+
+    /**
      * Utility function for driving.
      * Takes power for each drive motor and the duration to drive for.
      *
@@ -82,17 +113,11 @@ public class RobotLinearOpMode extends LinearOpMode {
      * @see #MOVEMENT_PADDING_DURATION
      */
     protected void driveRaw(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower, long duration) {
-        robot.frontLeftDrive.setPower(frontLeftPower);
-        robot.frontRightDrive.setPower(frontRightPower);
-        robot.backLeftDrive.setPower(backLeftPower);
-        robot.backRightDrive.setPower(backRightPower);
+        enable(frontLeftPower, frontRightPower, backLeftPower, backRightPower);
 
         sleep(duration);
 
-        robot.frontLeftDrive.setPower(0.0);
-        robot.frontRightDrive.setPower(0.0);
-        robot.backLeftDrive.setPower(0.0);
-        robot.backRightDrive.setPower(0.0);
+        disable();
 
         sleep(MOVEMENT_PADDING_DURATION);
     }
@@ -304,4 +329,14 @@ public class RobotLinearOpMode extends LinearOpMode {
             return robot.colorSensor.argb();
         }
     }
+
+    /**
+     * Get the orientation of the robot.
+     * @return The current orientation of the robot.
+     */
+    protected double getOrientation(){
+        return (-robot.imu.getAngularOrientation().firstAngle);
+    }
+
+
 }
