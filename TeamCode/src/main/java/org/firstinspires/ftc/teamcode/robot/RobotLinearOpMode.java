@@ -15,7 +15,7 @@ public class RobotLinearOpMode extends LinearOpMode {
     /**
      * The amount of encoder ticks per inch the robot moves.
      */
-    public static final double TICKS_PER_INCH = 0.0;
+    public static final double TICKS_PER_INCH = 1.0;
     /**
      * The duration of autonomous (in milliseconds).
      */

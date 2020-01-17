@@ -42,8 +42,8 @@ public class RobotHardware {
     public DcMotor odometryVerticalRight;
     public DcMotor odometryHorizontal;
     public Servo intake;
-    public Servo leftIntake;
-    public Servo rightIntake;
+    //public Servo leftIntake;
+    //public Servo rightIntake;
     public ColorSensor colorSensor;
     public DistanceSensor distanceSensor;
     public WebcamName webcam;
@@ -113,18 +113,18 @@ public class RobotHardware {
 
         // Initialize servos.
         intake = hardwareMap.get(Servo.class, INTAKE);
-        leftIntake = hardwareMap.get(Servo.class, LEFT_INTAKE);
-        rightIntake = hardwareMap.get(Servo.class, RIGHT_INTAKE);
+        //leftIntake = hardwareMap.get(Servo.class, LEFT_INTAKE);
+        //rightIntake = hardwareMap.get(Servo.class, RIGHT_INTAKE);
 
         // Set them to the proper directions.
         intake.setDirection(Servo.Direction.FORWARD);
-        leftIntake.setDirection(Servo.Direction.FORWARD);
-        rightIntake.setDirection(Servo.Direction.FORWARD);
+        //leftIntake.setDirection(Servo.Direction.FORWARD);
+        //rightIntake.setDirection(Servo.Direction.FORWARD);
 
         // Reset their positions.
         intake.setPosition(1.0);
-        leftIntake.setPosition(0.0);
-        rightIntake.setPosition(0.0);
+        //leftIntake.setPosition(0.0);
+        //rightIntake.setPosition(0.0);
 
         // Initialize the color sensor.
         colorSensor = hardwareMap.get(ColorSensor.class, COLOR_DISTANCE_SENSOR);

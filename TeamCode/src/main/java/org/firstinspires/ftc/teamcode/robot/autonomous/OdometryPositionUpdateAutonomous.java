@@ -16,8 +16,8 @@ public class OdometryPositionUpdateAutonomous extends RobotLinearOpMode {
                 robot.odometryVerticalLeft,
                 robot.odometryVerticalRight,
                 robot.odometryHorizontal,
-                (int) TICKS_PER_INCH,
                 75,
+                TICKS_PER_INCH,
                 TICKS_PER_INCH,
                 TICKS_PER_INCH
         );
