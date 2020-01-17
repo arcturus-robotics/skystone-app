@@ -31,8 +31,10 @@ public class RobotHardware {
     public static final String LEFT_FOUNDATION = "left_foundation";
     public static final String RIGHT_FOUNDATION = "right_foundation";
     public static final String COLOR_DISTANCE_SENSOR = "color_distance_sensor";
-    public static final String WEBCAM = "webcam";
     public static final String IMU = "imu";
+
+    // Webcam isn't configured!
+    // public static final String WEBCAM = "webcam";
 
     public DcMotor frontLeftDrive;
     public DcMotor frontRightDrive;
@@ -48,8 +50,11 @@ public class RobotHardware {
     public Servo rightFoundation;
     public ColorSensor colorSensor;
     public DistanceSensor distanceSensor;
-    public WebcamName webcam;
+
     public BNO055IMU imu;
+
+    // Webcam isn't configured!
+    // public WebcamName webcam;
 
     private HardwareMap hardwareMap;
     public ElapsedTime period = new ElapsedTime();
@@ -144,8 +149,8 @@ public class RobotHardware {
         // Initialize the distance sensor;
         distanceSensor = hardwareMap.get(DistanceSensor.class, COLOR_DISTANCE_SENSOR);
 
-        // Initialize the webcam.
-        webcam = hardwareMap.get(WebcamName.class, WEBCAM);
+        // Initialize the webcam (not configured).
+        // webcam = hardwareMap.get(WebcamName.class, WEBCAM);
 
         // Initialize the IMU.
         imu = hardwareMap.get(BNO055IMU.class, IMU);
