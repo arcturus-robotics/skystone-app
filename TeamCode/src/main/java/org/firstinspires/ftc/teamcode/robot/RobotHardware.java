@@ -26,7 +26,8 @@ public class RobotHardware {
     public static final String ODOMETRY_VERTICAL_RIGHT = "odometry_vertical_right";
     public static final String ODOMETRY_HORIZONTAL = "odometry_horizontal";
     public static final String ARM = "arm";
-    public static final String CLAW = "claw";
+    public static final String LEFT_CLAW = "gripper_left";
+    public static final String RIGHT_CLAW = "gripper_right";
     public static final String LEFT_FOUNDATION = "left_foundation";
     public static final String RIGHT_FOUNDATION = "right_foundation";
     public static final String COLOR_DISTANCE_SENSOR = "color_distance_sensor";
@@ -43,7 +44,8 @@ public class RobotHardware {
     public DcMotor odometryVerticalRight;
     public DcMotor odometryHorizontal;
     public Servo arm;
-    public Servo claw;
+    public Servo leftClaw;
+    public Servo rightClaw;
     public Servo leftFoundation;
     public Servo rightFoundation;
     public ColorSensor colorSensor;
@@ -115,20 +117,23 @@ public class RobotHardware {
 
         // Initialize servos.
         arm = hardwareMap.get(Servo.class, ARM);
-        claw = hardwareMap.get(Servo.class, CLAW);
+        leftClaw = hardwareMap.get(Servo.class, LEFT_CLAW);
+        rightClaw = hardwareMap.get(Servo.class, RIGHT_CLAW);
         leftFoundation = hardwareMap.get(Servo.class, LEFT_FOUNDATION);
         rightFoundation = hardwareMap.get(Servo.class, RIGHT_FOUNDATION);
 
         // Set them to the proper directions.
         arm.setDirection(Servo.Direction.FORWARD);
-        claw.setDirection(Servo.Direction.FORWARD);
+        leftClaw.setDirection(Servo.Direction.REVERSE);
+        rightClaw.setDirection(Servo.Direction.FORWARD);
         leftFoundation.setDirection(Servo.Direction.FORWARD);
         rightFoundation.setDirection(Servo.Direction.FORWARD);
 
 
         // Reset their positions.
         arm.setPosition(0.5);
-        claw.setPosition(0.5);
+        leftClaw.setPosition(0.5);
+        rightClaw.setPosition(0.5);
         leftFoundation.setPosition(0.5);
         rightFoundation.setPosition(0.5);
 

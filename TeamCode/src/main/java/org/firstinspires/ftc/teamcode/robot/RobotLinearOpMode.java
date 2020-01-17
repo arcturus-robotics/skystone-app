@@ -276,43 +276,85 @@ public class RobotLinearOpMode extends LinearOpMode {
     }
 
     /**
-     * Rotate the claw servo to a specific position.
+     * Rotate the left claw servo to a specific position.
      *
      * @param degrees The angle to turn the intake to.
      */
-    protected void rotateClaw(double degrees) {
+    protected void rotateLeftClaw(double degrees) {
         if (degrees > 0) {
-            robot.claw.setDirection(Servo.Direction.FORWARD);
+            robot.leftClaw.setDirection(Servo.Direction.FORWARD);
         } else {
-            robot.claw.setDirection(Servo.Direction.REVERSE);
+            robot.leftClaw.setDirection(Servo.Direction.REVERSE);
         }
 
-        robot.claw.setPosition(Utilities.degreesToGoBildaServoPosition(degrees));
+        robot.leftClaw.setPosition(Utilities.degreesToGoBildaServoPosition(degrees));
 
         sleep(MOVEMENT_PADDING_DURATION);
     }
 
     /**
-     * Turn the claw servo relative to its current position.
+     * Turn the left claw servo relative to its current position.
      *
      * @param degrees The angle to turn the intake for.
      */
-    protected void turnClaw(double degrees) {
+    protected void turnLeftClaw(double degrees) {
         double position = Utilities.degreesToGoBildaServoPosition(degrees);
-        double lastPosition = robot.claw.getPosition();
-        if (robot.claw.getDirection() == Servo.Direction.REVERSE) {
+        double lastPosition = robot.leftClaw.getPosition();
+        if (robot.leftClaw.getDirection() == Servo.Direction.REVERSE) {
             lastPosition = -lastPosition;
         }
 
         double delta = lastPosition + position;
 
         if (delta > 0.0) {
-            robot.claw.setDirection(Servo.Direction.FORWARD);
+            robot.leftClaw.setDirection(Servo.Direction.FORWARD);
         } else {
-            robot.claw.setDirection(Servo.Direction.REVERSE);
+            robot.leftClaw.setDirection(Servo.Direction.REVERSE);
         }
 
-        robot.claw.setPosition(Utilities.degreesToGoBildaServoPosition(delta));
+        robot.leftClaw.setPosition(Utilities.degreesToGoBildaServoPosition(delta));
+
+        sleep(MOVEMENT_PADDING_DURATION);
+    }
+
+    /**
+     * Rotate the right claw servo to a specific position.
+     *
+     * @param degrees The angle to turn the intake to.
+     */
+    protected void rotateRightClaw(double degrees) {
+        if (degrees > 0) {
+            robot.rightClaw.setDirection(Servo.Direction.FORWARD);
+        } else {
+            robot.rightClaw.setDirection(Servo.Direction.REVERSE);
+        }
+
+        robot.rightClaw.setPosition(Utilities.degreesToGoBildaServoPosition(degrees));
+
+        sleep(MOVEMENT_PADDING_DURATION);
+    }
+
+    /**
+     * Turn the right claw servo relative to its current position.
+     *
+     * @param degrees The angle to turn the intake for.
+     */
+    protected void turnRightClaw(double degrees) {
+        double position = Utilities.degreesToGoBildaServoPosition(degrees);
+        double lastPosition = robot.rightClaw.getPosition();
+        if (robot.rightClaw.getDirection() == Servo.Direction.REVERSE) {
+            lastPosition = -lastPosition;
+        }
+
+        double delta = lastPosition + position;
+
+        if (delta > 0.0) {
+            robot.rightClaw.setDirection(Servo.Direction.FORWARD);
+        } else {
+            robot.rightClaw.setDirection(Servo.Direction.REVERSE);
+        }
+
+        robot.rightClaw.setPosition(Utilities.degreesToGoBildaServoPosition(delta));
 
         sleep(MOVEMENT_PADDING_DURATION);
     }
@@ -429,6 +471,4 @@ public class RobotLinearOpMode extends LinearOpMode {
     protected double getOrientation(){
         return (-robot.imu.getAngularOrientation().firstAngle);
     }
-
-
 }

@@ -28,16 +28,20 @@ public class DoubleControllerTeleop extends RobotOpMode {
         robot.backLeftDrive.setPower(backLeft);
         robot.backRightDrive.setPower(backRight);
 
-        // Rotate the claw.
+        // Rotate the claws.
         if (gamepad2.x || gamepad2.y) {
             if (gamepad2.x) {
-                robot.claw.setDirection(Servo.Direction.REVERSE);
+                robot.leftClaw.setDirection(Servo.Direction.REVERSE);
+                robot.rightClaw.setDirection(Servo.Direction.FORWARD);
             } else {
-                robot.claw.setDirection(Servo.Direction.FORWARD);
+                robot.leftClaw.setDirection(Servo.Direction.FORWARD);
+                robot.rightClaw.setDirection(Servo.Direction.REVERSE);
             }
-            robot.claw.setPosition(1.0);
+            robot.leftClaw.setPosition(1.0);
+            robot.rightClaw.setPosition(1.0);
         } else {
-            robot.claw.setPosition(0.0);
+            robot.leftClaw.setPosition(0.0);
+            robot.rightClaw.setPosition(0.0);
         }
 
         // Rotate the arm.
