@@ -28,33 +28,44 @@ public class DoubleControllerTeleop extends RobotOpMode {
         robot.backLeftDrive.setPower(backLeft);
         robot.backRightDrive.setPower(backRight);
 
-        // Rotate intake servo.
-        if (gamepad2.y || gamepad2.b) {
-            if (gamepad2.y) {
-                robot.intake.setDirection(Servo.Direction.REVERSE);
+        // Rotate the claw.
+        if (gamepad2.x || gamepad2.y) {
+            if (gamepad2.x) {
+                robot.claw.setDirection(Servo.Direction.REVERSE);
             } else {
-                robot.intake.setDirection(Servo.Direction.FORWARD);
+                robot.claw.setDirection(Servo.Direction.FORWARD);
             }
-
-            robot.intake.setPosition(1);
+            robot.claw.setPosition(1.0);
         } else {
-            robot.intake.setPosition(0);
+            robot.claw.setPosition(0.0);
         }
 
-        if (gamepad2.x || gamepad2.a) {
-            if (gamepad2.x) {
-                robot.leftIntake.setDirection(Servo.Direction.REVERSE);
-                robot.rightIntake.setDirection(Servo.Direction.REVERSE);
+        // Rotate the arm.
+        if (gamepad2.a || gamepad2.b) {
+            if (gamepad2.a) {
+                robot.arm.setDirection(Servo.Direction.REVERSE);
             } else {
-                robot.leftIntake.setDirection(Servo.Direction.FORWARD);
-                robot.rightIntake.setDirection(Servo.Direction.FORWARD);
+                robot.arm.setDirection(Servo.Direction.FORWARD);
             }
-
-            robot.leftIntake.setPosition(1.0);
-            robot.rightIntake.setPosition(1.0);
+            robot.arm.setPosition(1.0);
         } else {
-            robot.leftIntake.setPosition(0.0);
-            robot.rightIntake.setPosition(0.0);
+            robot.arm.setPosition(0.0);
+        }
+
+        // Rotate the foundation servos.
+        if (gamepad2.dpad_down || gamepad2.dpad_up) {
+            if (gamepad2.dpad_down) {
+                robot.leftFoundation.setDirection(Servo.Direction.REVERSE);
+                robot.rightFoundation.setDirection(Servo.Direction.REVERSE);
+            } else {
+                robot.leftFoundation.setDirection(Servo.Direction.FORWARD);
+                robot.rightFoundation.setDirection(Servo.Direction.REVERSE);
+            }
+            robot.leftFoundation.setPosition(1.0);
+            robot.rightFoundation.setPosition(1.0);
+        } else {
+            robot.leftFoundation.setPosition(0.0);
+            robot.rightFoundation.setPosition(0.0);
         }
     }
 }

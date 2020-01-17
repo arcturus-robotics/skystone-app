@@ -30,7 +30,7 @@ public class ColorDistanceAutonomous extends RobotLinearOpMode {
                 telemetry.update();
 
                 driveLeft(0.5, 500);
-                rotateIntake(360.0);
+                rotateArm(90.0);
 
                 break;
             } else {

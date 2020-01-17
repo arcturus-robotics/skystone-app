@@ -25,9 +25,10 @@ public class RobotHardware {
     public static final String ODOMETRY_VERTICAL_LEFT = "odometry_vertical_left";
     public static final String ODOMETRY_VERTICAL_RIGHT = "odometry_vertical_right";
     public static final String ODOMETRY_HORIZONTAL = "odometry_horizontal";
-    public static final String INTAKE = "intake";
-    public static final String LEFT_INTAKE = "left_intake";
-    public static final String RIGHT_INTAKE = "right_intake";
+    public static final String ARM = "arm";
+    public static final String CLAW = "claw";
+    public static final String LEFT_FOUNDATION = "left_foundation";
+    public static final String RIGHT_FOUNDATION = "right_foundation";
     public static final String COLOR_DISTANCE_SENSOR = "color_distance_sensor";
     public static final String WEBCAM = "webcam";
     public static final String IMU = "imu";
@@ -41,9 +42,10 @@ public class RobotHardware {
     public DcMotor odometryVerticalLeft;
     public DcMotor odometryVerticalRight;
     public DcMotor odometryHorizontal;
-    public Servo intake;
-    //public Servo leftIntake;
-    //public Servo rightIntake;
+    public Servo arm;
+    public Servo claw;
+    public Servo leftFoundation;
+    public Servo rightFoundation;
     public ColorSensor colorSensor;
     public DistanceSensor distanceSensor;
     public WebcamName webcam;
@@ -90,10 +92,10 @@ public class RobotHardware {
         backRightDrive.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         /*
-         * // Initialize the odometry motors. odometryVerticalLeft =
-         * hardwareMap.get(DcMotor.class, ODOMETRY_VERTICAL_LEFT); odometryVerticalRight
-         * = hardwareMap.get(DcMotor.class, ODOMETRY_VERTICAL_RIGHT); odometryHorizontal
-         * = hardwareMap.get(DcMotor.class, ODOMETRY_HORIZONTAL);
+         * // Initialize the odometry motors.
+         * odometryVerticalLeft = hardwareMap.get(DcMotor.class, ODOMETRY_VERTICAL_LEFT);
+         * odometryVerticalRight = hardwareMap.get(DcMotor.class, ODOMETRY_VERTICAL_RIGHT);
+         * odometryHorizontal = hardwareMap.get(DcMotor.class, ODOMETRY_HORIZONTAL);
          * 
          * // Stop and reset their encoders.
          * odometryVerticalRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
@@ -112,19 +114,23 @@ public class RobotHardware {
          */
 
         // Initialize servos.
-        intake = hardwareMap.get(Servo.class, INTAKE);
-        //leftIntake = hardwareMap.get(Servo.class, LEFT_INTAKE);
-        //rightIntake = hardwareMap.get(Servo.class, RIGHT_INTAKE);
+        arm = hardwareMap.get(Servo.class, ARM);
+        claw = hardwareMap.get(Servo.class, CLAW);
+        leftFoundation = hardwareMap.get(Servo.class, LEFT_FOUNDATION);
+        rightFoundation = hardwareMap.get(Servo.class, RIGHT_FOUNDATION);
 
         // Set them to the proper directions.
-        intake.setDirection(Servo.Direction.FORWARD);
-        //leftIntake.setDirection(Servo.Direction.FORWARD);
-        //rightIntake.setDirection(Servo.Direction.FORWARD);
+        arm.setDirection(Servo.Direction.FORWARD);
+        claw.setDirection(Servo.Direction.FORWARD);
+        leftFoundation.setDirection(Servo.Direction.FORWARD);
+        rightFoundation.setDirection(Servo.Direction.FORWARD);
+
 
         // Reset their positions.
-        intake.setPosition(1.0);
-        //leftIntake.setPosition(0.0);
-        //rightIntake.setPosition(0.0);
+        arm.setPosition(0.5);
+        claw.setPosition(0.5);
+        leftFoundation.setPosition(0.5);
+        rightFoundation.setPosition(0.5);
 
         // Initialize the color sensor.
         colorSensor = hardwareMap.get(ColorSensor.class, COLOR_DISTANCE_SENSOR);

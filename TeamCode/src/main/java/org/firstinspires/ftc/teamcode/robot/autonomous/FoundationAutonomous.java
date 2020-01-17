@@ -16,9 +16,9 @@ public class FoundationAutonomous extends RobotLinearOpMode {
 
         if (opModeIsActive()) {
             driveLeft(0.5, MOVEMENT_FROM_WALL_DURATION);
-            rotateIntake(360.0);
+            rotateFoundation(180.0);
             driveRight(0.5, MOVEMENT_FROM_WALL_DURATION);
-            rotateIntake(0.0);
+            rotateFoundation(90.0);
             driveForward(0.5, MOVEMENT_TO_SKYBRIDGE_DURATION);
         }
     }

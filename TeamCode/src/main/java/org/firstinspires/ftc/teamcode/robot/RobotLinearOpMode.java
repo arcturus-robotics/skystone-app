@@ -73,10 +73,10 @@ public class RobotLinearOpMode extends LinearOpMode {
     }
 
     /**
-     * Power the wheel motors with specific powers.
+     * Power the drive motors with specific amounts of power.
      *
      * @param frontLeftPower  The power to drive the front left drive motor with.
-     * @param frontRightPower The power to drive the front right  drive motor with.
+     * @param frontRightPower The power to drive the front right drive motor with.
      * @param backLeftPower   The power to drive the back left drive motor with.
      * @param backRightPower  The power to drive the back right drive motor with.
      */
@@ -88,7 +88,7 @@ public class RobotLinearOpMode extends LinearOpMode {
     }
 
     /**
-     * Stop all wheel motors.
+     * Stop all drive motors.
      */
     protected void disable() {
         robot.frontLeftDrive.setPower(0.0);
@@ -102,7 +102,7 @@ public class RobotLinearOpMode extends LinearOpMode {
      * Takes power for each drive motor and the duration to drive for.
      *
      * @param frontLeftPower  The power to drive the front left drive motor with.
-     * @param frontRightPower The power to drive the front right  drive motor with.
+     * @param frontRightPower The power to drive the front right drive motor with.
      * @param backLeftPower   The power to drive the back left drive motor with.
      * @param backRightPower  The power to drive the back right drive motor with.
      * @param duration        The duration to drive for (in milliseconds).
@@ -129,7 +129,7 @@ public class RobotLinearOpMode extends LinearOpMode {
      * and the duration to drive for.
      *
      * @param frontLeftPower  The power to drive the front left drive motor with.
-     * @param frontRightPower The power to drive the front right  drive motor with.
+     * @param frontRightPower The power to drive the front right drive motor with.
      * @param backLeftPower   The power to drive the back left drive motor with.
      * @param backRightPower  The power to drive the back right drive motor with.
      * @param duration        The duration to drive for (in milliseconds).
@@ -276,43 +276,135 @@ public class RobotLinearOpMode extends LinearOpMode {
     }
 
     /**
-     * Rotate the intake servo to a specific position.
+     * Rotate the claw servo to a specific position.
      *
      * @param degrees The angle to turn the intake to.
      */
-    protected void rotateIntake(double degrees) {
+    protected void rotateClaw(double degrees) {
         if (degrees > 0) {
-            robot.intake.setDirection(Servo.Direction.FORWARD);
+            robot.claw.setDirection(Servo.Direction.FORWARD);
         } else {
-            robot.intake.setDirection(Servo.Direction.REVERSE);
+            robot.claw.setDirection(Servo.Direction.REVERSE);
         }
 
-        robot.intake.setPosition(Utilities.degreesToServoPosition(Math.abs(degrees)));
+        robot.claw.setPosition(Utilities.degreesToGoBildaServoPosition(degrees));
 
         sleep(MOVEMENT_PADDING_DURATION);
     }
 
     /**
-     * Turn the intake servo relative to its current position.
+     * Turn the claw servo relative to its current position.
      *
      * @param degrees The angle to turn the intake for.
      */
-    protected void turnIntake(double degrees) {
-        double position = Utilities.degreesToServoPosition(degrees);
-        double lastPosition = robot.intake.getPosition();
-        if (robot.intake.getDirection() == Servo.Direction.REVERSE) {
+    protected void turnClaw(double degrees) {
+        double position = Utilities.degreesToGoBildaServoPosition(degrees);
+        double lastPosition = robot.claw.getPosition();
+        if (robot.claw.getDirection() == Servo.Direction.REVERSE) {
             lastPosition = -lastPosition;
         }
 
         double delta = lastPosition + position;
 
         if (delta > 0.0) {
-            robot.intake.setDirection(Servo.Direction.FORWARD);
+            robot.claw.setDirection(Servo.Direction.FORWARD);
         } else {
-            robot.intake.setDirection(Servo.Direction.REVERSE);
+            robot.claw.setDirection(Servo.Direction.REVERSE);
         }
 
-        robot.intake.setPosition(Utilities.degreesToServoPosition(Math.abs(delta)));
+        robot.claw.setPosition(Utilities.degreesToGoBildaServoPosition(delta));
+
+        sleep(MOVEMENT_PADDING_DURATION);
+    }
+
+    /**
+     * Rotate the claw servo to a specific position.
+     *
+     * @param degrees The angle to turn the intake to.
+     */
+    protected void rotateArm(double degrees) {
+        if (degrees > 0) {
+            robot.arm.setDirection(Servo.Direction.FORWARD);
+        } else {
+            robot.arm.setDirection(Servo.Direction.REVERSE);
+        }
+
+        robot.arm.setPosition(Utilities.degreesToGoBildaServoPosition(degrees));
+
+        sleep(MOVEMENT_PADDING_DURATION);
+    }
+
+    /**
+     * Turn the claw servo relative to its current position.
+     *
+     * @param degrees The angle to turn the intake for.
+     */
+    protected void turnArm(double degrees) {
+        double position = Utilities.degreesToGoBildaServoPosition(degrees);
+        double lastPosition = robot.arm.getPosition();
+        if (robot.arm.getDirection() == Servo.Direction.REVERSE) {
+            lastPosition = -lastPosition;
+        }
+
+        double delta = lastPosition + position;
+
+        if (delta > 0.0) {
+            robot.arm.setDirection(Servo.Direction.FORWARD);
+        } else {
+            robot.arm.setDirection(Servo.Direction.REVERSE);
+        }
+
+        robot.arm.setPosition(Utilities.degreesToGoBildaServoPosition(delta));
+
+        sleep(MOVEMENT_PADDING_DURATION);
+    }
+
+    /**
+     * Rotate the foundation servos to specific positions.
+     *
+     * @param degrees The angle to turn the intake to.
+     */
+    protected void rotateFoundation(double degrees) {
+        if (degrees > 0) {
+            robot.leftFoundation.setDirection(Servo.Direction.FORWARD);
+            robot.rightFoundation.setDirection(Servo.Direction.FORWARD);
+        } else {
+            robot.leftFoundation.setDirection(Servo.Direction.REVERSE);
+            robot.rightFoundation.setDirection(Servo.Direction.REVERSE);
+        }
+
+        double position = Utilities.degreesToGoBildaServoPosition(degrees);
+        robot.leftFoundation.setPosition(position);
+        robot.rightFoundation.setPosition(position);
+
+        sleep(MOVEMENT_PADDING_DURATION);
+    }
+
+    /**
+     * Turn the foundation servos relative to their current positions.
+     *
+     * @param degrees The angle to turn the intake for.
+     */
+    protected void turnFoundation(double degrees) {
+        double position = Utilities.degreesToGoBildaServoPosition(degrees);
+        double lastPosition = robot.arm.getPosition();
+        if (robot.arm.getDirection() == Servo.Direction.REVERSE) {
+            lastPosition = -lastPosition;
+        }
+
+        double delta = lastPosition + position;
+
+        if (delta > 0) {
+            robot.leftFoundation.setDirection(Servo.Direction.FORWARD);
+            robot.rightFoundation.setDirection(Servo.Direction.FORWARD);
+        } else {
+            robot.leftFoundation.setDirection(Servo.Direction.REVERSE);
+            robot.rightFoundation.setDirection(Servo.Direction.REVERSE);
+        }
+
+        double deltaPosition = Utilities.degreesToGoBildaServoPosition(delta);
+        robot.leftFoundation.setPosition(deltaPosition);
+        robot.rightFoundation.setPosition(deltaPosition);
 
         sleep(MOVEMENT_PADDING_DURATION);
     }

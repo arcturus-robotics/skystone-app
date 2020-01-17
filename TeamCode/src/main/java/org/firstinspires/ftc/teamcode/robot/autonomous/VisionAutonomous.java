@@ -1,26 +1,13 @@
 package org.firstinspires.ftc.teamcode.robot.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
+import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
-import org.firstinspires.ftc.robotcore.external.ClassFactory;
 import org.firstinspires.ftc.robotcore.external.matrices.OpenGLMatrix;
-import org.firstinspires.ftc.robotcore.external.matrices.VectorF;
-import org.firstinspires.ftc.robotcore.external.navigation.Orientation;
 import org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackable;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackableDefaultListener;
-import org.firstinspires.ftc.robotcore.external.navigation.VuforiaTrackables;
 import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
-import java.util.ArrayList;
-import java.util.List;
-
-import static org.firstinspires.ftc.robotcore.external.navigation.AngleUnit.DEGREES;
-import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.XYZ;
-import static org.firstinspires.ftc.robotcore.external.navigation.AxesOrder.YZX;
-import static org.firstinspires.ftc.robotcore.external.navigation.AxesReference.EXTRINSIC;
 import static org.firstinspires.ftc.robotcore.external.navigation.VuforiaLocalizer.CameraDirection.BACK;
-import com.qualcomm.robotcore.eventloop.opmode.Disabled;
 
 /**
  * An autonomous which uses vision detection
@@ -118,8 +105,9 @@ public class VisionAutonomous extends RobotLinearOpMode {
      */
     private float phoneZRotation = 0.0f;
 
+
     @Override
-    public void runOpMode() {
+    public void runOpMode() {/*
         // Initialize the robot using the hardware map.
         robot.init(hardwareMap);
 
@@ -344,18 +332,13 @@ public class VisionAutonomous extends RobotLinearOpMode {
                 telemetry.addData("Scanning", "In Process");
             }
 
-            /*
             // Drive forward and backward until the robot can see the skystone.
-            driveBackward(0.5, 500);
-            driveForward(0.5, 500);
-            */
+            //driveBackward(0.5, 500);
+            //driveForward(0.5, 500);
+
+
             telemetry.addData("Loop", "Finished");
             telemetry.update();
         }
-
-    }
-
-    // Disable tracking when we are done.
-
+        */}
 }
-
