@@ -34,8 +34,6 @@ public class RobotHardware {
     public static final String WEBCAM = "webcam";
     public static final String IMU = "imu";
 
-    public final double COLOR_SCALE_FACTOR = 255.0;
-
     public DcMotor frontLeftDrive;
     public DcMotor frontRightDrive;
     public DcMotor backLeftDrive;
