@@ -471,7 +471,7 @@ public class RobotLinearOpMode extends LinearOpMode {
      * Expand the arm.
      */
     protected void expandArm() {
-        robot.arm.setPosition(1.0);
+        robot.arm.setPosition(0.95);
     }
 
     /**
