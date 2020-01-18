@@ -130,15 +130,15 @@ public class RobotHardware {
         leftClaw.setDirection(Servo.Direction.REVERSE);
         rightClaw.setDirection(Servo.Direction.FORWARD);
         leftFoundation.setDirection(Servo.Direction.FORWARD);
-        rightFoundation.setDirection(Servo.Direction.FORWARD);
+        rightFoundation.setDirection(Servo.Direction.REVERSE);
 
 
         // Reset their positions.
-        arm.setPosition(0.5);
+        arm.setPosition(0.125);
         leftClaw.setPosition(0.5);
         rightClaw.setPosition(0.5);
-        leftFoundation.setPosition(0.5);
-        rightFoundation.setPosition(0.5);
+        leftFoundation.setPosition(0.0);
+        rightFoundation.setPosition(0.0);
 
         // Initialize the color sensor.
         colorSensor = hardwareMap.get(ColorSensor.class, COLOR_DISTANCE_SENSOR);

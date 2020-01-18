@@ -10,7 +10,7 @@ import java.io.File;
 
 @Autonomous(name = "Odometry Calibration Autonomous", group = "Autonomous")
 public class OdometryCalibrationAutonomous extends RobotLinearOpMode {
-    private double horizontalEncoderTickPerDegreeOffset = 0;
+    private double horizontalEncoderTickPerDegreeOffset = 0.0;
 
     // Configuration files.
     private File wheelBaseSeparationFile = AppUtil.getInstance().getSettingsFile("wheelBaseSeparation.txt");

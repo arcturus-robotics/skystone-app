@@ -12,6 +12,21 @@ import org.firstinspires.ftc.teamcode.robot.RobotOpMode;
 @TeleOp(name = "Single Controller Teleop", group = "Robot Teleop")
 //@Disabled
 public class SingleControllerTeleop extends RobotOpMode {
+    private boolean leftClawState = false;
+    private boolean rightClawState = false;
+    private boolean leftFoundationState = false;
+    private boolean rightFoundationState = false;
+    private boolean armState = false;
+
+    private static final double FOUNDATION_MAX = 0.75;
+    private static final double FOUNDATION_MIN = 0.25;
+    private static final double LEFT_CLAW_MAX = 0.8;
+    private static final double LEFT_CLAW_MIN = 0.2;
+    private static final double RIGHT_CLAW_MAX = 1.0;
+    private static final double RIGHT_CLAW_MIN = 0.0;
+    private static final double ARM_MAX = 1.0;
+    private static final double ARM_MIN = 0.125;
+
     @Override
     public void loop() {
         // Calculate motor power based on input from the gamepad.
@@ -26,51 +41,71 @@ public class SingleControllerTeleop extends RobotOpMode {
         robot.backLeftDrive.setPower(backLeft);
         robot.backRightDrive.setPower(backRight);
 
-        // Rotate the claws.
-        if (gamepad1.x || gamepad1.y) {
+        if (!(gamepad1.x && gamepad1.y)) {
             if (gamepad1.x) {
-                robot.leftClaw.setDirection(Servo.Direction.REVERSE);
-                robot.rightClaw.setDirection(Servo.Direction.FORWARD);
-            } else {
-                robot.leftClaw.setDirection(Servo.Direction.FORWARD);
-                robot.rightClaw.setDirection(Servo.Direction.REVERSE);
+                leftClawState = true;
+                rightClawState = true;
             }
-            robot.leftClaw.setPosition(1.0);
-            robot.rightClaw.setPosition(1.0);
-        } else {
-            robot.leftClaw.setPosition(0.0);
-            robot.rightClaw.setPosition(0.0);
+
+            if (gamepad1.y) {
+                leftClawState = false;
+                rightClawState = false;
+            }
         }
 
-        // Rotate the arm.
-        if (gamepad1.a || gamepad1.b) {
-            if (gamepad1.a) {
-                robot.arm.setDirection(Servo.Direction.REVERSE);
-            } else {
-                robot.arm.setDirection(Servo.Direction.FORWARD);
-            }
-            robot.arm.setPosition(1.0);
-        } else {
-            robot.arm.setPosition(0.0);
-        }
-
-        // Rotate the foundation servos.
-        if (gamepad1.dpad_down || gamepad1.dpad_up) {
+        if (!(gamepad1.dpad_down && gamepad1.dpad_up)) {
             if (gamepad1.dpad_down) {
-                robot.leftFoundation.setDirection(Servo.Direction.REVERSE);
-                robot.rightFoundation.setDirection(Servo.Direction.REVERSE);
-            } else {
-                robot.leftFoundation.setDirection(Servo.Direction.FORWARD);
-                robot.rightFoundation.setDirection(Servo.Direction.FORWARD);
+                leftFoundationState = true;
+                rightFoundationState = true;
             }
-            robot.leftFoundation.setPosition(1.0);
-            robot.rightFoundation.setPosition(1.0);
-        } else {
-            robot.leftFoundation.setPosition(0.0);
-            robot.rightFoundation.setPosition(0.0);
+
+            if (gamepad1.dpad_up) {
+                leftFoundationState = false;
+                rightFoundationState = false;
+            }
         }
 
-        telemetry.addData("Arm Position", robot.arm.getPosition());
+        if (!(gamepad1.a && gamepad1.b)) {
+            if (gamepad1.a) {
+                armState = true;
+            }
+
+            if (gamepad1.b) {
+                armState = false;
+            }
+        }
+
+        if (leftClawState) {
+            robot.leftClaw.setPosition(LEFT_CLAW_MAX);
+        } else {
+            robot.leftClaw.setPosition(LEFT_CLAW_MIN);
+        }
+
+        if (rightClawState) {
+            robot.rightClaw.setPosition(RIGHT_CLAW_MAX);
+        } else {
+            robot.rightClaw.setPosition(RIGHT_CLAW_MIN);
+        }
+
+        if (leftFoundationState) {
+            robot.leftFoundation.setPosition(FOUNDATION_MAX);
+        } else {
+            robot.leftFoundation.setPosition(FOUNDATION_MIN);
+        }
+
+        if (rightFoundationState) {
+            robot.rightFoundation.setPosition(FOUNDATION_MAX);
+        } else {
+            robot.rightFoundation.setPosition(FOUNDATION_MIN);
+        }
+
+        if (armState) {
+            robot.arm.setPosition(ARM_MAX);
+        } else {
+            robot.arm.setPosition(ARM_MIN);
+        }
+
+        telemetry.addData("Left Foundation Position", robot.leftFoundation.getPosition());
         telemetry.update();
     }
 }
