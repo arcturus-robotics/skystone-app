@@ -22,7 +22,7 @@ public class RightFromFoundationAutonomous extends RobotLinearOpMode {
             expandFoundation();
             sleep(2000);
             driveBackward(0.5, 2100);
-            turnRight(0.25, 1000);
+            turnRight(0.6, 5000);
             contractFoundation();
             sleep(2000);
             //driveLeft(0.25, 2600);
