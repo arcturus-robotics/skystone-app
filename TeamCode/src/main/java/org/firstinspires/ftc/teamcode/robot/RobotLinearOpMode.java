@@ -3,11 +3,9 @@ package org.firstinspires.ftc.teamcode.robot;
 import android.graphics.Color;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
-import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.Constants;
-import org.firstinspires.ftc.teamcode.Utilities;
 
 /**
  * An opmode with many utility methods and constants for autonomous programs.
@@ -256,9 +254,10 @@ public class RobotLinearOpMode extends LinearOpMode {
 
     /**
      * Get the orientation of the robot.
+     *
      * @return The current orientation of the robot.
      */
-    protected double getOrientation(){
+    protected double getOrientation() {
         return (-robot.imu.getAngularOrientation().firstAngle);
     }
 }

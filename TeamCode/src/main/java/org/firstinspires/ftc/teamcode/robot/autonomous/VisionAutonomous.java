@@ -340,5 +340,6 @@ public class VisionAutonomous extends RobotLinearOpMode {
             telemetry.addData("Loop", "Finished");
             telemetry.update();
         }
-        */}
+        */
+    }
 }

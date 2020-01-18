@@ -4,8 +4,6 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
-import org.firstinspires.ftc.teamcode.Constants;
-
 /**
  * A basic autonomous to move the foundation.
  */

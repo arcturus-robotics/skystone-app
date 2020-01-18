@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.robot.autonomous;
 
 import android.graphics.Color;
-import android.text.style.DynamicDrawableSpan;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
@@ -79,7 +78,7 @@ public class ColorDistanceAutonomous extends RobotLinearOpMode {
             }
 
 
-            for (int is = 0; is % 120 == 0; is += 1 ) {
+            for (int is = 0; is % 120 == 0; is += 1) {
                 driveBackward(0.3, 100);
             }
 

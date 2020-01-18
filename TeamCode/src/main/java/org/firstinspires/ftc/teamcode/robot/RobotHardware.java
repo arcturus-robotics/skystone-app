@@ -1,19 +1,15 @@
 package org.firstinspires.ftc.teamcode.robot;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.bosch.JustLoggingAccelerationIntegrator;
-import com.qualcomm.robotcore.hardware.DcMotor;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.hardware.ColorSensor;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
-import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
-import org.firstinspires.ftc.teamcode.Constants;
-
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
-import com.qualcomm.hardware.bosch.BNO055IMU;
+
+import org.firstinspires.ftc.teamcode.Constants;
 
 /**
  * A container for easy access to our robot's hardware. Provides an easy way to
@@ -57,9 +53,8 @@ public class RobotHardware {
 
     // Webcam isn't configured!
     // public WebcamName webcam;
-
-    private HardwareMap hardwareMap;
     public ElapsedTime period = new ElapsedTime();
+    private HardwareMap hardwareMap;
 
     public RobotHardware() {
     }
@@ -103,17 +98,17 @@ public class RobotHardware {
          * odometryVerticalLeft = hardwareMap.get(DcMotor.class, ODOMETRY_VERTICAL_LEFT);
          * odometryVerticalRight = hardwareMap.get(DcMotor.class, ODOMETRY_VERTICAL_RIGHT);
          * odometryHorizontal = hardwareMap.get(DcMotor.class, ODOMETRY_HORIZONTAL);
-         * 
+         *
          * // Stop and reset their encoders.
          * odometryVerticalRight.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
          * odometryVerticalLeft.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
          * odometryHorizontal.setMode(DcMotor.RunMode.STOP_AND_RESET_ENCODER);
-         * 
+         *
          * // Set them to the proper directions.
          * odometryVerticalLeft.setDirection(DcMotorSimple.Direction.REVERSE);
          * odometryVerticalRight.setDirection(DcMotorSimple.Direction.REVERSE);
          * odometryHorizontal.setDirection(DcMotorSimple.Direction.REVERSE);
-         * 
+         *
          * // Set them to run without an encoder.
          * odometryVerticalRight.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
          * odometryVerticalLeft.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
