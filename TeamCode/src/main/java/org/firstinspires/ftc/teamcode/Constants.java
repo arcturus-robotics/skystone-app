@@ -5,11 +5,11 @@ public class Constants {
     public static final double DRIVE_MIN = -0.8;
 
     public static final double LEFT_FOUNDATION_INIT = 0.0;
-    public static final double LEFT_FOUNDATION_MAX = 0.70;
+    public static final double LEFT_FOUNDATION_MAX = 0.725;
     public static final double LEFT_FOUNDATION_MIN = 0.25;
 
     public static final double RIGHT_FOUNDATION_INIT = 0.0;
-    public static final double RIGHT_FOUNDATION_MAX = 0.70;
+    public static final double RIGHT_FOUNDATION_MAX = 0.725;
     public static final double RIGHT_FOUNDATION_MIN = 0.25;
 
     public static final double LEFT_CLAW_INIT = 0.5;
