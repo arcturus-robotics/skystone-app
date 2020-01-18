@@ -18,7 +18,7 @@ public class Constants {
     public static final double RIGHT_CLAW_MIN = 0.0;
 
     public static final double ARM_INIT = 0.125;
-    public static final double ARM_MAX = 1.0;
+    public static final double ARM_MAX = 0.95;
     public static final double ARM_MIN = 0.125;
 
     /**

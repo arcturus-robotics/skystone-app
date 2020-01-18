@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.robot.RobotOpMode;
 
 /**
@@ -14,13 +15,19 @@ import org.firstinspires.ftc.teamcode.robot.RobotOpMode;
 @TeleOp(name = "Double Controller Teleop", group = "Robot Teleop")
 //@Disabled
 public class DoubleControllerTeleop extends RobotOpMode {
+    private boolean leftClawState = false;
+    private boolean rightClawState = false;
+    private boolean leftFoundationState = false;
+    private boolean rightFoundationState = false;
+    private boolean armState = false;
+
     @Override
     public void loop() {
         // Calculate motor power based on input from the gamepad.
-        float frontLeft = -Range.clip(gamepad1.left_stick_y - gamepad1.left_stick_x, -1.0f, 1.0f);
-        float frontRight = -Range.clip(gamepad1.right_stick_y + gamepad1.right_stick_x, -1.0f, 1.0f);
-        float backLeft = -Range.clip(gamepad1.left_stick_y + gamepad1.right_stick_x, -1.0f, 1.0f);
-        float backRight = -Range.clip(gamepad1.right_stick_y - gamepad1.left_stick_x, -1.0f, 1.0f);
+        float frontLeft = -Range.clip(gamepad1.left_stick_y - gamepad1.left_stick_x, -0.80f, 0.80f);
+        float frontRight = -Range.clip(gamepad1.right_stick_y + gamepad1.right_stick_x, -0.80f, 0.80f);
+        float backLeft = -Range.clip(gamepad1.left_stick_y + gamepad1.right_stick_x, -0.80f, 0.80f);
+        float backRight = -Range.clip(gamepad1.right_stick_y - gamepad1.left_stick_x, -0.80f, 0.80f);
 
         // Drive the motors.
         robot.frontLeftDrive.setPower(frontLeft);
@@ -28,48 +35,68 @@ public class DoubleControllerTeleop extends RobotOpMode {
         robot.backLeftDrive.setPower(backLeft);
         robot.backRightDrive.setPower(backRight);
 
-        // Rotate the claws.
-        if (gamepad2.x || gamepad2.y) {
+        if (!(gamepad2.x && gamepad2.y)) {
             if (gamepad2.x) {
-                robot.leftClaw.setDirection(Servo.Direction.REVERSE);
-                robot.rightClaw.setDirection(Servo.Direction.FORWARD);
-            } else {
-                robot.leftClaw.setDirection(Servo.Direction.FORWARD);
-                robot.rightClaw.setDirection(Servo.Direction.REVERSE);
+                leftClawState = true;
+                rightClawState = true;
             }
-            robot.leftClaw.setPosition(1.0);
-            robot.rightClaw.setPosition(1.0);
-        } else {
-            robot.leftClaw.setPosition(0.0);
-            robot.rightClaw.setPosition(0.0);
+
+            if (gamepad2.y) {
+                leftClawState = false;
+                rightClawState = false;
+            }
         }
 
-        // Rotate the arm.
-        if (gamepad2.a || gamepad2.b) {
-            if (gamepad2.a) {
-                robot.arm.setDirection(Servo.Direction.REVERSE);
-            } else {
-                robot.arm.setDirection(Servo.Direction.FORWARD);
-            }
-            robot.arm.setPosition(1.0);
-        } else {
-            robot.arm.setPosition(0.0);
-        }
-
-        // Rotate the foundation servos.
-        if (gamepad2.dpad_down || gamepad2.dpad_up) {
+        if (!(gamepad2.dpad_down && gamepad2.dpad_up)) {
             if (gamepad2.dpad_down) {
-                robot.leftFoundation.setDirection(Servo.Direction.REVERSE);
-                robot.rightFoundation.setDirection(Servo.Direction.REVERSE);
-            } else {
-                robot.leftFoundation.setDirection(Servo.Direction.FORWARD);
-                robot.rightFoundation.setDirection(Servo.Direction.REVERSE);
+                leftFoundationState = true;
+                rightFoundationState = true;
             }
-            robot.leftFoundation.setPosition(1.0);
-            robot.rightFoundation.setPosition(1.0);
+
+            if (gamepad2.dpad_up) {
+                leftFoundationState = false;
+                rightFoundationState = false;
+            }
+        }
+
+        if (!(gamepad2.a && gamepad2.b)) {
+            if (gamepad2.a) {
+                armState = true;
+            }
+
+            if (gamepad2.b) {
+                armState = false;
+            }
+        }
+
+        if (leftClawState) {
+            robot.leftClaw.setPosition(Constants.LEFT_CLAW_MAX);
         } else {
-            robot.leftFoundation.setPosition(0.0);
-            robot.rightFoundation.setPosition(0.0);
+            robot.leftClaw.setPosition(Constants.LEFT_CLAW_MIN);
+        }
+
+        if (rightClawState) {
+            robot.rightClaw.setPosition(Constants.RIGHT_CLAW_MAX);
+        } else {
+            robot.rightClaw.setPosition(Constants.RIGHT_CLAW_MIN);
+        }
+
+        if (leftFoundationState) {
+            robot.leftFoundation.setPosition(Constants.LEFT_FOUNDATION_MAX);
+        } else {
+            robot.leftFoundation.setPosition(Constants.LEFT_FOUNDATION_MIN);
+        }
+
+        if (rightFoundationState) {
+            robot.rightFoundation.setPosition(Constants.RIGHT_FOUNDATION_MAX);
+        } else {
+            robot.rightFoundation.setPosition(Constants.RIGHT_FOUNDATION_MIN);
+        }
+
+        if (armState) {
+            robot.arm.setPosition(Constants.ARM_MAX);
+        } else {
+            robot.arm.setPosition(Constants.ARM_MIN);
         }
     }
 }

@@ -96,8 +96,5 @@ public class SingleControllerTeleop extends RobotOpMode {
         } else {
             robot.arm.setPosition(Constants.ARM_MIN);
         }
-
-        telemetry.addData("Left Foundation Position", robot.leftFoundation.getPosition());
-        telemetry.update();
     }
 }

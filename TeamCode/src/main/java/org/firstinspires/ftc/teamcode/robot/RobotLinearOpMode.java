@@ -184,65 +184,13 @@ public class RobotLinearOpMode extends LinearOpMode {
     }
 
     /**
-     * Drive forward.
-     *
-     * @param duration The duration to drive for.
-     */
-    protected void driveForward(long duration) {
-        driveForward(1.0, duration);
-    }
-
-    /**
-     * Drive left.
-     *
-     * @param duration The duration to drive for.
-     */
-    protected void driveLeft(long duration) {
-        driveLeft(1.0, duration);
-    }
-
-    /**
-     * Drive backward.
-     *
-     * @param duration The duration to drive for.
-     */
-    protected void driveBackward(long duration) {
-        driveBackward(1.0, duration);
-    }
-
-    /**
-     * Drive right.
-     *
-     * @param duration The duration to drive for.
-     */
-    protected void driveRight(long duration) {
-        driveRight(1.0, duration);
-    }
-
-    /**
-     * Turn left.
-     *
-     * @param duration The duration to drive for.
-     */
-    protected void turnLeft(long duration) {
-        turnLeft(1.0, duration);
-    }
-
-    /**
-     * Turn right.
-     *
-     * @param duration The duration to drive for.
-     */
-    protected void turnRight(long duration) {
-        turnRight(1.0, duration);
-    }
-
-    /**
      * Expand the foundation arms.
      */
     protected void expandFoundation() {
         robot.leftFoundation.setPosition(0.70);
         robot.rightFoundation.setPosition(0.70);
+
+        sleep(Constants.MOVEMENT_PADDING_DURATION);
     }
 
     /**
@@ -251,6 +199,8 @@ public class RobotLinearOpMode extends LinearOpMode {
     protected void contractFoundation() {
         robot.leftFoundation.setPosition(0.25);
         robot.rightFoundation.setPosition(0.25);
+
+        sleep(Constants.MOVEMENT_PADDING_DURATION);
     }
 
     /**
@@ -258,6 +208,8 @@ public class RobotLinearOpMode extends LinearOpMode {
      */
     protected void expandArm() {
         robot.arm.setPosition(Constants.ARM_MAX);
+
+        sleep(Constants.MOVEMENT_PADDING_DURATION);
     }
 
     /**
@@ -265,6 +217,8 @@ public class RobotLinearOpMode extends LinearOpMode {
      */
     protected void contractArm() {
         robot.arm.setPosition(Constants.ARM_MIN);
+
+        sleep(Constants.MOVEMENT_PADDING_DURATION);
     }
 
     /**
@@ -273,6 +227,8 @@ public class RobotLinearOpMode extends LinearOpMode {
     protected void openClaw() {
         robot.leftClaw.setPosition(Constants.LEFT_CLAW_MIN);
         robot.rightClaw.setPosition(Constants.RIGHT_CLAW_MIN);
+
+        sleep(Constants.MOVEMENT_PADDING_DURATION);
     }
 
     /**
@@ -281,6 +237,8 @@ public class RobotLinearOpMode extends LinearOpMode {
     protected void closeClaw() {
         robot.leftClaw.setPosition(Constants.LEFT_CLAW_MAX);
         robot.rightClaw.setPosition(Constants.RIGHT_CLAW_MAX);
+
+        sleep(Constants.MOVEMENT_PADDING_DURATION);
     }
 
     /**
