@@ -12,6 +12,8 @@ import org.firstinspires.ftc.teamcode.Utilities;
  * An opmode with many utility methods and constants for autonomous programs.
  */
 public class RobotLinearOpMode extends LinearOpMode {
+    private static final double ARM_MAX = 1.0;
+    private static final double ARM_MIN = 0.125;
     /**
      * The amount of encoder ticks per inch the robot moves.
      */
@@ -471,14 +473,14 @@ public class RobotLinearOpMode extends LinearOpMode {
      * Expand the arm.
      */
     protected void expandArm() {
-        robot.arm.setPosition(0.95);
+        robot.arm.setPosition(ARM_MAX);
     }
 
     /**
      * Contract the arm.
      */
     protected void contractArm() {
-        robot.arm.setPosition(0.125);
+        robot.arm.setPosition(ARM_MIN);
     }
 
     /**

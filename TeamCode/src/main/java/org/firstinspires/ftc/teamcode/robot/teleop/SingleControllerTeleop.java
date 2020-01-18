@@ -17,23 +17,14 @@ public class SingleControllerTeleop extends RobotOpMode {
     private boolean leftFoundationState = false;
     private boolean rightFoundationState = false;
     private boolean armState = false;
-
-    private static final double FOUNDATION_MAX = 0.70;
-    private static final double FOUNDATION_MIN = 0.25;
-    private static final double LEFT_CLAW_MAX = 0.8;
-    private static final double LEFT_CLAW_MIN = 0.2;
-    private static final double RIGHT_CLAW_MAX = 1.0;
-    private static final double RIGHT_CLAW_MIN = 0.0;
-    private static final double ARM_MAX = 1.0;
-    private static final double ARM_MIN = 0.125;
-
+    
     @Override
     public void loop() {
         // Calculate motor power based on input from the gamepad.
-        float frontLeft = -Range.clip(gamepad1.left_stick_y - gamepad1.left_stick_x, -1.0f, 1.0f);
-        float frontRight = -Range.clip(gamepad1.right_stick_y + gamepad1.right_stick_x, -1.0f, 1.0f);
-        float backLeft = -Range.clip(gamepad1.left_stick_y + gamepad1.right_stick_x, -1.0f, 1.0f);
-        float backRight = -Range.clip(gamepad1.right_stick_y - gamepad1.left_stick_x, -1.0f, 1.0f);
+        float frontLeft = -Range.clip(gamepad1.left_stick_y - gamepad1.left_stick_x, -0.80f, 0.80f);
+        float frontRight = -Range.clip(gamepad1.right_stick_y + gamepad1.right_stick_x, -0.80f, 0.80f);
+        float backLeft = -Range.clip(gamepad1.left_stick_y + gamepad1.right_stick_x, -0.80f, 0.80f);
+        float backRight = -Range.clip(gamepad1.right_stick_y - gamepad1.left_stick_x, -0.80f, 0.80f);
 
         // Drive the motors.
         robot.frontLeftDrive.setPower(frontLeft);
