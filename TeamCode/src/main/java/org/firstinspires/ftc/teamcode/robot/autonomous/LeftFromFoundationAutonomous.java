@@ -7,9 +7,9 @@ import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 /**
  * A basic autonomous to move the foundation.
  */
-@Autonomous(name = "Basic Foundation Autonomous", group = "Robot Autonomous")
+@Autonomous(name = "Left From Foundation Autonomous", group = "Robot Autonomous")
 //@Disabled
-public class FoundationAutonomous extends RobotLinearOpMode {
+public class LeftFromFoundationAutonomous extends RobotLinearOpMode {
     @Override
     public void runOpMode() {
         super.runOpMode();
@@ -23,7 +23,7 @@ public class FoundationAutonomous extends RobotLinearOpMode {
             driveBackward(1.0, 5000);
             contractFoundation();
             sleep(2000);
-            driveRight(0.5, 3000);
+            driveLeft(0.5, 3000);
         }
     }
 }
