@@ -16,11 +16,14 @@ public class FoundationAutonomous extends RobotLinearOpMode {
 
         if (opModeIsActive()) {
             contractFoundation();
+            sleep(2000);
             driveForward(0.5, 3100);
             expandFoundation();
+            sleep(2000);
             driveBackward(1.0, 5000);
-            driveRight(0.5, 3000);
             contractFoundation();
+            sleep(2000);
+            driveRight(0.5, 3000);
         }
     }
 }

@@ -15,7 +15,7 @@ public class TestAutonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-
+            expandArm();
         }
     }
 }
