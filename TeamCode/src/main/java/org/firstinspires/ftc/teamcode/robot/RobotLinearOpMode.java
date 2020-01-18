@@ -4,14 +4,15 @@ import android.graphics.Color;
 
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Utilities;
 
 /**
  * An opmode with many utility methods and constants for autonomous programs.
  */
 public class RobotLinearOpMode extends LinearOpMode {
-    public double drivePower = 0.5;
     protected RobotHardware robot = new RobotHardware();
     protected ElapsedTime period = new ElapsedTime();
 
@@ -41,10 +42,10 @@ public class RobotLinearOpMode extends LinearOpMode {
      * @param backRightPower  The power to drive the back right drive motor with.
      */
     protected void enable(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower) {
-        robot.frontLeftDrive.setPower(frontLeftPower);
-        robot.frontRightDrive.setPower(frontRightPower);
-        robot.backLeftDrive.setPower(backLeftPower);
-        robot.backRightDrive.setPower(backRightPower);
+        robot.frontLeftDrive.setPower(Utilities.clipDrive(frontLeftPower));
+        robot.frontRightDrive.setPower(Utilities.clipDrive(frontRightPower));
+        robot.backLeftDrive.setPower(Utilities.clipDrive(backLeftPower));
+        robot.backRightDrive.setPower(Utilities.clipDrive(backRightPower));
     }
 
     /**
@@ -72,7 +73,7 @@ public class RobotLinearOpMode extends LinearOpMode {
      * @see RobotHardware#backRightDrive
      * @see Constants#MOVEMENT_PADDING_DURATION
      */
-    protected void driveRaw(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower, long duration) {
+    protected void drive(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower, long duration) {
         enable(frontLeftPower, frontRightPower, backLeftPower, backRightPower);
 
         sleep(duration);
@@ -80,27 +81,6 @@ public class RobotLinearOpMode extends LinearOpMode {
         disable();
 
         sleep(Constants.MOVEMENT_PADDING_DURATION);
-    }
-
-    /**
-     * Utility function for driving.
-     * Takes power for each drive motor
-     * (but multiplies it by <code>drivePower</code>)
-     * and the duration to drive for.
-     *
-     * @param frontLeftPower  The power to drive the front left drive motor with.
-     * @param frontRightPower The power to drive the front right drive motor with.
-     * @param backLeftPower   The power to drive the back left drive motor with.
-     * @param backRightPower  The power to drive the back right drive motor with.
-     * @param duration        The duration to drive for (in milliseconds).
-     * @see #driveRaw
-     */
-    protected void drive(double frontLeftPower, double frontRightPower, double backLeftPower, double backRightPower, long duration) {
-        driveRaw(
-                drivePower * frontLeftPower, drivePower * frontRightPower,
-                drivePower * backLeftPower, drivePower * backRightPower,
-                duration
-        );
     }
 
     /**

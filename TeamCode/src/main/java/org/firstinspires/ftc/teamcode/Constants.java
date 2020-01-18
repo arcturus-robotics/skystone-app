@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode;
 
 public class Constants {
+    public static final float DRIVE_MAX = 0.8f;
+    public static final float DRIVE_MIN = -0.8f;
+
     public static final double LEFT_FOUNDATION_INIT = 0.0;
     public static final double LEFT_FOUNDATION_MAX = 0.70;
     public static final double LEFT_FOUNDATION_MIN = 0.25;

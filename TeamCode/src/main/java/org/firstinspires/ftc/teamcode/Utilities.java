@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode;
 
 import com.qualcomm.robotcore.util.ElapsedTime;
+import com.qualcomm.robotcore.util.Range;
 
 /**
  * A collection of various utility methods for our robot.
@@ -43,4 +44,13 @@ public class Utilities {
         return Math.abs(degrees) / 270.0;
     }
 
+    /**
+     * Clip a drive power into a safe range.
+     *
+     * @param power The drive power to clip.
+     * @return The clipped drive power.
+     */
+    public static double clipDrive(double power) {
+        return Range.clip(power, Constants.DRIVE_MIN, Constants.DRIVE_MAX);
+    }
 }
