@@ -17,13 +17,13 @@ public class LeftFromFoundationAutonomous extends RobotLinearOpMode {
         if (opModeIsActive()) {
             contractFoundation();
             sleep(2000);
-            driveForward(0.5, 3000);
+            driveForward(0.25, 3000);
             expandFoundation();
             sleep(2000);
-            driveBackward(1.0, 5000);
+            driveBackward(0.5, 5000);
             contractFoundation();
             sleep(2000);
-            driveLeft(0.5, 3000);
+            driveLeft(0.25, 3000);
         }
     }
 }

@@ -16,8 +16,8 @@ public class LeftToSkybridgeAutonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveForward(0.5, Constants.MOVEMENT_FROM_WALL_DURATION);
-            driveLeft(0.5, Constants.MOVEMENT_TO_SKYBRIDGE_DURATION);
+            driveForward(0.25, Constants.MOVEMENT_FROM_WALL_DURATION);
+            driveLeft(0.25, Constants.MOVEMENT_TO_SKYBRIDGE_DURATION);
         }
     }
 }

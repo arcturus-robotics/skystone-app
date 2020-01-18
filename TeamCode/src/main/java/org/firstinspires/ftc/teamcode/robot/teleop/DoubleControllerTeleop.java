@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.Constants;
+import org.firstinspires.ftc.teamcode.Utilities;
 import org.firstinspires.ftc.teamcode.robot.RobotOpMode;
 
 /**
@@ -23,10 +24,10 @@ public class DoubleControllerTeleop extends RobotOpMode {
     @Override
     public void loop() {
         // Calculate motor power based on input from the gamepad.
-        float frontLeft = -Range.clip(gamepad1.left_stick_y - gamepad1.left_stick_x, -0.80f, 0.80f);
-        float frontRight = -Range.clip(gamepad1.right_stick_y + gamepad1.right_stick_x, -0.80f, 0.80f);
-        float backLeft = -Range.clip(gamepad1.left_stick_y + gamepad1.right_stick_x, -0.80f, 0.80f);
-        float backRight = -Range.clip(gamepad1.right_stick_y - gamepad1.left_stick_x, -0.80f, 0.80f);
+        float frontLeft = (float) -Utilities.clipDrive(gamepad1.left_stick_y - gamepad1.left_stick_x);
+        float frontRight = (float) -Utilities.clipDrive(gamepad1.right_stick_y + gamepad1.right_stick_x);
+        float backLeft = (float) -Utilities.clipDrive(gamepad1.left_stick_y + gamepad1.right_stick_x);
+        float backRight = (float) -Utilities.clipDrive(gamepad1.right_stick_y - gamepad1.left_stick_x);
 
         // Drive the motors.
         robot.frontLeftDrive.setPower(frontLeft);

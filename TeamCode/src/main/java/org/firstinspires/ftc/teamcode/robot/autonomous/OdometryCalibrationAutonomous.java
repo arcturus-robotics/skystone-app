@@ -26,9 +26,9 @@ public class OdometryCalibrationAutonomous extends RobotLinearOpMode {
             enable(0.5, -0.5, 0.5, -0.5);
 
             if (getOrientation() < 60) {
-                enable(0.5, -0.5, 0.5, -0.5);
-            } else {
                 enable(0.25, -0.25, 0.25, -0.25);
+            } else {
+                enable(0.125, -0.125, 0.125, -0.125);
             }
 
             telemetry.addData("IMU Angle", getOrientation());
