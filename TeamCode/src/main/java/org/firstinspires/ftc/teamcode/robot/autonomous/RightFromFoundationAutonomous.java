@@ -17,7 +17,7 @@ public class RightFromFoundationAutonomous extends RobotLinearOpMode {
         if (opModeIsActive()) {
             contractFoundation();
             sleep(2000);
-            driveForward(0.5, 3100);
+            driveForward(0.5, 3000);
             expandFoundation();
             sleep(2000);
             driveBackward(1.0, 5000);
