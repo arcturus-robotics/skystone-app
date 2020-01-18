@@ -452,6 +452,52 @@ public class RobotLinearOpMode extends LinearOpMode {
     }
 
     /**
+     * Expand the foundation arms.
+     */
+    protected void expandFoundation() {
+        robot.leftFoundation.setPosition(0.70);
+        robot.rightFoundation.setPosition(0.70);
+    }
+
+    /**
+     * Contract the foundation arms.
+     */
+    protected void contractFoundation() {
+        robot.leftFoundation.setPosition(0.25);
+        robot.rightFoundation.setPosition(0.25);
+    }
+
+    /**
+     * Expand the arm.
+     */
+    protected void expandArm() {
+        robot.arm.setPosition(1.0);
+    }
+
+    /**
+     * Contract the arm.
+     */
+    protected void contractArm() {
+        robot.arm.setPosition(0.125);
+    }
+
+    /**
+     * Open the claw.
+     */
+    protected void openClaw() {
+        robot.leftClaw.setPosition(0.2);
+        robot.rightClaw.setPosition(0.2);
+    }
+
+    /**
+     * Close the claw.
+     */
+    protected void closeClaw() {
+        robot.leftClaw.setPosition(0.8);
+        robot.rightClaw.setPosition(0.8);
+    }
+
+    /**
      * Get the color, but it's fixed in a *special* way.
      *
      * @return The fixed color.

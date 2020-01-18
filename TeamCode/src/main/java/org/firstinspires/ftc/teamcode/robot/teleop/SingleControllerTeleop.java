@@ -18,7 +18,7 @@ public class SingleControllerTeleop extends RobotOpMode {
     private boolean rightFoundationState = false;
     private boolean armState = false;
 
-    private static final double FOUNDATION_MAX = 0.75;
+    private static final double FOUNDATION_MAX = 0.70;
     private static final double FOUNDATION_MIN = 0.25;
     private static final double LEFT_CLAW_MAX = 0.8;
     private static final double LEFT_CLAW_MIN = 0.2;

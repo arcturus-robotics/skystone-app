@@ -17,7 +17,8 @@ public class ColorDistanceAutonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveRight(0.5, 3000);
+            openClaw();
+            driveRight(0.5, 2900);
         }
 
         int i = 0;
@@ -29,8 +30,9 @@ public class ColorDistanceAutonomous extends RobotLinearOpMode {
                 telemetry.addData("Found", "black");
                 telemetry.update();
 
-                driveLeft(0.5, 500);
-                rotateArm(90.0);
+                driveRight(0.5, 250);
+                expandArm();
+                closeClaw();
 
                 break;
             } else {

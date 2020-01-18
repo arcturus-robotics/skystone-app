@@ -15,10 +15,11 @@ public class FoundationAutonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
+            contractFoundation();
             driveLeft(0.5, MOVEMENT_FROM_WALL_DURATION);
-            rotateFoundation(180.0);
+            expandFoundation();
             driveRight(0.5, MOVEMENT_FROM_WALL_DURATION);
-            rotateFoundation(90.0);
+            contractFoundation();
             driveForward(0.5, MOVEMENT_TO_SKYBRIDGE_DURATION);
         }
     }
