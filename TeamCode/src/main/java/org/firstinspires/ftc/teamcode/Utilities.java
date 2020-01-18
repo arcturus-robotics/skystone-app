@@ -15,10 +15,10 @@ public class Utilities {
      * @return The remaining time of autonomous.
      * If the result of the calculation is less than 0,
      * 0 will be returned.
-     * @see RobotLinearOpMode#AUTONOMOUS_DURATION
+     * @see Constants#AUTONOMOUS_DURATION
      */
     public static long autonomousTimeRemaining(ElapsedTime period) {
-        long remaining = RobotLinearOpMode.AUTONOMOUS_DURATION - (long) period.milliseconds();
+        long remaining = Constants.AUTONOMOUS_DURATION - (long) period.milliseconds();
         if (remaining < 0) {
             remaining = 0;
         }

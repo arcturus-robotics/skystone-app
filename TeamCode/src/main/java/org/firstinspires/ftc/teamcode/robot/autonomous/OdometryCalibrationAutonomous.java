@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.util.ReadWriteFile;
 
 import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
 import java.io.File;
@@ -52,7 +53,7 @@ public class OdometryCalibrationAutonomous extends RobotLinearOpMode {
 
         double verticalEncoderTickOffsetPerDegree = encoderDifference / angle;
 
-        double wheelBaseSeparation = (2 * 90 * verticalEncoderTickOffsetPerDegree) / (Math.PI * TICKS_PER_INCH);
+        double wheelBaseSeparation = (2 * 90 * verticalEncoderTickOffsetPerDegree) / (Math.PI * Constants.TICKS_PER_INCH);
 
         horizontalEncoderTickPerDegreeOffset = robot.odometryHorizontal.getCurrentPosition() / Math.toRadians(getOrientation());
 

@@ -9,6 +9,8 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import org.firstinspires.ftc.robotcore.external.hardware.camera.WebcamName;
+import org.firstinspires.ftc.teamcode.Constants;
+
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.ElapsedTime;
 import com.qualcomm.hardware.bosch.BNO055IMU;
@@ -134,11 +136,11 @@ public class RobotHardware {
 
 
         // Reset their positions.
-        arm.setPosition(0.125);
-        leftClaw.setPosition(0.5);
-        rightClaw.setPosition(0.5);
-        leftFoundation.setPosition(0.0);
-        rightFoundation.setPosition(0.0);
+        arm.setPosition(Constants.ARM_INIT);
+        leftClaw.setPosition(Constants.LEFT_CLAW_INIT);
+        rightClaw.setPosition(Constants.RIGHT_CLAW_INIT);
+        leftFoundation.setPosition(Constants.LEFT_FOUNDATION_INIT);
+        rightFoundation.setPosition(Constants.RIGHT_FOUNDATION_INIT);
 
         // Initialize the color sensor.
         colorSensor = hardwareMap.get(ColorSensor.class, COLOR_DISTANCE_SENSOR);

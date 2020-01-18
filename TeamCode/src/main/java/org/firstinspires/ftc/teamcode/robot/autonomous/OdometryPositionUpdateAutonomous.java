@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.robot.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 import org.firstinspires.ftc.teamcode.robot.odometry.OdometryPosition;
 
@@ -17,9 +18,9 @@ public class OdometryPositionUpdateAutonomous extends RobotLinearOpMode {
                 robot.odometryVerticalRight,
                 robot.odometryHorizontal,
                 75,
-                TICKS_PER_INCH,
-                TICKS_PER_INCH,
-                TICKS_PER_INCH
+                Constants.TICKS_PER_INCH,
+                Constants.TICKS_PER_INCH,
+                Constants.TICKS_PER_INCH
         );
 
         // Initialize and start the position updating thread.
@@ -28,8 +29,8 @@ public class OdometryPositionUpdateAutonomous extends RobotLinearOpMode {
 
         while (opModeIsActive()) {
             // Display (x, y, theta) coordinates.
-            telemetry.addData("X Position", position.x() / TICKS_PER_INCH);
-            telemetry.addData("Y Position", position.y() / TICKS_PER_INCH);
+            telemetry.addData("X Position", position.x() / Constants.TICKS_PER_INCH);
+            telemetry.addData("Y Position", position.y() / Constants.TICKS_PER_INCH);
             telemetry.addData("Orientation", position.orientationDegrees());
             telemetry.addData("Thread State", positionThread.isAlive());
             telemetry.update();

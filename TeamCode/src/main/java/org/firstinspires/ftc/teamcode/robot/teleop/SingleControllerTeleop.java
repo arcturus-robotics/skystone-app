@@ -4,6 +4,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.Servo;
 import com.qualcomm.robotcore.util.Range;
 
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.robot.RobotOpMode;
 
 /**
@@ -67,33 +68,33 @@ public class SingleControllerTeleop extends RobotOpMode {
         }
 
         if (leftClawState) {
-            robot.leftClaw.setPosition(LEFT_CLAW_MAX);
+            robot.leftClaw.setPosition(Constants.LEFT_CLAW_MAX);
         } else {
-            robot.leftClaw.setPosition(LEFT_CLAW_MIN);
+            robot.leftClaw.setPosition(Constants.LEFT_CLAW_MIN);
         }
 
         if (rightClawState) {
-            robot.rightClaw.setPosition(RIGHT_CLAW_MAX);
+            robot.rightClaw.setPosition(Constants.RIGHT_CLAW_MAX);
         } else {
-            robot.rightClaw.setPosition(RIGHT_CLAW_MIN);
+            robot.rightClaw.setPosition(Constants.RIGHT_CLAW_MIN);
         }
 
         if (leftFoundationState) {
-            robot.leftFoundation.setPosition(FOUNDATION_MAX);
+            robot.leftFoundation.setPosition(Constants.LEFT_FOUNDATION_MAX);
         } else {
-            robot.leftFoundation.setPosition(FOUNDATION_MIN);
+            robot.leftFoundation.setPosition(Constants.LEFT_FOUNDATION_MIN);
         }
 
         if (rightFoundationState) {
-            robot.rightFoundation.setPosition(FOUNDATION_MAX);
+            robot.rightFoundation.setPosition(Constants.RIGHT_FOUNDATION_MAX);
         } else {
-            robot.rightFoundation.setPosition(FOUNDATION_MIN);
+            robot.rightFoundation.setPosition(Constants.RIGHT_FOUNDATION_MIN);
         }
 
         if (armState) {
-            robot.arm.setPosition(ARM_MAX);
+            robot.arm.setPosition(Constants.ARM_MAX);
         } else {
-            robot.arm.setPosition(ARM_MIN);
+            robot.arm.setPosition(Constants.ARM_MIN);
         }
 
         telemetry.addData("Left Foundation Position", robot.leftFoundation.getPosition());

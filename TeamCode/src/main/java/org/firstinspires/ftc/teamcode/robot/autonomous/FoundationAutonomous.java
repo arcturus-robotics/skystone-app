@@ -4,6 +4,8 @@ import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
+import org.firstinspires.ftc.teamcode.Constants;
+
 /**
  * A basic autonomous to move the foundation.
  */
@@ -16,11 +18,11 @@ public class FoundationAutonomous extends RobotLinearOpMode {
 
         if (opModeIsActive()) {
             contractFoundation();
-            driveLeft(0.5, MOVEMENT_FROM_WALL_DURATION);
+            driveLeft(0.5, Constants.MOVEMENT_FROM_WALL_DURATION);
             expandFoundation();
-            driveRight(0.5, MOVEMENT_FROM_WALL_DURATION);
+            driveRight(0.5, Constants.MOVEMENT_FROM_WALL_DURATION);
             contractFoundation();
-            driveForward(0.5, MOVEMENT_TO_SKYBRIDGE_DURATION);
+            driveForward(0.5, Constants.MOVEMENT_TO_SKYBRIDGE_DURATION);
         }
     }
 }

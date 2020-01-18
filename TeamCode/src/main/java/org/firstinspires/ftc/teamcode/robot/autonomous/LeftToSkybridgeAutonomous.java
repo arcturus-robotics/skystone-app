@@ -2,6 +2,7 @@ package org.firstinspires.ftc.teamcode.robot.autonomous;
 
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
+import org.firstinspires.ftc.teamcode.Constants;
 import org.firstinspires.ftc.teamcode.robot.RobotLinearOpMode;
 
 /**
@@ -15,8 +16,8 @@ public class LeftToSkybridgeAutonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveForward(0.5, MOVEMENT_FROM_WALL_DURATION);
-            driveLeft(0.5, MOVEMENT_TO_SKYBRIDGE_DURATION);
+            driveForward(0.5, Constants.MOVEMENT_FROM_WALL_DURATION);
+            driveLeft(0.5, Constants.MOVEMENT_TO_SKYBRIDGE_DURATION);
         }
     }
 }
