@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.robot.components;
 
 import com.qualcomm.robotcore.hardware.DcMotor;
-import org.firstinspires.ftc.teamcode.Constants;
 import com.qualcomm.robotcore.util.Range;
 
 public class Drive {
@@ -9,8 +8,10 @@ public class Drive {
     public DcMotor frontRight;
     public DcMotor backLeft;
     public DcMotor backRight;
+
     public double minimumPower = 0.0;
     public double maximumPower = 1.0;
+
     public long padding = 0;
 
     public Drive(DcMotor frontLeft, DcMotor frontRight, DcMotor backLeft, DcMotor backRight) {
