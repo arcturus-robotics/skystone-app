@@ -52,6 +52,8 @@ public class PermissionValidatorWrapper extends PermissionValidatorActivity {
         add(Manifest.permission.READ_EXTERNAL_STORAGE);
         add(Manifest.permission.CAMERA);
         add(Manifest.permission.ACCESS_COARSE_LOCATION);
+        add(Manifest.permission.ACCESS_FINE_LOCATION);
+        add(Manifest.permission.READ_PHONE_STATE);
     }};
 
     public String mapPermissionToExplanation(final String permission) {
@@ -62,7 +64,11 @@ public class PermissionValidatorWrapper extends PermissionValidatorActivity {
         } else if (permission.equals(Manifest.permission.CAMERA)) {
             return Misc.formatForUser(R.string.permRcCameraExplain);
         } else if (permission.equals(Manifest.permission.ACCESS_COARSE_LOCATION)) {
-            return Misc.formatForUser(R.string.permAccessCoarseLocationExplain);
+            return Misc.formatForUser(R.string.permAccessLocationExplain);
+        } else if (permission.equals(Manifest.permission.ACCESS_FINE_LOCATION)) {
+            return Misc.formatForUser(R.string.permAccessLocationExplain);
+        } else if (permission.equals(Manifest.permission.READ_PHONE_STATE)) {
+            return Misc.formatForUser(R.string.permReadPhoneState);
         }
         return Misc.formatForUser(R.string.permGenericExplain);
     }
