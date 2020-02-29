@@ -126,7 +126,7 @@ public class Drive {
         );
     }
 
-    private void sleep(long duration) {
+    protected void sleep(long duration) {
         try {
             Thread.sleep(duration);
         } catch (InterruptedException e) {
