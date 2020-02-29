@@ -9,10 +9,12 @@ public class Odometry implements Runnable {
     public double verticalLeftPosition;
     public double previousVerticalLeftPosition;
     public double verticalLeftPositionMultiplier;
+
     public DcMotor verticalRight;
     public double verticalRightPosition;
     public double previousVerticalRightPosition;
     public double verticalRightPositionMultiplier;
+
     public DcMotor horizontal;
     public double horizontalPosition;
     public double previousHorizontalPosition;
@@ -57,6 +59,24 @@ public class Odometry implements Runnable {
         }
     }
 
+    public void start() { running = true; }
+
+    public void stop() {
+        running = false;
+    }
+
+    @Override
+    public void run() {
+        while (running) {
+            update();
+            try {
+                Thread.sleep(interval);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
     private void update() {
         verticalLeftPosition = verticalLeft.getCurrentPosition() * verticalLeftPositionMultiplier;
         verticalRightPosition = verticalRight.getCurrentPosition() * verticalRightPositionMultiplier;
@@ -80,23 +100,5 @@ public class Odometry implements Runnable {
         previousVerticalLeftPosition = verticalLeftPosition;
         previousVerticalRightPosition = verticalRightPosition;
         previousHorizontalPosition = horizontalPosition;
-    }
-
-    public void start() { running = true; }
-
-    public void stop() {
-        running = false;
-    }
-
-    @Override
-    public void run() {
-        while (running) {
-            update();
-            try {
-                Thread.sleep(interval);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }
