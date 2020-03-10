@@ -8,6 +8,18 @@ import com.qualcomm.robotcore.util.Range;
  */
 public class Utilities {
     /**
+     * Sleep for the specified duration.
+     * @param duration The duration, in milliseconds, to sleep for.
+     */
+    public static void sleep(long duration) {
+        try {
+            Thread.sleep(duration);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+    }
+
+    /**
      * Calculate the remaining time of autonomous.
      *
      * @param period The elapsed time.
