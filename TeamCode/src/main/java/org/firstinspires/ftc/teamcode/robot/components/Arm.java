@@ -39,6 +39,14 @@ public class Arm {
         initialize();
     }
 
+    public Arm(Servo arm, double armInitializationPosition, Servo leftClaw, double leftClawInitializationPosition, Servo rightClaw, double rightClawInitializationPosition) {
+        this.arm = arm;
+        this.leftClaw = leftClaw;
+        this.rightClaw = rightClaw;
+
+        initialize(armInitializationPosition, leftClawInitializationPosition, rightClawInitializationPosition);
+    }
+
     public Arm(Servo arm, Servo leftClaw, Servo rightClaw, long padding) {
         this.arm = arm;
         this.leftClaw = leftClaw;
@@ -47,14 +55,6 @@ public class Arm {
         this.padding = padding;
 
         initialize();
-    }
-
-    public Arm(Servo arm, double armInitializationPosition, Servo leftClaw, double leftClawInitializationPosition, Servo rightClaw, double rightClawInitializationPosition) {
-        this.arm = arm;
-        this.leftClaw = leftClaw;
-        this.rightClaw = rightClaw;
-
-        initialize(armInitializationPosition, leftClawInitializationPosition, rightClawInitializationPosition);
     }
 
     public Arm(Servo arm, double armInitializationPosition, Servo leftClaw, double leftClawInitializationPosition, Servo rightClaw, double rightClawInitializationPosition, long padding) {
@@ -83,6 +83,22 @@ public class Arm {
         initialize();
     }
 
+    public Arm(Servo arm, double armInitializationPosition, double armMaximumPosition, double armMinimumPosition, Servo leftClaw, double leftClawInitializationPosition, double leftClawMaximumPosition, double leftClawMinimumPosition, Servo rightClaw, double rightClawInitializationPosition, double rightClawMaximumPosition, double rightClawMinimumPosition) {
+        this.arm = arm;
+        this.armMaximumPosition = armMaximumPosition;
+        this.armMinimumPosition = armMinimumPosition;
+
+        this.leftClaw = leftClaw;
+        this.leftClawMaximumPosition = leftClawMaximumPosition;
+        this.leftClawMinimumPosition = leftClawMinimumPosition;
+
+        this.rightClaw = rightClaw;
+        this.rightClawMaximumPosition = rightClawMaximumPosition;
+        this.rightClawMinimumPosition = rightClawMinimumPosition;
+
+        initialize(armInitializationPosition, leftClawInitializationPosition, rightClawInitializationPosition);
+    }
+
     public Arm(Servo arm, double armMaximumPosition, double armMinimumPosition, Servo leftClaw, double leftClawMaximumPosition, double leftClawMinimumPosition, Servo rightClaw, double rightClawMaximumPosition, double rightClawMinimumPosition, long padding) {
         this.arm = arm;
         this.armMaximumPosition = armMaximumPosition;
@@ -99,22 +115,6 @@ public class Arm {
         this.padding = padding;
 
         initialize();
-    }
-
-    public Arm(Servo arm, double armInitializationPosition, double armMaximumPosition, double armMinimumPosition, Servo leftClaw, double leftClawInitializationPosition, double leftClawMaximumPosition, double leftClawMinimumPosition, Servo rightClaw, double rightClawInitializationPosition, double rightClawMaximumPosition, double rightClawMinimumPosition) {
-        this.arm = arm;
-        this.armMaximumPosition = armMaximumPosition;
-        this.armMinimumPosition = armMinimumPosition;
-
-        this.leftClaw = leftClaw;
-        this.leftClawMaximumPosition = leftClawMaximumPosition;
-        this.leftClawMinimumPosition = leftClawMinimumPosition;
-
-        this.rightClaw = rightClaw;
-        this.rightClawMaximumPosition = rightClawMaximumPosition;
-        this.rightClawMinimumPosition = rightClawMinimumPosition;
-
-        initialize(armInitializationPosition, leftClawInitializationPosition, rightClawInitializationPosition);
     }
 
     public Arm(Servo arm, double armInitializationPosition, double armMaximumPosition, double armMinimumPosition, Servo leftClaw, double leftClawInitializationPosition, double leftClawMaximumPosition, double leftClawMinimumPosition, Servo rightClaw, double rightClawInitializationPosition, double rightClawMaximumPosition, double rightClawMinimumPosition, long padding) {
