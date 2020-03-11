@@ -20,9 +20,6 @@ public class TestTeleop extends RobotOpMode {
         float backRight = -Range.clip(gamepad1.right_stick_y + gamepad1.left_stick_x, -1, 1);
 
         // Drive the motors.
-        robot.frontLeftDrive.setPower(frontLeft);
-        robot.frontRightDrive.setPower(frontRight);
-        robot.backLeftDrive.setPower(backLeft);
-        robot.backRightDrive.setPower(backRight);
+        robot.drive.start(frontLeft, frontRight, backLeft, backRight);
     }
 }

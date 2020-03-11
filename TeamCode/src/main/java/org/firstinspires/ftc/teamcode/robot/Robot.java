@@ -25,19 +25,38 @@ public class Robot {
     public Robot() {}
 
     public Robot(HardwareMap hardwareMap) {
+        long padding = 30;
+
         arm = new Arm(
-                hardwareMap.get(Servo.class, "arm"),
-                hardwareMap.get(Servo.class, "left_claw"), hardwareMap.get(Servo.class, "right_claw")
+                hardwareMap.get(Servo.class, "arm"), 0.125,
+                hardwareMap.get(Servo.class, "left_claw"), 0.5,
+                hardwareMap.get(Servo.class, "right_claw"), 0.5
         );
+        arm.armMaximumPosition = 0.95;
+        arm.armMinimumPosition = 0.125;
+        arm.leftClawMaximumPosition = 0.8;
+        arm.leftClawMinimumPosition = 0.2;
+        arm.rightClawMaximumPosition = 1.0;
+        arm.rightClawMinimumPosition = 0.0;
+        arm.padding = padding;
 
         drive = new Drive(
                 hardwareMap.get(DcMotor.class, "front_left_drive"), hardwareMap.get(DcMotor.class, "front_right_drive"),
                 hardwareMap.get(DcMotor.class, "back_left_drive"), hardwareMap.get(DcMotor.class, "back_right_drive")
         );
+        drive.maximumPower = 0.8;
+        drive.minimumPower = -0.8;
+        drive.padding = padding;
 
         foundation = new Foundation(
-                hardwareMap.get(Servo.class, "left_foundation"), hardwareMap.get(Servo.class, "right_foundation")
+                hardwareMap.get(Servo.class, "left_foundation"), 0.0,
+                hardwareMap.get(Servo.class, "right_foundation"), 0.0
         );
+        foundation.leftMaximumPosition = 0.725;
+        foundation.leftMinimumPosition = 0.25;
+        foundation.rightMaximumPosition = 0.725;
+        foundation.rightMinimumPosition = 0.25;
+        foundation.padding = padding;
 
         imu = new Imu(
                 hardwareMap.get(BNO055IMU.class, "imu")

@@ -92,7 +92,7 @@ public class Arm {
     /**
      * Extend the arm.
      */
-    public void extendArm() {
+    public void expand() {
         maximizeArm();
 
         Utilities.sleep(padding);
@@ -101,7 +101,7 @@ public class Arm {
     /**
      * Contract the arm.
      */
-    public void contractArm() {
+    public void contract() {
         minimizeArm();
 
         Utilities.sleep(padding);
@@ -110,7 +110,7 @@ public class Arm {
     /**
      * Open the claw.
      */
-    public void openClaw() {
+    public void open() {
         minimizeLeftClaw();
         minimizeRightClaw();
 
@@ -120,7 +120,7 @@ public class Arm {
     /**
      * Close the claw.
      */
-    public void closeClaw() {
+    public void close() {
         maximizeLeftClaw();
         maximizeRightClaw();
 

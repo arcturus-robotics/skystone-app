@@ -16,8 +16,8 @@ public class ScenicRightToSkybridgeAutonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveForward(0.25, Constants.SCENIC_MOVEMENT_FROM_WALL_DURATION);
-            driveRight(0.25, Constants.SCENIC_MOVEMENT_TO_SKYBRIDGE_DURATION);
+            robot.drive.forward(0.25, Constants.SCENIC_MOVEMENT_FROM_WALL_DURATION);
+            robot.drive.right(0.25, Constants.SCENIC_MOVEMENT_TO_SKYBRIDGE_DURATION);
         }
     }
 }

@@ -15,19 +15,19 @@ public class RightFromFoundationAutonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            driveRight(0.25, 1000);
-            contractFoundation();
+            robot.drive.right(0.25, 1000);
+            robot.foundation.close();
             sleep(2000);
-            driveForward(0.25, 1700);
-            expandFoundation();
+            robot.drive.forward(0.25, 1700);
+            robot.foundation.open();
             sleep(2000);
-            driveBackward(0.5, 2100);
-            turnRight(0.6, 5000);
-            contractFoundation();
+            robot.drive.backward(0.5, 2100);
+            robot.drive.turnRight(0.6, 5000);
+            robot.foundation.close();
             sleep(2000);
-            //driveLeft(0.25, 2600);
-            //driveForward(0.25, 1400);
-            //driveRight(0.25, 700);
+            //robot.drive.left(0.25, 2600);
+            //robot.drive.forward(0.25, 1400);
+            //robot.drive.right(0.25, 700);
         }
     }
 }

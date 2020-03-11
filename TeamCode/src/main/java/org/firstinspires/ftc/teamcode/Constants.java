@@ -1,29 +1,6 @@
 package org.firstinspires.ftc.teamcode;
 
 public class Constants {
-    public static final double DRIVE_MAX = 0.8;
-    public static final double DRIVE_MIN = -0.8;
-
-    public static final double LEFT_FOUNDATION_INIT = 0.0;
-    public static final double LEFT_FOUNDATION_MAX = 0.725;
-    public static final double LEFT_FOUNDATION_MIN = 0.25;
-
-    public static final double RIGHT_FOUNDATION_INIT = 0.0;
-    public static final double RIGHT_FOUNDATION_MAX = 0.725;
-    public static final double RIGHT_FOUNDATION_MIN = 0.25;
-
-    public static final double LEFT_CLAW_INIT = 0.5;
-    public static final double LEFT_CLAW_MAX = 0.8;
-    public static final double LEFT_CLAW_MIN = 0.2;
-
-    public static final double RIGHT_CLAW_INIT = 0.5;
-    public static final double RIGHT_CLAW_MAX = 1.0;
-    public static final double RIGHT_CLAW_MIN = 0.0;
-
-    public static final double ARM_INIT = 0.125;
-    public static final double ARM_MAX = 0.95;
-    public static final double ARM_MIN = 0.125;
-
     /**
      * The amount of encoder ticks per inch the robot moves.
      */
@@ -38,11 +15,6 @@ public class Constants {
      * The duration of the initial delay. This delay can prevent our autonomous from clashing with our ally's autonomous.
      */
     public static final long INITIAL_DELAY_DURATION = 0;
-
-    /**
-     * Padding between each movement of the motors, servos, etc. (in milliseconds).
-     */
-    public static final long MOVEMENT_PADDING_DURATION = 30;
 
     /**
      * The duration to move away from the wall.

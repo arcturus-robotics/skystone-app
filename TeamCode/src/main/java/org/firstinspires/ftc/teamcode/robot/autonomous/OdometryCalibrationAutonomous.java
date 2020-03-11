@@ -22,40 +22,40 @@ public class OdometryCalibrationAutonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         //Begin calibration (if robot is unable to pivot at these speeds, please adjust the constant at the top of the code
-        while (getOrientation() < 90 && opModeIsActive()) {
-            enable(0.5, -0.5, 0.5, -0.5);
+        while (robot.imu.orientation() < 90 && opModeIsActive()) {
+            robot.drive.start(0.5, -0.5, 0.5, -0.5);
 
-            if (getOrientation() < 60) {
-                enable(0.25, -0.25, 0.25, -0.25);
+            if (robot.imu.orientation() < 60) {
+                robot.drive.start(0.25, -0.25, 0.25, -0.25);
             } else {
-                enable(0.125, -0.125, 0.125, -0.125);
+                robot.drive.start(0.125, -0.125, 0.125, -0.125);
             }
 
-            telemetry.addData("IMU Angle", getOrientation());
+            telemetry.addData("IMU Angle", robot.imu.orientation());
             telemetry.update();
         }
 
-        disable();
+        robot.drive.stop();
 
-        robot.period.reset();
-        while (robot.period.milliseconds() < 1000 && opModeIsActive()) {
-            telemetry.addData("IMU Angle", getOrientation());
+        period.reset();
+        while (period.milliseconds() < 1000 && opModeIsActive()) {
+            telemetry.addData("IMU Angle", robot.imu.orientation());
             telemetry.update();
         }
 
-        double angle = getOrientation();
+        double angle = robot.imu.orientation();
 
         // According to Wizards.exe:
         // Encoder difference is calculate with `leftEncoder - rightEncoder`.
         // Since the left encoder is also mapped to a drive motor, the encoder value needs to be negated.
         // This may need to be changed!
-        double encoderDifference = Math.abs(robot.odometryVerticalLeft.getCurrentPosition()) + (Math.abs(robot.odometryVerticalRight.getCurrentPosition()));
+        double encoderDifference = Math.abs(robot.odometry.verticalLeft.getCurrentPosition()) + (Math.abs(robot.odometry.verticalRight.getCurrentPosition()));
 
         double verticalEncoderTickOffsetPerDegree = encoderDifference / angle;
 
         double wheelBaseSeparation = (2 * 90 * verticalEncoderTickOffsetPerDegree) / (Math.PI * Constants.TICKS_PER_INCH);
 
-        horizontalEncoderTickPerDegreeOffset = robot.odometryHorizontal.getCurrentPosition() / Math.toRadians(getOrientation());
+        horizontalEncoderTickPerDegreeOffset = robot.odometry.horizontal.getCurrentPosition() / Math.toRadians(robot.imu.orientation());
 
         //Write the constants to text files
         ReadWriteFile.writeFile(wheelBaseSeparationFile, String.valueOf(wheelBaseSeparation));
@@ -69,10 +69,10 @@ public class OdometryCalibrationAutonomous extends RobotLinearOpMode {
             telemetry.addData("Horizontal Encoder Offset", horizontalEncoderTickPerDegreeOffset);
 
             // Display raw values.
-            telemetry.addData("IMU Angle", getOrientation());
-            telemetry.addData("Vertical Left Position", -robot.odometryVerticalLeft.getCurrentPosition());
-            telemetry.addData("Vertical Right Position", -robot.odometryVerticalRight.getCurrentPosition());
-            telemetry.addData("Horizontal Position", -robot.odometryHorizontal.getCurrentPosition());
+            telemetry.addData("IMU Angle", robot.imu.orientation());
+            telemetry.addData("Vertical Left Position", -robot.odometry.verticalLeft.getCurrentPosition());
+            telemetry.addData("Vertical Right Position", -robot.odometry.verticalRight.getCurrentPosition());
+            telemetry.addData("Horizontal Position", -robot.odometry.horizontal.getCurrentPosition());
             telemetry.addData("Vertical Encoder Offset", verticalEncoderTickOffsetPerDegree);
 
             telemetry.update();

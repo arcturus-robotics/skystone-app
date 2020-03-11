@@ -30,10 +30,7 @@ public class DoubleControllerTeleop extends RobotOpMode {
         float backRight = (float) -Utilities.clipDrive(gamepad1.right_stick_y - gamepad1.left_stick_x);
 
         // Drive the motors.
-        robot.frontLeftDrive.setPower(frontLeft);
-        robot.frontRightDrive.setPower(frontRight);
-        robot.backLeftDrive.setPower(backLeft);
-        robot.backRightDrive.setPower(backRight);
+        robot.drive.start(frontLeft, frontRight, backLeft, backRight);
 
         if (!(gamepad2.x && gamepad2.y)) {
             if (gamepad2.x) {
@@ -70,33 +67,33 @@ public class DoubleControllerTeleop extends RobotOpMode {
         }
 
         if (leftClawState) {
-            robot.leftClaw.setPosition(Constants.LEFT_CLAW_MAX);
+            robot.arm.maximizeLeftClaw();
         } else {
-            robot.leftClaw.setPosition(Constants.LEFT_CLAW_MIN);
+            robot.arm.minimizeLeftClaw();
         }
 
         if (rightClawState) {
-            robot.rightClaw.setPosition(Constants.RIGHT_CLAW_MAX);
+            robot.arm.maximizeRightClaw();
         } else {
-            robot.rightClaw.setPosition(Constants.RIGHT_CLAW_MIN);
+            robot.arm.minimizeRightClaw();
         }
 
         if (leftFoundationState) {
-            robot.leftFoundation.setPosition(Constants.LEFT_FOUNDATION_MAX);
+            robot.foundation.maximizeLeft();
         } else {
-            robot.leftFoundation.setPosition(Constants.LEFT_FOUNDATION_MIN);
+            robot.foundation.minimizeLeft();
         }
 
         if (rightFoundationState) {
-            robot.rightFoundation.setPosition(Constants.RIGHT_FOUNDATION_MAX);
+            robot.foundation.maximizeRight();
         } else {
-            robot.rightFoundation.setPosition(Constants.RIGHT_FOUNDATION_MIN);
+            robot.foundation.minimizeRight();
         }
 
         if (armState) {
-            robot.arm.setPosition(Constants.ARM_MAX);
+            robot.arm.maximizeArm();
         } else {
-            robot.arm.setPosition(Constants.ARM_MIN);
+            robot.arm.minimizeArm();
         }
     }
 }

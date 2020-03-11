@@ -12,6 +12,10 @@ public class Imu {
         initialize();
     }
 
+    public double orientation() {
+        return imu.getAngularOrientation().firstAngle;
+    }
+
     private void initialize() {
         BNO055IMU.Parameters parameters = new BNO055IMU.Parameters();
         parameters.angleUnit = BNO055IMU.AngleUnit.DEGREES;

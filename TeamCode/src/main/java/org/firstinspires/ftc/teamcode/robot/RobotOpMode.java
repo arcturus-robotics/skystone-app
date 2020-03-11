@@ -7,8 +7,7 @@ import com.qualcomm.robotcore.util.ElapsedTime;
  * Implements methods for teleop for convenience.
  */
 public class RobotOpMode extends OpMode {
-    protected RobotHardware robot = new RobotHardware();
-    protected ElapsedTime period = new ElapsedTime();
+    protected Robot robot;
 
     /**
      * Runs once upon initialization.
@@ -16,7 +15,7 @@ public class RobotOpMode extends OpMode {
     @Override
     public void init() {
         // Initialize the robot hardware using the hardware map.
-        robot.init(hardwareMap);
+        robot = new Robot(hardwareMap);
 
         telemetry.addData("Status", "Waiting...");
     }

@@ -14,9 +14,9 @@ public class OdometryPositionUpdateAutonomous extends RobotLinearOpMode {
 
         // Initialize the position.
         OdometryPosition position = new OdometryPosition(
-                robot.odometryVerticalLeft,
-                robot.odometryVerticalRight,
-                robot.odometryHorizontal,
+                robot.odometry.verticalLeft,
+                robot.odometry.verticalRight,
+                robot.odometry.horizontal,
                 75,
                 Constants.TICKS_PER_INCH,
                 Constants.TICKS_PER_INCH,

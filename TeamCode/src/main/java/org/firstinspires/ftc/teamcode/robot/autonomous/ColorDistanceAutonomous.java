@@ -17,9 +17,9 @@ public class ColorDistanceAutonomous extends RobotLinearOpMode {
         super.runOpMode();
 
         if (opModeIsActive()) {
-            contractArm();
-            openClaw();
-            driveRight(0.25, 3000);
+            robot.arm.contract();
+            robot.arm.open();
+            robot.drive.right(0.25, 3000);
         }
 
         boolean forward = true;
@@ -31,45 +31,45 @@ public class ColorDistanceAutonomous extends RobotLinearOpMode {
                 telemetry.update();
 
                 //grab the claw
-                driveRight(0.25, 250);
-                expandArm();
-                closeClaw();
-                contractArm();
+                robot.drive.right(0.25, 250);
+                robot.arm.expand();
+                robot.arm.close();
+                robot.arm.contract();
 
                 //move to the foundation for pla
-                driveLeft(0.25, 1300);
-                driveForward(0.25, 4250);
-                driveRight(0.25, 1450);
-                expandArm();
-                openClaw();
-                contractArm();
+                robot.drive.left(0.25, 1300);
+                robot.drive.forward(0.25, 4250);
+                robot.drive.right(0.25, 1450);
+                robot.arm.expand();
+                robot.arm.open();
+                robot.arm.contract();
                 sleep(80);
 
                 //move back and grab foundation
-                driveLeft(0.25, 250);
-                turnRight(0.25, 1200);
+                robot.drive.left(0.25, 250);
+                robot.drive.turnRight(0.25, 1200);
                 sleep(100);
 
-                driveForward(0.25, 125);
-                expandFoundation();
+                robot.drive.forward(0.25, 125);
+                robot.foundation.open();
                 sleep(1000);
-                turnLeft(0.25, 1500);
+                robot.drive.turnLeft(0.25, 1500);
                 sleep(80);
-                driveLeft(0.25, 100);
-                contractFoundation();
+                robot.drive.left(0.25, 100);
+                robot.foundation.close();
 
                 //pickup the other skystone
-                //driveRight(0.25, 1300);
-                //expandArm();
-                //closeClaw();
-                //contractArm();
+                //robot.drive.right(0.25, 1300);
+                //robot.arm.expand();
+                //robot.arm.close();
+                //robot.arm.contract();
 
                 /*
-                expandFoundation();
-                driveRight(0.25, 2900);
-                contractFoundation();
-                driveBackward(0.25, 2900);
-                driveRight(0.25, 2900);
+                robot.foundation.open();
+                robot.drive.right(0.25, 2900);
+                robot.foundation.close();
+                robot.drive.backward(0.25, 2900);
+                robot.drive.right(0.25, 2900);
                 */
                 break;
             } else {
@@ -79,7 +79,7 @@ public class ColorDistanceAutonomous extends RobotLinearOpMode {
 
 
             for (int is = 0; is % 120 == 0; is += 1) {
-                driveBackward(0.15, 100);
+                robot.drive.backward(0.15, 100);
             }
 
             /*
@@ -90,15 +90,28 @@ public class ColorDistanceAutonomous extends RobotLinearOpMode {
 
 
             if (forward) {
-                driveForward(0.15, 100);
+                robot.drive.forward(0.15, 100);
             } else {
-                driveBackward(0.15, 100);
+                robot.drive.backward(0.15, 100);
             }
 
             i += 1;
 
              */
 
+        }
+    }
+
+    /**
+     * Get the color, but it's fixed in a *special* way.
+     *
+     * @return The fixed color.
+     */
+    protected int fixedColor() {
+        if ((robot.sensors.color.red() * robot.sensors.color.green()) / Math.pow(robot.sensors.color.blue(), 2) < 2) {
+            return Color.BLACK;
+        } else {
+            return robot.sensors.color.argb();
         }
     }
 }
