@@ -58,64 +58,6 @@ public class Drive {
     }
 
     /**
-     * Initialize a component with specific power limits but no padding duration.
-     * @param frontLeft The front-left motor.
-     * @param frontRight The front-right motor.
-     * @param backLeft The back-left motor.
-     * @param backRight The back-right motor.
-     * @param minimumPower The motors' minimum power.
-     * @param maximumPower The motors' maximum power.
-     */
-    public Drive(DcMotor frontLeft, DcMotor frontRight, DcMotor backLeft, DcMotor backRight, double minimumPower, double maximumPower) {
-        this.frontLeft = frontLeft;
-        this.frontRight = frontRight;
-        this.backLeft = backLeft;
-        this.backRight = backRight;
-        this.minimumPower = minimumPower;
-        this.maximumPower = maximumPower;
-    }
-
-    /**
-     * Initialize a component with a padding duration but no specific power limits.
-     * @param frontLeft The front-left motor.
-     * @param frontRight The front-right motor.
-     * @param backLeft The back-left motor.
-     * @param backRight The back-right motor.
-     * @param padding The duration to sleep between each movement.
-     */
-    public Drive(DcMotor frontLeft, DcMotor frontRight, DcMotor backLeft, DcMotor backRight, long padding) {
-        this.frontLeft = frontLeft;
-        this.frontRight = frontRight;
-        this.backLeft = backLeft;
-        this.backRight = backRight;
-        this.padding = padding;
-
-        initialize();
-    }
-
-    /**
-     * Initialize a component with specific power limits and a padding duration.
-     * @param frontLeft The front-left motor.
-     * @param frontRight The front-right motor.
-     * @param backLeft The back-left motor.
-     * @param backRight The back-right motor.
-     * @param minimumPower The motors' minimum power.
-     * @param maximumPower The motor's maximum power.
-     * @param padding The duration to sleep between each movement.
-     */
-    public Drive(DcMotor frontLeft, DcMotor frontRight, DcMotor backLeft, DcMotor backRight, double minimumPower, double maximumPower, long padding) {
-        this.frontLeft = frontLeft;
-        this.frontRight = frontRight;
-        this.backLeft = backLeft;
-        this.backRight = backRight;
-        this.minimumPower = minimumPower;
-        this.maximumPower = maximumPower;
-        this.padding = padding;
-
-        initialize();
-    }
-
-    /**
      * Start the motors with a specific amount of power for each.
      * @param frontLeftPower The power for the front-left motor.
      * @param frontRightPower The power for the front-right motor.
